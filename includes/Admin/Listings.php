@@ -51,7 +51,7 @@ class Listings {
 			return;
 		}
 
-		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'edit-listings' ) ) {
+		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'directory-listings' ) ) {
 			wp_die( 'Are you cheating?' );
 		}
 

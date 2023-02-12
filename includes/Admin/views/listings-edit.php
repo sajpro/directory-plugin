@@ -69,7 +69,7 @@
 
 		</table>
 			<input type="hidden" name="id" value="<?php echo esc_attr( $listing->id ); ?>">
-			<?php wp_nonce_field( 'edit-listings' ); ?>
+			<?php wp_nonce_field( 'directory-listings' ); ?>
 			<?php submit_button( __( 'Update Listings', 'directory-plugin' ), 'primary', 'submit_listings' ); ?>
 	</form>
 

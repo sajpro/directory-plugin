@@ -61,8 +61,8 @@
 			</tbody>
 
 		</table>
-			<?php wp_nonce_field( 'create-listing' ); ?>
-			<?php submit_button( __( 'Add Address', 'directory-plugin' ), 'primary', 'submit_address' ); ?>
+			<?php wp_nonce_field( 'directory-listings' ); ?>
+			<?php submit_button( __( 'Add Listing', 'directory-plugin' ), 'primary', 'submit_address' ); ?>
 	</form>
 
 </div>
