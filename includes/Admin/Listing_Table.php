@@ -54,7 +54,7 @@ class Listing_Table extends \WP_List_Table {
 				break;
 
 			case 'created_at':
-				return isset( $item->$column_name ) ? mysql2date( 'F j, Y', $item->$column_name ) : '';
+				return isset( $item->$column_name ) ? mysql2date( 'F j, Y \a\t g:i A', $item->$column_name ) : '';
 				break;
 
 			default:
