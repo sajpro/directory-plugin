@@ -63,7 +63,7 @@ class Listings {
 		$title          = isset( $_POST['title'] ) ? sanitize_text_field( $_POST['title'] ) : '';
 		$content        = isset( $_POST['content'] ) ? sanitize_textarea_field( $_POST['content'] ) : '';
 		$created_by     = isset( $_POST['created_by'] ) ? sanitize_text_field( $_POST['created_by'] ) : '';
-		$listing_status = isset( $_POST['listing_status'] ) ? sanitize_text_field( $_POST['listing_status'] ) : '';
+		$listing_status = isset( $_POST['listing_status'] ) ? sanitize_text_field( $_POST['listing_status'] ) : 'active';
 		$preview_image  = isset( $_POST['preview_image'] ) ? sanitize_text_field( $_POST['preview_image'] ) : '';
 
 		$args = [

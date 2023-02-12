@@ -62,7 +62,7 @@
 
 		</table>
 			<?php wp_nonce_field( 'directory-listings' ); ?>
-			<?php submit_button( __( 'Add Listing', 'directory-plugin' ), 'primary', 'submit_address' ); ?>
+			<?php submit_button( __( 'Add Listing', 'directory-plugin' ), 'primary', 'submit_listings' ); ?>
 	</form>
 
 </div>
