@@ -35,7 +35,6 @@ class Api_Endpoints extends \WP_REST_Controller {
 	 * @return void
 	 */
 	public function register_routes() {
-
 		register_rest_route(
 			$this->namespace,
 			'/' . $this->rest_base,
@@ -50,8 +49,8 @@ class Api_Endpoints extends \WP_REST_Controller {
 					'methods'             => \WP_REST_Server::CREATABLE,
 					'callback'            => [ $this, 'create_listings' ],
 					'permission_callback' => '__return_true', // [ $this, 'get_permission_check' ],
-					'args'                => parent::get_endpoint_args_for_item_schema( true ),
-				]
+					// 'args'                => parent::get_endpoint_args_for_item_schema( true ),
+				],
 			]
 		);
 	}
@@ -63,7 +62,14 @@ class Api_Endpoints extends \WP_REST_Controller {
 	 * @param array $request User request data.
 	 */
 	public function get_all_listings( $request ) {
-		// $blocks = $request->get_param( 'blocks' );
+		pretty_log( 'submitted', $request );
+		$title          = $request->get_param( 'title' );
+		$content        = $request->get_param( 'content' );
+		$listing_status = $request->get_param( 'listing_status' );
+		$preview_image  = $request->get_param( 'preview_image' );
+		return 1;
+		// directory_plugin_listing_insert()
+
 		$result = [
 			'save' => true,
 		];
@@ -78,10 +84,31 @@ class Api_Endpoints extends \WP_REST_Controller {
 	 * @param array $request User request data.
 	 */
 	public function create_listings( $request ) {
-		// $blocks = $request->get_param( 'blocks' );
+
 		$result = [
-			'save' => true,
+			'success' => false,
 		];
+
+		$title          = $request->get_param( 'title' );
+		$content        = $request->get_param( 'content' );
+		$listing_status = $request->get_param( 'listing_status' );
+		$preview_image  = $request->get_param( 'preview_image' );
+		$created_by     = $request->get_param( 'created_by' );
+
+		$id = directory_plugin_listing_insert(
+			[
+				'title'          => $title,
+				'content'        => $content,
+				'listing_status' => $listing_status,
+				'preview_image'  => $preview_image,
+				'created_by'     => $created_by,
+			]
+		);
+
+		if ( $id ) {
+			$result['success'] = true;
+			$result['id']      = $id;
+		}
 
 		wp_send_json( $result );
 	}
