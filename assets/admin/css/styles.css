@@ -1,0 +1,27 @@
+.hide{
+    display: none;
+}
+.img-wrap {
+    float: left;
+    margin-right: 15px;
+    position: relative;
+}
+.img-wrap:hover .img-remove{
+    display: block;
+}
+.img-remove {
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    border: 1px solid red;
+    color: red;
+    width: 15px;
+    text-align: center;
+    height: 15px;
+    line-height: 15px;
+}
+.img-preview {
+    border: 1px solid #ddd;
+}
