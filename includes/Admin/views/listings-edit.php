@@ -59,7 +59,7 @@
 						?>
 						<div class="img-wrap">
 							<span class="img-remove">X</span>
-							<img class="img-preview <?php echo ( ! empty( $directory_plugin_image_data ) ? '' : 'hide' ); ?>" src="<?php echo esc_url( $directory_plugin_image_data[1] ); ?>" width="100" height="auto" alt="image>"> 
+							<img class="img-preview <?php echo ( ! empty( $directory_plugin_image_data ) ? '' : 'hide' ); ?>" src="<?php echo esc_url( $directory_plugin_image_data[1] ); ?>" width="100" height="auto" alt="image"> 
 						</div>
 						<input type="hidden" class="wpx-img-field" id="preview_image" name="preview_image" value="<?php echo esc_attr( $listing->preview_image ); ?>"/> 
 						<input type="button" class="button wpx-browse" data-title="<?php esc_attr_e( 'Media Gallery' ); ?>" data-select-text="<?php esc_attr_e( 'Select Image', 'directory-plugin' ); ?>" value="<?php esc_attr_e( 'Upload/Edit Image', 'directory-plugin' ); ?>"/>
