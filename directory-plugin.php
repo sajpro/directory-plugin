@@ -122,6 +122,9 @@ final class Directory_Plugin {
 	public function includes() {
 		register_activation_hook( __FILE__, [ $this, 'run_activation' ] );
 		add_action( 'plugins_loaded', [ $this, 'init' ] );
+
+		$api_endpoint = new Sajib\DP\RestApi\v1\Api_Endpoints();
+		$api_endpoint->init();
 	}
 
 	/**
