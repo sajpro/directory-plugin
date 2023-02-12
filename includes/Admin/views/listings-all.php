@@ -6,9 +6,9 @@
 	<form action="" method="post"> 
 
 		<?php
-			// $table = new Tbr\Core\Admin\Address_List();
-			// $table->prepare_items();
-			// $table->display();
+			$table = new Sajib\DP\Admin\Listing_Table();
+			$table->prepare_items();
+			$table->display();
 		?>
 	</form>
 </div>

@@ -28,19 +28,20 @@ class Listing_Table extends \WP_List_Table {
 
 	public function get_columns() {
 		return [
-			'cb'                      => '<input type="checkbox">',
-			'title'                   => __( 'Title', 'tbr-core' ),
-			'content'                 => __( 'content', 'tbr-core' ),
-			'created_by'              => __( 'Author', 'tbr-core' ),
-			'listing_status'          => __( 'Status', 'tbr-core' ),
-			'preview_image'           => __( 'Image', 'tbr-core' ),
-			'created_at'              => __( 'Submission Date', 'tbr-core' ),
+			'cb'             => '<input type="checkbox">',
+			'title'          => __( 'Title', 'directory-plugin' ),
+			'content'        => __( 'content', 'directory-plugin' ),
+			'created_by'     => __( 'Author', 'directory-plugin' ),
+			'listing_status' => __( 'Status', 'directory-plugin' ),
+			'preview_image'  => __( 'Image', 'directory-plugin' ),
+			'created_at'     => __( 'Submission Date', 'directory-plugin' ),
 		];
 	}
 
 	public function get_sortable_columns() {
 		return [
-			'name'       => [ 'name', true ],
+			'title'      => [ 'title', true ],
+			'created_by' => [ 'created_by', true ],
 			'created_at' => [ 'created_at', true ],
 		];
 	}
@@ -55,17 +56,17 @@ class Listing_Table extends \WP_List_Table {
 		}
 	}
 
-	public function column_name( $item ) {
+	public function column_title( $item ) {
 		$actions = [];
 
-		$actions['edit']   = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=tbr-core&action=edit&id=' . $item->id ), __( 'Edit', 'tbr-core' ) );
-		$actions['delete'] = sprintf( '<a href="%s" onclick="return confirm(\'Are you sure? \');">%s</a>', wp_nonce_url( admin_url( 'admin-post.php?action=tbr-core-adrress-delete&id=' . $item->id ), 'tbr-core-adrress-delete' ), __( 'Delete', 'tbr-core' ) );
+		$actions['edit']   = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=directory-listings&action=edit&listing=' . $item->id ), __( 'Edit', 'directory-plugin' ) );
+		$actions['delete'] = sprintf( '<a href="%s" onclick="return confirm(\'Are you sure? \');">%s</a>', wp_nonce_url( admin_url( 'admin-post.php?action=directory-listings-delete&listing=' . $item->id ), 'directory-listings-delete' ), __( 'Delete', 'directory-plugin' ) );
 
-		return sprintf( '<a href="%1$s"><strong>%2$s</strong></a> %3$s', admin_url( 'admin.php?page=tbr-core&action=view&id=' . $item->id ), $item->name, $this->row_actions( $actions ) );
+		return sprintf( '<a href="%1$s"><strong>%2$s</strong></a> %3$s', admin_url( 'admin.php?page=directory-listings&action=edit&listing=' . $item->id ), $item->title, $this->row_actions( $actions ) );
 	}
 
 	public function column_cb( $item ) {
-		return sprintf( '<input type="checkbox" name="address_id[]" value="%d" />', $item->id );
+		return sprintf( '<input type="checkbox" name="listing_id[]" value="%d" />', $item->id );
 	}
 
 	public function prepare_items() {
@@ -75,23 +76,11 @@ class Listing_Table extends \WP_List_Table {
 
 		$this->_column_headers = [ $columns, $hidden, $sortable ];
 
-		$per_page     = 20;
-		$current_page = $this->get_pagenum();
-		$offset       = ( $current_page - 1 ) * $per_page;
+		$per_page = 20;
 
-		$total_items = tbr_core_addresses_count();
+		$total_items = directory_plugin_listings_total_count();
 
-		$args = [
-			'number' => $per_page,
-			'offset' => $offset,
-		];
-
-		if ( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
-			$args['orderby'] = $_REQUEST['orderby'];
-			$args['order']   = $_REQUEST['order'];
-		}
-
-		$this->items = tbr_core_get_addresses( $args );
+		$this->items = directory_plugin_listing_get( $args );
 
 		$this->set_pagination_args(
 			[
