@@ -2,6 +2,12 @@
 
 	<h1 class="wp-heading-inline"><?php esc_html_e( 'Edit Address', 'directory-plugin' ); ?></h1>
 
+	<?php if ( isset( $_GET['updated'] ) ) : ?>
+		<div class="notice notice-success">
+			<p><?php esc_html_e( 'Listing Updated Successfully.', 'directory-plugin' ); ?></p>
+		</div>
+	<?php endif; ?>
+
 	<form action="" method="post">
 		<table class="form-table">
 			<tbody>
@@ -23,21 +29,21 @@
 				</tr>
 				<tr class="row">
 					<th scope="row">
-						<label for="author"><?php esc_html_e( 'Author', 'directory-plugin' ); ?></label>
+						<label for="created_by"><?php esc_html_e( 'Author', 'directory-plugin' ); ?></label>
 					</th>
 					<td>
 						<?php
 						$directory_plugin_user = get_user_by( 'id', $listing->created_by );
 						?>
-						<input type="text" name="author" id="author" class="regulr-text" value="<?php echo esc_attr( $directory_plugin_user->display_name ? $directory_plugin_user->display_name : $user->user_login ); ?>">
+						<input type="text" name="created_by" id="created_by" class="regulr-text" value="<?php echo esc_attr( $directory_plugin_user->display_name ? $directory_plugin_user->display_name : $user->user_login ); ?>">
 					</td>
 				</tr>
 				<tr class="row">
 					<th scope="row">
-						<label for="status"><?php esc_html_e( 'Status', 'directory-plugin' ); ?></label>
+						<label for="listing_status"><?php esc_html_e( 'Status', 'directory-plugin' ); ?></label>
 					</th>
 					<td>
-						<select name="status" id="status">
+						<select name="listing_status" id="status">
 							<option value="active" <?php echo esc_attr( ( $listing->listing_status == 'active' ) ? 'selected' : '' ); ?>>Active</option>
 							<option value="inactive" <?php echo esc_attr( ( $listing->listing_status == 'inactive' ) ? 'selected' : '' ); ?>>In Active</option>
 						</select>
@@ -55,7 +61,7 @@
 							<span class="img-remove">X</span>
 							<img class="img-preview <?php echo ( ! empty( $directory_plugin_image_data ) ? '' : 'hide' ); ?>" src="<?php echo esc_url( $directory_plugin_image_data[1] ); ?>" width="100" height="auto" alt="image>"> 
 						</div>
-						<input type="hidden" class="wpx-img-field" id="preview_image" name="preview_image" value="<?php echo esc_attr( $directory_plugin_image_data ); ?>"/> 
+						<input type="hidden" class="wpx-img-field" id="preview_image" name="preview_image" value="<?php echo esc_attr( $listing->preview_image ); ?>"/> 
 						<input type="button" class="button wpx-browse" data-title="<?php esc_attr_e( 'Media Gallery' ); ?>" data-select-text="<?php esc_attr_e( 'Select Image', 'directory-plugin' ); ?>" value="<?php esc_attr_e( 'Upload/Edit Image', 'directory-plugin' ); ?>"/>
 					</td>
 				</tr>
@@ -63,8 +69,8 @@
 
 		</table>
 			<input type="hidden" name="id" value="<?php echo esc_attr( $listing->id ); ?>">
-			<?php wp_nonce_field( 'edit-address' ); ?>
-			<?php submit_button( __( 'Update Address', 'directory-plugin' ), 'primary', 'submit_address' ); ?>
+			<?php wp_nonce_field( 'edit-listings' ); ?>
+			<?php submit_button( __( 'Update Listings', 'directory-plugin' ), 'primary', 'submit_listings' ); ?>
 	</form>
 
 </div>

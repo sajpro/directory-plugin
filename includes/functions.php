@@ -26,24 +26,47 @@ function directory_plugin_listing_insert( $args = [] ) {
 
 	$data = wp_parse_args( $args, $defaults );
 
-	$inserted = $wpdb->insert(
-		"{$wpdb->prefix}directory_listings",
-		$data,
-		[
-			'%s',
-			'%s',
-			'%s',
-			'%s',
-			'%d',
-			'%s',
-		]
-	);
+	if ( isset( $data['id'] ) ) {
+		$id = $data['id'];
 
-	if ( ! $inserted ) {
-		return new \WP_Error( 'failed-to-insert', __( 'Failed to insert data', 'tbr-core' ) );
+		unset( $data['id'] );
+
+		$updated = $wpdb->update(
+			"{$wpdb->prefix}directory_listings",
+			$data,
+			[ 'id' => $id ],
+			[
+				'%s',
+				'%s',
+				'%s',
+				'%s',
+				'%d',
+				'%s',
+			],
+			[ '%d' ]
+		);
+
+		return $updated;
+	} else {
+		$inserted = $wpdb->insert(
+			"{$wpdb->prefix}directory_listings",
+			$data,
+			[
+				'%s',
+				'%s',
+				'%s',
+				'%s',
+				'%d',
+				'%s',
+			]
+		);
+
+		if ( ! $inserted ) {
+			return new \WP_Error( 'failed-to-insert', __( 'Failed to insert data', 'tbr-core' ) );
+		}
+
+		return $wpdb->insert_id;
 	}
-
-	return $wpdb->insert_id;
 }
 
 
