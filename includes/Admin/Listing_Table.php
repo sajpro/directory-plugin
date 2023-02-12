@@ -53,6 +53,10 @@ class Listing_Table extends \WP_List_Table {
 				return isset( $item->$column_name ) ? '<img width="100" height="auto" src="' . $image_url . '"/>' : '';
 				break;
 
+			case 'created_at':
+				return isset( $item->$column_name ) ? mysql2date( 'F j, Y', $item->$column_name ) : '';
+				break;
+
 			default:
 				return isset( $item->$column_name ) ? $item->$column_name : '';
 		}
@@ -61,7 +65,7 @@ class Listing_Table extends \WP_List_Table {
 	public function column_title( $item ) {
 		$actions = [];
 
-		$actions['edit']   = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=directory-listings&action=edit&listing=' . $item->id ), esc_html__( 'Edit', 'directory-plugin' ) );
+		$actions['edit'] = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=directory-listings&action=edit&listing=' . $item->id ), esc_html__( 'Edit', 'directory-plugin' ) );
 
 		$actions['delete'] = sprintf( '<a href="%s" onclick="return confirm(\'Are you sure? \');">%s</a>', wp_nonce_url( admin_url( 'admin-post.php?action=directory-listings-delete&listing=' . $item->id ), 'directory-listings-delete' ), esc_html__( 'Delete', 'directory-plugin' ) );
 
