@@ -20,6 +20,8 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+// Includes autolaoder.
+require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * The main plugin class
@@ -128,6 +130,7 @@ final class Directory_Plugin {
 	 * @return void
 	 */
 	public function run_activation() {
+		Sajib\DP\Installer::run();
 	}
 
 	/**
