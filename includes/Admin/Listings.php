@@ -19,7 +19,7 @@ class Listings {
 	 */
 	public static function plugin_page() {
 		$action = isset( $_GET['action'] ) ? $_GET['action'] : 'list';
-		$id     = isset( $_GET['id'] ) ? intval( $_GET['id'] ) : 0;
+		$id     = isset( $_GET['listing'] ) ? intval( $_GET['listing'] ) : 0;
 
 		switch ( $action ) {
 			case 'create':
@@ -27,6 +27,7 @@ class Listings {
 				break;
 
 			case 'edit':
+				$listing  = directory_plugin_get_single_listing( $id );
 				$template = __DIR__ . '/views/listings-edit.php';
 				break;
 

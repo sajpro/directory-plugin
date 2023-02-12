@@ -1,6 +1,6 @@
 <?php
 /**
- * directory plugin's custom functions.
+ * Directory plugin's custom functions.
  *
  * @package DirectoryPlugin
  */
@@ -86,4 +86,17 @@ function directory_plugin_listing_get( $args = [] ) {
 function directory_plugin_listings_total_count() {
 	global $wpdb;
 	return (int) $wpdb->get_var( "SELECT COUNT(id) FROM {$wpdb->prefix}directory_listings" );
+}
+
+/**
+ * Get an listing by id
+ *
+ * @param int $id
+ * @return object
+ */
+function directory_plugin_get_single_listing( $id ) {
+	global $wpdb;
+	return $wpdb->get_row(
+		$wpdb->prepare( "SELECT * FROM {$wpdb->prefix}directory_listings WHERE id = %d", $id )
+	);
 }
