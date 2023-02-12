@@ -45,3 +45,35 @@ function directory_plugin_listing_insert( $args = [] ) {
 
 	return $wpdb->insert_id;
 }
+
+
+/**
+ * Get all listings
+ *
+ * @param  array $args [description]
+ * @return array
+ */
+function directory_plugin_listing_get( $args = [] ) {
+	global $wpdb;
+
+	$defaults = [
+		'number'  => 20,
+		'offset'  => 0,
+		'orderby' => 'id',
+		'order'   => 'asc',
+	];
+
+	$args = wp_parse_args( $args, $defaults );
+
+	$sql = $wpdb->prepare(
+		"SELECT * FROM {$wpdb->prefix}directory_listings 
+		ORDER BY {$args['orderby']} {$args['order']}
+		LIMIT %d, %d",
+		$args['offset'],
+		$args['number']
+	);
+
+	$items = $wpdb->get_results( $sql );
+
+	return $items;
+}

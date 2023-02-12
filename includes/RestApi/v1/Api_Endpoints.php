@@ -56,23 +56,20 @@ class Api_Endpoints extends \WP_REST_Controller {
 	}
 
 	/**
-	 * Save listings
+	 * Get All listings
 	 *
 	 * @return void
 	 * @param array $request User request data.
 	 */
 	public function get_all_listings( $request ) {
-		pretty_log( 'submitted', $request );
-		$title          = $request->get_param( 'title' );
-		$content        = $request->get_param( 'content' );
-		$listing_status = $request->get_param( 'listing_status' );
-		$preview_image  = $request->get_param( 'preview_image' );
-		return 1;
-		// directory_plugin_listing_insert()
+		$result['success'] = false;
 
-		$result = [
-			'save' => true,
-		];
+		$listings = directory_plugin_listing_get();
+
+		if ( $listings ) {
+			$result['success']  = true;
+			$result['listings'] = $listings;
+		}
 
 		wp_send_json( $result );
 	}
@@ -84,7 +81,6 @@ class Api_Endpoints extends \WP_REST_Controller {
 	 * @param array $request User request data.
 	 */
 	public function create_listings( $request ) {
-
 		$result = [
 			'success' => false,
 		];
