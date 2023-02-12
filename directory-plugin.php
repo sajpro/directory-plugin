@@ -140,6 +140,8 @@ final class Directory_Plugin {
 	 */
 	public function init() {
 		self::load_plugin_textdomain();
+
+		new Sajib\DP\Admin\Menu();
 	}
 
 	/**
