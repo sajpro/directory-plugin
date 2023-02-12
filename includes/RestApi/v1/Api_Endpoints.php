@@ -103,7 +103,7 @@ class Api_Endpoints extends \WP_REST_Controller {
 
 		if ( $id ) {
 			$result['success'] = true;
-			$result['data']      = $id;
+			$result['data']    = $id;
 		}
 
 		wp_send_json( $result );

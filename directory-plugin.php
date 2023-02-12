@@ -143,6 +143,10 @@ final class Directory_Plugin {
 	 */
 	public function init() {
 		self::load_plugin_textdomain();
+
+		if ( is_admin() ) {
+			new Sajib\DP\Admin();
+		}
 	}
 
 	/**

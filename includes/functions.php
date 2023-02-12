@@ -77,3 +77,13 @@ function directory_plugin_listing_get( $args = [] ) {
 
 	return $items;
 }
+
+/**
+ * Get the total number of listings
+ *
+ * @return int
+ */
+function directory_plugin_listings_total_count() {
+	global $wpdb;
+	return (int) $wpdb->get_var( "SELECT COUNT(id) FROM {$wpdb->prefix}directory_listings" );
+}
