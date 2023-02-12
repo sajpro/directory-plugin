@@ -46,8 +46,8 @@ class Installer {
 		    title varchar(100) NOT NULL,
 		    content longtext DEFAULT '' NULL,
 		    listing_status varchar(30) DEFAULT '' NULL,
-		    preview_image varchar(30) DEFAULT '' NULL,
-		    created_by bigint(250) UNSIGNED NOT NULL,
+		    preview_image varchar(250) DEFAULT '' NULL,
+		    created_by bigint(20) UNSIGNED NOT NULL,
 		    created_at datetime NOT NULL,
 		    PRIMARY KEY  (id)
 		) $charset_collate;";
