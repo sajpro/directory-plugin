@@ -47,7 +47,7 @@ class Installer {
 		    content longtext DEFAULT '' NULL,
 		    listing_status varchar(30) DEFAULT '' NULL,
 		    preview_image varchar(250) DEFAULT '' NULL,
-		    created_by bigint(20) UNSIGNED NOT NULL,
+		    author bigint(20) UNSIGNED NOT NULL,
 		    created_at datetime NOT NULL,
 		    PRIMARY KEY  (id)
 		) $charset_collate;";

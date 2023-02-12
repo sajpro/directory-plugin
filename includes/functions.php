@@ -19,7 +19,7 @@ function directory_plugin_listing_insert( $args = [] ) {
 		'content'        => '',
 		'listing_status' => '',
 		'preview_image'  => '',
-		'created_by'     => '',
+		'author'         => '',
 		'created_at'     => current_time( 'mysql' ),
 	];
 

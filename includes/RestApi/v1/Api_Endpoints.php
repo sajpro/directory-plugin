@@ -89,7 +89,7 @@ class Api_Endpoints extends \WP_REST_Controller {
 		$content        = $request->get_param( 'content' );
 		$listing_status = $request->get_param( 'listing_status' );
 		$preview_image  = $request->get_param( 'preview_image' );
-		$created_by     = $request->get_param( 'created_by' );
+		$author         = $request->get_param( 'author' );
 
 		$id = directory_plugin_listing_insert(
 			[
@@ -97,7 +97,7 @@ class Api_Endpoints extends \WP_REST_Controller {
 				'content'        => $content,
 				'listing_status' => $listing_status,
 				'preview_image'  => $preview_image,
-				'created_by'     => $created_by,
+				'author'         => $author,
 			]
 		);
 

@@ -31,7 +31,7 @@ class Listing_Table extends \WP_List_Table {
 			'cb'             => '<input type="checkbox">',
 			'title'          => esc_html__( 'Title', 'directory-plugin' ),
 			'content'        => esc_html__( 'content', 'directory-plugin' ),
-			'created_by'     => esc_html__( 'Author', 'directory-plugin' ),
+			'author'         => esc_html__( 'Author', 'directory-plugin' ),
 			'listing_status' => esc_html__( 'Status', 'directory-plugin' ),
 			'preview_image'  => esc_html__( 'Image', 'directory-plugin' ),
 			'created_at'     => esc_html__( 'Submission Date', 'directory-plugin' ),
@@ -41,7 +41,7 @@ class Listing_Table extends \WP_List_Table {
 	public function get_sortable_columns() {
 		return [
 			'title'      => [ 'title', true ],
-			'created_by' => [ 'created_by', true ],
+			'author'     => [ 'author', true ],
 			'created_at' => [ 'created_at', true ],
 		];
 	}

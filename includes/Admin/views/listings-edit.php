@@ -29,13 +29,13 @@
 				</tr>
 				<tr class="row">
 					<th scope="row">
-						<label for="created_by"><?php esc_html_e( 'Author', 'directory-plugin' ); ?></label>
+						<label for="author"><?php esc_html_e( 'Author', 'directory-plugin' ); ?></label>
 					</th>
 					<td>
 						<?php
-						$directory_plugin_user = get_user_by( 'id', $listing->created_by );
+						$directory_plugin_user = get_user_by( 'id', $listing->author );
 						?>
-						<input type="text" name="created_by" id="created_by" class="regulr-text" value="<?php echo esc_attr( $directory_plugin_user->display_name ? $directory_plugin_user->display_name : $user->user_login ); ?>">
+						<input type="text" name="author" id="author" class="regulr-text" value="<?php echo esc_attr( $directory_plugin_user->display_name ? $directory_plugin_user->display_name : $user->user_login ); ?>">
 					</td>
 				</tr>
 				<tr class="row">
