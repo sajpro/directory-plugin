@@ -33,10 +33,10 @@
 				</tr>
 				<tr class="row">
 					<th scope="row">
-						<label for="listing_status"><?php esc_html_e( 'Status', 'directory-plugin' ); ?></label>
+						<label for="status"><?php esc_html_e( 'Status', 'directory-plugin' ); ?></label>
 					</th>
 					<td>
-						<select name="listing_status" id="listing_status">
+						<select name="status" id="status">
 							<option value="active" selected><?php esc_html_e( 'Active', 'directory-plugin' ); ?></option>
 							<option value="inactive"><?php esc_html_e( 'In Active', 'directory-plugin' ); ?></option>
 						</select>

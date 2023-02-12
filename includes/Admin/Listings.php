@@ -58,13 +58,12 @@ class Listings {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( 'Are you cheating?' );
 		}
-		pretty_log('xxxxxxxx',$_POST['listing_status']);
-		return;
+
 		$id             = isset( $_POST['id'] ) ? intval( $_POST['id'] ) : 0;
 		$title          = isset( $_POST['title'] ) ? sanitize_text_field( $_POST['title'] ) : '';
 		$content        = isset( $_POST['content'] ) ? sanitize_textarea_field( $_POST['content'] ) : '';
 		$author         = isset( $_POST['author'] ) ? sanitize_text_field( $_POST['author'] ) : '';
-		$listing_status = isset( $_POST['listing_status'] ) ? sanitize_text_field( $_POST['listing_status'] ) : '';
+		$listing_status = isset( $_POST['listing_status'] ) ? sanitize_text_field( $_POST['listing_status'] ) : 'active';
 		$preview_image  = isset( $_POST['preview_image'] ) ? sanitize_text_field( $_POST['preview_image'] ) : '';
 
 		$args = [
