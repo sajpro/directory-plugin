@@ -27,7 +27,7 @@ class Menu {
 
 		$hook = add_menu_page( __( 'Directory Plugin', 'directory-plugin' ), __( 'Directory Plugin', 'directory-plugin' ), $capability, $parent_slug, [ $this, 'all_listings_page' ], 'dashicons-welcome-learn-more' );
 		add_submenu_page( $parent_slug, __( 'All Listings', 'directory-plugin' ), __( 'All Listings', 'directory-plugin' ), $capability, $parent_slug, [ $this, 'all_listings_page' ] );
-		add_submenu_page( $parent_slug, __( 'Add Listing', 'directory-plugin' ), __( 'Add Listing', 'directory-plugin' ), $capability, 'directory-listings-create', [ $this, 'create_listings' ] );
+		add_submenu_page( $parent_slug, __( 'Add Listing', 'directory-plugin' ), __( 'Add Listing', 'directory-plugin' ), $capability, $parent_slug . '-create', [ $this, 'create_listings' ] );
 	}
 
 	/**
