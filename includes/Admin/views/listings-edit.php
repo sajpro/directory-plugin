@@ -43,7 +43,7 @@
 						<label for="listing_status"><?php esc_html_e( 'Status', 'directory-plugin' ); ?></label>
 					</th>
 					<td>
-						<select name="listing_status" id="status">
+						<select name="listing_status" id="listing_status">
 							<option value="active" <?php echo esc_attr( ( $listing->listing_status == 'active' ) ? 'selected' : '' ); ?>>Active</option>
 							<option value="inactive" <?php echo esc_attr( ( $listing->listing_status == 'inactive' ) ? 'selected' : '' ); ?>>In Active</option>
 						</select>
