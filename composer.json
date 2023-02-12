@@ -1,0 +1,19 @@
+{
+    "name": "sajib/directory-plugin",
+    "description": "A simple and well structured directory plugin where a logged in user will submit listings through a frontend submission form.",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Sajib Talukder",
+            "email": "stalukder03@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sajib\\DP\\": "includes/"
+        },
+        "files": [ "includes/functions.php" ]
+    },
+    "require": {}
+}
