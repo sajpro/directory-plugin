@@ -78,6 +78,7 @@ final class Directory_Plugin {
 	 */
 	private function __construct() {
 		$this->setup_constants();
+		$this->includes();
 	}
 
 	/**
@@ -111,6 +112,38 @@ final class Directory_Plugin {
 		if ( ! defined( 'DIRECTORY_PLUGIN_ASSETS' ) ) {
 			define( 'DIRECTORY_PLUGIN_ASSETS', DIRECTORY_PLUGIN_FILE . '/assets' );
 		}
+	}
+
+	/**
+	 * Includes
+	 */
+	public function includes() {
+		register_activation_hook( __FILE__, [ $this, 'run_activation' ] );
+		add_action( 'plugins_loaded', [ $this, 'init' ] );
+	}
+
+	/**
+	 * Do stuff upon plugin activation
+	 *
+	 * @return void
+	 */
+	public function run_activation() {
+	}
+
+	/**
+	 * Init pluign
+	 *
+	 * @return void
+	 */
+	public function init() {
+		self::load_plugin_textdomain();
+	}
+
+	/**
+	 * Load Localization files.
+	 */
+	public static function load_plugin_textdomain() {
+		load_plugin_textdomain( 'directory-plugin', false, dirname( DIRECTORY_PLUGIN_BASENAME ) . '/languages' );
 	}
 
 } // End class
