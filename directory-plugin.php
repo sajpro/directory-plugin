@@ -19,3 +19,26 @@
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
+
+/**
+ * Constants
+ */
+if ( ! defined( 'DIRECTORY_PLUGIN_VERSION' ) ) {
+	define( 'DIRECTORY_PLUGIN_VERSION', '1.0.0' );
+}
+
+if ( ! defined( 'DIRECTORY_PLUGIN_FILE' ) ) {
+	define( 'DIRECTORY_PLUGIN_FILE', __FILE__ );
+}
+
+if ( ! defined( 'DIRECTORY_PLUGIN_PATH' ) ) {
+	define( 'DIRECTORY_PLUGIN_PATH', __DIR__ );
+}
+
+if ( ! defined( 'DIRECTORY_PLUGIN_URL' ) ) {
+	define( 'DIRECTORY_PLUGIN_URL', plugins_url( '', DIRECTORY_PLUGIN_FILE ) );
+}
+
+if ( ! defined( 'DIRECTORY_PLUGIN_ASSETS' ) ) {
+	define( 'DIRECTORY_PLUGIN_ASSETS', DIRECTORY_PLUGIN_FILE . '/assets' );
+}
