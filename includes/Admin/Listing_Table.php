@@ -49,7 +49,8 @@ class Listing_Table extends \WP_List_Table {
 	protected function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
 			case 'preview_image':
-				return isset( $item->$column_name ) ? '<img width="100" height="auto" src="' . $item->$column_name . '"/>' : '';
+				$image_url = ! empty( $item->$column_name ) ? explode( ',', $item->$column_name )[1] : '';
+				return isset( $item->$column_name ) ? '<img width="100" height="auto" src="' . $image_url . '"/>' : '';
 				break;
 
 			default:

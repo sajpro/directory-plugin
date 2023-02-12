@@ -112,7 +112,7 @@ final class Directory_Plugin {
 		}
 
 		if ( ! defined( 'DIRECTORY_PLUGIN_ASSETS' ) ) {
-			define( 'DIRECTORY_PLUGIN_ASSETS', DIRECTORY_PLUGIN_FILE . '/assets' );
+			define( 'DIRECTORY_PLUGIN_ASSETS', DIRECTORY_PLUGIN_URL . '/assets' );
 		}
 	}
 
@@ -125,6 +125,8 @@ final class Directory_Plugin {
 
 		$api_endpoint = new Sajib\DP\RestApi\v1\Api_Endpoints();
 		$api_endpoint->init();
+
+		new Sajib\DP\Assets();
 	}
 
 	/**

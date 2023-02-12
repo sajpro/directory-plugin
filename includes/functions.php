@@ -1,6 +1,6 @@
 <?php
 /**
- * directory plugin's custom functions.
+ * Directory plugin's custom functions.
  *
  * @package DirectoryPlugin
  */
@@ -26,24 +26,47 @@ function directory_plugin_listing_insert( $args = [] ) {
 
 	$data = wp_parse_args( $args, $defaults );
 
-	$inserted = $wpdb->insert(
-		"{$wpdb->prefix}directory_listings",
-		$data,
-		[
-			'%s',
-			'%s',
-			'%s',
-			'%s',
-			'%d',
-			'%s',
-		]
-	);
+	if ( isset( $data['id'] ) ) {
+		$id = $data['id'];
 
-	if ( ! $inserted ) {
-		return new \WP_Error( 'failed-to-insert', __( 'Failed to insert data', 'tbr-core' ) );
+		unset( $data['id'] );
+
+		$updated = $wpdb->update(
+			"{$wpdb->prefix}directory_listings",
+			$data,
+			[ 'id' => $id ],
+			[
+				'%s',
+				'%s',
+				'%s',
+				'%s',
+				'%d',
+				'%s',
+			],
+			[ '%d' ]
+		);
+
+		return $updated;
+	} else {
+		$inserted = $wpdb->insert(
+			"{$wpdb->prefix}directory_listings",
+			$data,
+			[
+				'%s',
+				'%s',
+				'%s',
+				'%s',
+				'%d',
+				'%s',
+			]
+		);
+
+		if ( ! $inserted ) {
+			return new \WP_Error( 'failed-to-insert', __( 'Failed to insert data', 'tbr-core' ) );
+		}
+
+		return $wpdb->insert_id;
 	}
-
-	return $wpdb->insert_id;
 }
 
 
@@ -86,4 +109,31 @@ function directory_plugin_listing_get( $args = [] ) {
 function directory_plugin_listings_total_count() {
 	global $wpdb;
 	return (int) $wpdb->get_var( "SELECT COUNT(id) FROM {$wpdb->prefix}directory_listings" );
+}
+
+/**
+ * Get an listing by id
+ *
+ * @param int $id
+ * @return object
+ */
+function directory_plugin_get_single_listing( $id ) {
+	global $wpdb;
+	return $wpdb->get_row(
+		$wpdb->prepare( "SELECT * FROM {$wpdb->prefix}directory_listings WHERE id = %d", $id )
+	);
+}
+
+/**
+ * Delete an  Listing
+ *
+ * @return int
+ */
+function directory_plugin_delete_listing( $id ) {
+	global $wpdb;
+	return $wpdb->delete(
+		$wpdb->prefix . 'directory_listings',
+		[ 'id' => $id ],
+		[ '%d' ]
+	);
 }
