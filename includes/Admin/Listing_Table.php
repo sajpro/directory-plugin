@@ -29,12 +29,12 @@ class Listing_Table extends \WP_List_Table {
 	public function get_columns() {
 		return [
 			'cb'             => '<input type="checkbox">',
-			'title'          => __( 'Title', 'directory-plugin' ),
-			'content'        => __( 'content', 'directory-plugin' ),
-			'created_by'     => __( 'Author', 'directory-plugin' ),
-			'listing_status' => __( 'Status', 'directory-plugin' ),
-			'preview_image'  => __( 'Image', 'directory-plugin' ),
-			'created_at'     => __( 'Submission Date', 'directory-plugin' ),
+			'title'          => esc_html__( 'Title', 'directory-plugin' ),
+			'content'        => esc_html__( 'content', 'directory-plugin' ),
+			'created_by'     => esc_html__( 'Author', 'directory-plugin' ),
+			'listing_status' => esc_html__( 'Status', 'directory-plugin' ),
+			'preview_image'  => esc_html__( 'Image', 'directory-plugin' ),
+			'created_at'     => esc_html__( 'Submission Date', 'directory-plugin' ),
 		];
 	}
 
@@ -61,8 +61,9 @@ class Listing_Table extends \WP_List_Table {
 	public function column_title( $item ) {
 		$actions = [];
 
-		$actions['edit']   = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=directory-listings&action=edit&listing=' . $item->id ), __( 'Edit', 'directory-plugin' ) );
-		$actions['delete'] = sprintf( '<a href="%s" onclick="return confirm(\'Are you sure? \');">%s</a>', wp_nonce_url( admin_url( 'admin-post.php?action=directory-listings-delete&listing=' . $item->id ), 'directory-listings-delete' ), __( 'Delete', 'directory-plugin' ) );
+		$actions['edit']   = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=directory-listings&action=edit&listing=' . $item->id ), esc_html__( 'Edit', 'directory-plugin' ) );
+
+		$actions['delete'] = sprintf( '<a href="%s" onclick="return confirm(\'Are you sure? \');">%s</a>', wp_nonce_url( admin_url( 'admin-post.php?action=directory-listings-delete&listing=' . $item->id ), 'directory-listings-delete' ), esc_html__( 'Delete', 'directory-plugin' ) );
 
 		return sprintf( '<a href="%1$s"><strong>%2$s</strong></a> %3$s', admin_url( 'admin.php?page=directory-listings&action=edit&listing=' . $item->id ), $item->title, $this->row_actions( $actions ) );
 	}

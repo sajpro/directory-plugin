@@ -5,7 +5,6 @@
  * @package DirectoryPlugin
  */
 
-
 /**
  * Insert a new daabase
  *
@@ -62,13 +61,12 @@ function directory_plugin_listing_insert( $args = [] ) {
 		);
 
 		if ( ! $inserted ) {
-			return new \WP_Error( 'failed-to-insert', __( 'Failed to insert data', 'tbr-core' ) );
+			return new \WP_Error( 'failed-to-insert', esc_html__( 'Failed to insert data', 'directory-plugin' ) );
 		}
 
 		return $wpdb->insert_id;
 	}
 }
-
 
 /**
  * Get all listings

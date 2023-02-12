@@ -37,8 +37,8 @@
 					</th>
 					<td>
 						<select name="status" id="status">
-							<option value="active" selected>Active</option>
-							<option value="in-active">In Active</option>
+							<option value="active" selected><?php esc_html_e( 'Active', 'directory-plugin' ); ?></option>
+							<option value="inactive"><?php esc_html_e( 'In Active', 'directory-plugin' ); ?></option>
 						</select>
 					</td>
 				</tr>
@@ -62,7 +62,7 @@
 
 		</table>
 			<?php wp_nonce_field( 'directory-listings' ); ?>
-			<?php submit_button( __( 'Add Listing', 'directory-plugin' ), 'primary', 'submit_listings' ); ?>
+			<?php submit_button( esc_html__( 'Add Listing', 'directory-plugin' ), 'primary', 'submit_listings' ); ?>
 	</form>
 
 </div>

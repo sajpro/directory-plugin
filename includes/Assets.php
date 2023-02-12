@@ -16,7 +16,7 @@ class Assets {
 	 */
 	function __construct() {
 		if ( is_admin() ) {
-			add_action( 'admin_enqueue_scripts', [ $this, 'admin_assets' ], 5 );
+			add_action( 'admin_enqueue_scripts', [ $this, 'admin_assets' ] );
 		}
 	}
 	/**
