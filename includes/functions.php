@@ -123,3 +123,17 @@ function directory_plugin_get_single_listing( $id ) {
 		$wpdb->prepare( "SELECT * FROM {$wpdb->prefix}directory_listings WHERE id = %d", $id )
 	);
 }
+
+/**
+ * Delete an  Listing
+ *
+ * @return int
+ */
+function directory_plugin_delete_listing( $id ) {
+	global $wpdb;
+	return $wpdb->delete(
+		$wpdb->prefix . 'directory_listings',
+		[ 'id' => $id ],
+		[ '%d' ]
+	);
+}

@@ -94,4 +94,29 @@ class Listings {
 
 		exit;
 	}
+
+	/**
+	 * Listing Delete handler
+	 */
+	public function delete_listing() {
+		if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'directory-listings-delete' ) ) {
+			wp_die( 'Are you cheating?' );
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( 'Are you cheating?' );
+		}
+
+		$id = isset( $_REQUEST['listing'] ) ? intval( $_REQUEST['listing'] ) : 0;
+
+		if ( directory_plugin_delete_listing( $id ) ) {
+			$redirected_to = admin_url( 'admin.php?page=directory-listings&deleted=true' );
+		} else {
+			$redirected_to = admin_url( 'admin.php?page=directory-listings&deleted=false' );
+		}
+
+		wp_redirect( $redirected_to );
+
+		exit;
+	}
 }
