@@ -25,7 +25,7 @@
 			),
 			$delete_count
 		);
-		echo sprintf('<div class="notice notice-success is-dismissible"><p>%s</p></div>', $msg);
+		echo sprintf( '<div class="notice notice-success is-dismissible"><p>%s</p></div>', $msg );
 	}
 	?>
 
