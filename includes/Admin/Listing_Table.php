@@ -30,7 +30,7 @@ class Listing_Table extends \WP_List_Table {
 		return [
 			'cb'             => '<input type="checkbox">',
 			'title'          => esc_html__( 'Title', 'directory-plugin' ),
-			'content'        => esc_html__( 'content', 'directory-plugin' ),
+			'content'        => esc_html__( 'Content', 'directory-plugin' ),
 			'author'         => esc_html__( 'Author', 'directory-plugin' ),
 			'listing_status' => esc_html__( 'Status', 'directory-plugin' ),
 			'preview_image'  => esc_html__( 'Image', 'directory-plugin' ),
