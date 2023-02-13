@@ -43,7 +43,7 @@ $selected_user = $listing->author;
 							foreach ( $users as $user ) {
 								$name = $user->display_name ? $user->display_name : $user->user_login;
 								?>
-									<option value="<?php echo esc_attr( $user->ID ); ?>" <?php echo esc_attr( ( $selected_user == $user->ID ) ? 'selected="selected"' : '' ); ?>><?php echo esc_html( $name ); ?></option>
+									<option value="<?php echo esc_attr( $user->ID ); ?>" <?php selected( $selected_user, $user->ID ); ?>><?php echo esc_html( $name ); ?></option>
 								<?php
 							}
 							?>

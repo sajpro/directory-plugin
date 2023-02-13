@@ -143,7 +143,7 @@ class Listing_Table extends \WP_List_Table {
 					foreach ( $users as $user ) {
 						$name = $user->display_name ? $user->display_name : $user->user_login;
 						?>
-							<option value="<?php echo esc_attr( $user->ID ); ?>" <?php echo esc_attr( ( $active == $user->ID ) ? 'selected="selected"' : '' ); ?>><?php echo esc_html( $name ); ?></option>
+							<option value="<?php echo esc_attr( $user->ID ); ?>" <?php selected( $active, $user->ID ); ?>><?php echo esc_html( $name ); ?></option>
 						<?php
 					}
 					?>
