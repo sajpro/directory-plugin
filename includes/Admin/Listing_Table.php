@@ -89,32 +89,6 @@ class Listing_Table extends \WP_List_Table {
 		return $actions;
 	}
 
-	public function process_bulk_action() {
-		// If the delete bulk action is triggered
-		if ( ( isset( $_POST['action'] ) && $_POST['action'] == 'bulk-delete' )
-		|| ( isset( $_POST['action2'] ) && $_POST['action2'] == 'bulk-delete' )
-		) {
-			$delete_ids = esc_sql( $_POST['bulk-delete'] );
-
-			// loop over the array of record IDs and delete them.
-			foreach ( $delete_ids as $id ) {
-				directory_plugin_delete_listing( $id );
-			}
-			// show admin notice.
-			$number_of_listings = count( $delete_ids );
-
-			$msg = sprintf(
-				_n(
-					'%d item deleted successfully.',
-					'%d items deleted successfully.',
-					$number_of_listings
-				),
-				$number_of_listings
-			);
-			echo '<div class="notice notice-success is-dismissible"><p>' . $msg . '</p></div>';
-		}
-	}
-
 	public function extra_tablenav( $which ) {
 		if ( $which == 'top' ) {
 			$active = ( ! empty( $_REQUEST['author'] ) ? $_REQUEST['author'] : '' );
@@ -192,9 +166,6 @@ class Listing_Table extends \WP_List_Table {
 		$columns  = $this->get_columns();
 		$hidden   = $this->get_hidden_columns();
 		$sortable = $this->get_sortable_columns();
-
-		// Bulk delete trigger.
-		// $this->process_bulk_action();
 
 		$this->_column_headers = [ $columns, $hidden, $sortable ];
 
