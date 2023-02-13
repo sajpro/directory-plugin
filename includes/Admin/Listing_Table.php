@@ -72,8 +72,7 @@ class Listing_Table extends \WP_List_Table {
 
 		$actions['edit'] = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=directory-listings&action=edit&listing=' . $item->id ), esc_html__( 'Edit', 'directory-plugin' ) );
 
-		$actions['delete'] = sprintf( '<a href="%s">%s</a>', wp_nonce_url( admin_url( 'admin.php?page=directory-listings&action=delete&listing=' . $item->id ), 'delete-listing' ), esc_html__( 'Delete', 'directory-plugin' ) );
-		// $actions['delete'] = sprintf( '<a href="%s" onclick="return confirm(\'Are you sure? \');">%s</a>', wp_nonce_url( admin_url( 'admin-post.php?action=directory-listings-delete&listing=' . $item->id ), 'directory-listings-delete' ), esc_html__( 'Delete', 'directory-plugin' ) );
+		$actions['delete'] = sprintf( '<a href="%s" onclick="return confirm(\'Are you sure? \');">%s</a>', wp_nonce_url( admin_url( 'admin-post.php?action=directory-listings-delete&listing=' . $item->id ), 'directory-listings-delete' ), esc_html__( 'Delete', 'directory-plugin' ) );
 
 		return sprintf( '<a href="%1$s"><strong>%2$s</strong></a> %3$s', admin_url( 'admin.php?page=directory-listings&action=edit&listing=' . $item->id ), $item->title, $this->row_actions( $actions ) );
 	}
@@ -91,21 +90,6 @@ class Listing_Table extends \WP_List_Table {
 	}
 
 	public function process_bulk_action() {
-
-		// Detect when a bulk action is being triggered...
-		if ( 'delete' === $this->current_action() ) {
-			// In our file that handles the request, verify the nonce.
-			$nonce = esc_attr( $_REQUEST['_wpnonce'] );
-
-			if ( wp_verify_nonce( $nonce, 'delete-listing' ) ) {
-				directory_plugin_delete_listing( $_GET['listing'] );
-				echo sprintf(
-					__( '<div class="notice notice-success is-dismissible"><p>1 Listing deleted successfully.</p></div>', 'directory-plugin' ),
-					__( '1 Listing deleted successfully.', 'directory-plugin' )
-				);
-			}
-		}
-
 		// If the delete bulk action is triggered
 		if ( ( isset( $_POST['action'] ) && $_POST['action'] == 'bulk-delete' )
 		|| ( isset( $_POST['action2'] ) && $_POST['action2'] == 'bulk-delete' )
