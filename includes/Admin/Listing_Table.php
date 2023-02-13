@@ -72,7 +72,15 @@ class Listing_Table extends \WP_List_Table {
 	}
 
 	public function column_cb( $item ) {
-		return sprintf( '<input type="checkbox" name="listing_id[]" value="%d" />', $item->id );
+		return sprintf( '<input type="checkbox" name="bulk-delete[]" value="%d" />', $item->id );
+	}
+
+	public function get_bulk_actions() {
+		$actions = [
+			'bulk-delete' => esc_html__( 'Delete', 'directory-plugin' ),
+		];
+
+		return $actions;
 	}
 
 	public function prepare_items() {
