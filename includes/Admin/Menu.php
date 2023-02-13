@@ -27,25 +27,47 @@ class Menu {
 		$parent_slug = 'directory-listings';
 		$capability  = 'manage_options';
 
-		$direcotry_plugin_page = add_menu_page( esc_html__( 'Directory Plugin', 'directory-plugin' ), esc_html__( 'Directory Plugin', 'directory-plugin' ), $capability, $parent_slug, [ $this, 'all_listings_page' ], 'dashicons-welcome-learn-more' );
-		add_submenu_page( $parent_slug, esc_html__( 'All Listings', 'directory-plugin' ), esc_html__( 'All Listings', 'directory-plugin' ), $capability, $parent_slug, [ $this, 'all_listings_page' ] );
+		$direcotry_plugin_page = add_menu_page( esc_html__( 'Directory Plugin', 'directory-plugin' ), esc_html__( 'Directory Plugin', 'directory-plugin' ), $capability, $parent_slug, [ $this, 'plugin_page' ], 'dashicons-welcome-learn-more' );
+		add_submenu_page( $parent_slug, esc_html__( 'All Listings', 'directory-plugin' ), esc_html__( 'All Listings', 'directory-plugin' ), $capability, $parent_slug, [ $this, 'plugin_page' ] );
 		add_submenu_page( $parent_slug, esc_html__( 'Add Listing', 'directory-plugin' ), esc_html__( 'Add Listing', 'directory-plugin' ), $capability, $parent_slug . '-create', [ $this, 'create_listings' ] );
 
 		add_action( "load-$direcotry_plugin_page", [ $this, 'direcotry_plugin_screen_options' ] );
 	}
 
 	/**
-	 * Plugin Page
+	 * Plugin page handler
+	 *
+	 * @return void
 	 */
-	public function all_listings_page() {
-		Listings::plugin_page();
+	public static function plugin_page() {
+		$action = isset( $_GET['action'] ) ? $_GET['action'] : 'list';
+		$id     = isset( $_GET['listing'] ) ? intval( $_GET['listing'] ) : 0;
+
+		switch ( $action ) {
+			case 'create':
+				$template = __DIR__ . '/views/listings-create.php';
+				break;
+
+			case 'edit':
+				$listing  = directory_plugin_get_single_listing( $id );
+				$template = __DIR__ . '/views/listings-edit.php';
+				break;
+
+			default:
+				$template = __DIR__ . '/views/listings-all.php';
+				break;
+		}
+
+		if ( file_exists( $template ) ) {
+			include $template;
+		}
 	}
 
 	/**
 	 * Create Page
 	 */
 	public function create_listings() {
-		echo 'hello directory create page';
+		include __DIR__ . '/views/listings-create.php';
 	}
 
 	// add screen options
