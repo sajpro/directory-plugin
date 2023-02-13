@@ -1,3 +1,7 @@
+<?php
+$users         = get_users();
+$selected_user = $listing->author;
+?>
 <div class="wrap">
 
 	<h1 class="wp-heading-inline"><?php esc_html_e( 'Edit Address', 'directory-plugin' ); ?></h1>
@@ -34,10 +38,16 @@
 						<label for="author"><?php esc_html_e( 'Author', 'directory-plugin' ); ?></label>
 					</th>
 					<td>
-						<?php
-						$directory_plugin_user = get_user_by( 'id', $listing->author );
-						?>
-						<input type="text" name="author" id="author" class="regulr-text" value="<?php echo esc_attr( $directory_plugin_user->display_name ? $directory_plugin_user->display_name : $user->user_login ); ?>">
+						<select name="author" id="filter-by-author">
+							<?php
+							foreach ( $users as $user ) {
+								$name = $user->display_name ? $user->display_name : $user->user_login;
+								?>
+									<option value="<?php echo esc_attr( $user->ID ); ?>" <?php echo esc_attr( ( $selected_user == $user->ID ) ? 'selected="selected"' : '' ); ?>><?php echo esc_html( $name ); ?></option>
+								<?php
+							}
+							?>
+						</select>
 					</td>
 				</tr>
 				<tr class="row">
