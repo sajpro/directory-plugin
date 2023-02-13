@@ -154,20 +154,20 @@ class Listing_Table extends \WP_List_Table {
 	 * Show SubSub Filter
 	 */
 	protected function get_views() {
-		$views             = [];
-		$current           = ( ! empty( $_REQUEST['listing_status'] ) ? $_REQUEST['listing_status'] : 'all' );
+		$views   = [];
+		$current = ( ! empty( $_REQUEST['listing_status'] ) ? $_REQUEST['listing_status'] : 'all' );
 
 		// All link
-		$all_count         = directory_plugin_listings_total_count();
-		$class             = ( $current == 'all' ? ' class="current"' : '' );
-		$all_url           = remove_query_arg( 'listing_status' );
-		$views['all']      = "<a href='{$all_url }' {$class} >All <span class='count'>({$all_count})</span></a>";
+		$all_count    = directory_plugin_listings_total_count();
+		$class        = ( $current == 'all' ? ' class="current"' : '' );
+		$all_url      = remove_query_arg( 'listing_status' );
+		$views['all'] = "<a href='{$all_url }' {$class} >All <span class='count'>({$all_count})</span></a>";
 
 		// Active link
-		$active_count      = directory_plugin_listings_total_count( [ 'status' => 'active' ] );
-		$active_url        = add_query_arg( 'listing_status', 'active' );
-		$class             = ( $current == 'active' ? ' class="current"' : '' );
-		$views['active']   = "<a href='{$active_url}' {$class} >Active <span class='count'>({$active_count})</span></a>";
+		$active_count    = directory_plugin_listings_total_count( [ 'status' => 'active' ] );
+		$active_url      = add_query_arg( 'listing_status', 'active' );
+		$class           = ( $current == 'active' ? ' class="current"' : '' );
+		$views['active'] = "<a href='{$active_url}' {$class} >Active <span class='count'>({$active_count})</span></a>";
 
 		// Inactive link
 		$inactive_count    = directory_plugin_listings_total_count( [ 'status' => 'inactive' ] );
