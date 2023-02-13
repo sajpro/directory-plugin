@@ -45,6 +45,8 @@ function directory_plugin_listing_insert( $args = [] ) {
 			[ '%d' ]
 		);
 
+		directory_plugin_purge_cache( $id );
+
 		return $updated;
 	} else {
 		$inserted = $wpdb->insert(
@@ -63,6 +65,8 @@ function directory_plugin_listing_insert( $args = [] ) {
 		if ( ! $inserted ) {
 			return new \WP_Error( 'failed-to-insert', esc_html__( 'Failed to insert data', 'directory-plugin' ) );
 		}
+
+		directory_plugin_purge_cache();
 
 		return $wpdb->insert_id;
 	}
@@ -86,11 +90,13 @@ function directory_plugin_listing_get( $args = [], $filter = [] ) {
 
 	$args = wp_parse_args( $args, $defaults );
 
-	$table = $wpdb->prefix . 'directory_listings';
+	$last_changed = wp_cache_get_last_changed( 'dirlistings' );
+	$hash         = md5( serialize( array_diff_assoc( $args, $defaults ) ) );
+	$cache_key    = "all:$hash:$last_changed";
 
+	$table        = $wpdb->prefix . 'directory_listings';
 	$extra_checks = '';
-
-	$search = '';
+	$search       = '';
 
 	if ( is_array( $filter ) && ! empty( $filter['search'] ) ) {
 		$search = $filter['search'];
@@ -117,7 +123,11 @@ function directory_plugin_listing_get( $args = [], $filter = [] ) {
 		$args['number']
 	);
 
-	$items = $wpdb->get_results( $sql );
+	$items = wp_cache_get( $cache_key, 'dirlistings' );
+	if ( false === $items ) {
+		$items = $wpdb->get_results( $sql );
+		wp_cache_set( $cache_key, $items, 'dirlistings' );
+	}
 
 	return $items;
 }
@@ -135,7 +145,14 @@ function directory_plugin_listings_total_count( $filter = [] ) {
 		$extra_checks .= $wpdb->prepare( ' WHERE listing_status = %s', "$status" );
 	}
 
-	return (int) $wpdb->get_var( "SELECT COUNT(id) FROM {$wpdb->prefix}directory_listings $extra_checks" );
+	$total_count = wp_cache_get( 'count', 'dirlistings' );
+
+	if ( false === $total_count ) {
+		$total_count = (int) $wpdb->get_var( "SELECT COUNT(id) FROM {$wpdb->prefix}directory_listings $extra_checks" );
+		wp_cache_set( 'count', $total_count, 'dirlistings' );
+	}
+
+	return $total_count;
 }
 
 /**
@@ -166,9 +183,24 @@ function directory_plugin_get_single_listing( $id ) {
  */
 function directory_plugin_delete_listing( $id ) {
 	global $wpdb;
+
+	directory_plugin_purge_cache( $id );
+
 	return $wpdb->delete(
 		$wpdb->prefix . 'directory_listings',
 		[ 'id' => $id ],
 		[ '%d' ]
 	);
+}
+
+
+function directory_plugin_purge_cache( $id = null ) {
+	$group = 'dirlistings';
+
+	if ( $id ) {
+		wp_cache_delete( 'listing-' . $id, $group );
+	}
+
+	wp_cache_delete( 'count', $group );
+	wp_cache_set( 'last_changed', microtime(), $group );
 }
