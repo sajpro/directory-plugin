@@ -146,9 +146,17 @@ function directory_plugin_listings_total_count( $filter = [] ) {
  */
 function directory_plugin_get_single_listing( $id ) {
 	global $wpdb;
-	return $wpdb->get_row(
-		$wpdb->prepare( "SELECT * FROM {$wpdb->prefix}directory_listings WHERE id = %d", $id )
-	);
+
+	$listing = wp_cache_get( 'listing-' . $id, 'dirlistings' );
+
+	if ( false === $listing ) {
+		$listing = $wpdb->get_row(
+			$wpdb->prepare( "SELECT * FROM {$wpdb->prefix}directory_listings WHERE id = %d", $id )
+		);
+		wp_cache_set( 'listing-' . $id, $listing, 'dirlistings' );
+	}
+
+	return $listing;
 }
 
 /**
