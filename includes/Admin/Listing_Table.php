@@ -127,12 +127,13 @@ class Listing_Table extends \WP_List_Table {
 
 	public function extra_tablenav( $which ) {
 		if ( $which == 'top' ) {
+			$active = ( ! empty( $_REQUEST['author'] ) ? $_REQUEST['author'] : '' );
 			?>
 			<div class="alignleft actions bulkactions">
 				<select name="author" id="filter-by-author">
 					<option value="">All Authors</option>
-					<option value="1">Sajib</option>
-					<option value="2">Talukder</option>
+					<option value="1" <?php echo esc_attr( $active == '1' ? 'selected="selected"' : '' ); ?>>Sajib</option>
+					<option value="2" <?php echo esc_attr( $active == '2' ? 'selected="selected"' : '' ); ?>>Talukder</option>
 				</select>
 				<input type="submit" class="button" value="Filter">
 			</div>
