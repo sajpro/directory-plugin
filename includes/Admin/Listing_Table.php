@@ -123,6 +123,13 @@ class Listing_Table extends \WP_List_Table {
 	}
 
 	/**
+	 * Message to be displayed when there are no listings
+	 */
+	function no_items() {
+		esc_html_e( 'No listings found.', 'directory-plugin' );
+	}
+
+	/**
 	 * Show SubSub Filter
 	 */
 	protected function get_views() {
