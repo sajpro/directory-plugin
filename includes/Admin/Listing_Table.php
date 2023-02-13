@@ -101,7 +101,7 @@ class Listing_Table extends \WP_List_Table {
 
 		$total_items = directory_plugin_listings_total_count();
 
-		if( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ){
+		if ( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
 			$args['orderby'] = $_REQUEST['orderby'];
 			$args['order']   = $_REQUEST['order'];
 		}
