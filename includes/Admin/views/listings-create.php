@@ -4,7 +4,9 @@
 		<?php esc_html_e( 'Create Listing', 'directory-plugin' ); ?>
 	</h1>
 
-	<form action="" method="post">
+	<hr class="wp-header-end">
+
+	<form id="posts-filter" action="" method="post"> 
 		<table class="form-table">
 			<tbody>
 				<tr class="row">

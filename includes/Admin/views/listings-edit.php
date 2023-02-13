@@ -2,13 +2,15 @@
 
 	<h1 class="wp-heading-inline"><?php esc_html_e( 'Edit Address', 'directory-plugin' ); ?></h1>
 
+	<hr class="wp-header-end">
+
 	<?php if ( isset( $_GET['updated'] ) ) : ?>
 		<div class="notice notice-success">
 			<p><?php esc_html_e( 'Listing Updated Successfully.', 'directory-plugin' ); ?></p>
 		</div>
 	<?php endif; ?>
 
-	<form action="" method="post">
+	<form id="posts-filter" action="" method="post"> 
 		<table class="form-table">
 			<tbody>
 				<tr class="row">
