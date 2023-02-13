@@ -83,7 +83,14 @@ class Listing_Table extends \WP_List_Table {
 
 		$this->_column_headers = [ $columns, $hidden, $sortable ];
 
-		$per_page = 20;
+		$per_page     = 2;
+		$current_page = $this->get_pagenum();
+		$offset       = ( $current_page - 1 ) * $per_page;
+
+		$args = [
+			'number' => $per_page,
+			'offset' => $offset,
+		];
 
 		$total_items = directory_plugin_listings_total_count();
 
