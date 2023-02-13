@@ -19,8 +19,8 @@ class Listing_Table extends \WP_List_Table {
 	function __construct() {
 		parent::__construct(
 			[
-				'singular' => 'contact',
-				'plural'   => 'contacts',
+				'singular' => 'listing',
+				'plural'   => 'listings',
 				'ajax'     => false,
 			]
 		);
