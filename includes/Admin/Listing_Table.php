@@ -56,6 +56,12 @@ class Listing_Table extends \WP_List_Table {
 				return isset( $item->$column_name ) ? mysql2date( 'F j, Y \a\t g:i A', $item->$column_name ) : '';
 				break;
 
+			case 'author':
+				$user = get_user_by( 'id', $item->$column_name );
+				$name = $user->display_name ? $user->display_name : $user->user_login;
+				return isset( $item->$column_name ) ? $name : '';
+				break;
+
 			default:
 				return isset( $item->$column_name ) ? $item->$column_name : '';
 		}
