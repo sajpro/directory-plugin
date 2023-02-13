@@ -2,6 +2,15 @@
 	<h1 class="wp-heading-inline"><?php esc_html_e( 'All Listings', 'directory-plugin' ); ?></h1>
 
 	<a class="page-title-action" href="<?php echo esc_url( admin_url( 'admin.php?page=directory-listings-create' ) ); ?>"><?php esc_html_e( 'Add New', 'directory-plugin' ); ?></a>
+	<?php
+	if ( isset( $_POST['s'] ) && ! empty( $_POST['s'] ) ) {
+		echo sprintf(
+			'<span class="subtitle">%1$s <strong>%2$s</strong></span>',
+			__( 'Search results for:' ),
+			$_POST['s']
+		);
+	}
+	?>
 	<hr class="wp-header-end">
 	
 	<?php
@@ -16,7 +25,7 @@
 			),
 			$delete_count
 		);
-		echo sprintf('<div class="notice notice-success is-dismissible"><p>%s</p></div>', $msg);
+		echo sprintf( '<div class="notice notice-success is-dismissible"><p>%s</p></div>', $msg );
 	}
 	?>
 

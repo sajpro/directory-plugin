@@ -45,8 +45,8 @@ class Menu {
 
 		switch ( $action ) {
 			// case 'create':
-			// 	$template = __DIR__ . '/views/listings-create.php';
-			// 	break;
+			// $template = __DIR__ . '/views/listings-create.php';
+			// break;
 
 			case 'edit':
 				$listing  = directory_plugin_get_single_listing( $id );
