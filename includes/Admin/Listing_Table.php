@@ -194,7 +194,7 @@ class Listing_Table extends \WP_List_Table {
 		$sortable = $this->get_sortable_columns();
 
 		// Bulk delete trigger.
-		$this->process_bulk_action();
+		// $this->process_bulk_action();
 
 		$this->_column_headers = [ $columns, $hidden, $sortable ];
 

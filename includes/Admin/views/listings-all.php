@@ -10,6 +10,31 @@
 		</div>
 	<?php endif; ?>
 
+	<?php
+	if ( ( isset( $_POST['action'] ) && $_POST['action'] == 'bulk-delete' )
+		|| ( isset( $_POST['action2'] ) && $_POST['action2'] == 'bulk-delete' )
+		) {
+		$delete_ids = esc_sql( $_POST['bulk-delete'] );
+
+		// loop over the array of record IDs and delete them.
+		foreach ( $delete_ids as $id ) {
+			directory_plugin_delete_listing( $id );
+		}
+		// show admin notice.
+		$number_of_listings = count( $delete_ids );
+
+		$msg = sprintf(
+			_n(
+				'%d Listing deleted successfully.',
+				'%d Listings deleted successfully.',
+				$number_of_listings
+			),
+			$number_of_listings
+		);
+		echo '<div class="notice notice-success is-dismissible"><p>' . $msg . '</p></div>';
+	}
+	?>
+
 	<form id="posts-filter" action="" method="post"> 
 
 		<?php
