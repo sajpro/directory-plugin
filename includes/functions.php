@@ -88,27 +88,34 @@ function directory_plugin_listing_get( $args = [], $search = '' ) {
 
 	$table = $wpdb->prefix . 'directory_listings';
 
-	if ( ! empty( $search ) ) {
+	// if ( ! empty( $search ) ) {
+	// 	$sql = $wpdb->prepare(
+	// 		"SELECT * FROM {$table}
+	// 		WHERE title Like %s 
+	// 		OR content Like %s
+	// 		ORDER BY {$args['orderby']} {$args['order']}
+	// 		LIMIT %d, %d",
+	// 		"%$search%",
+	// 		"%$search%",
+	// 		$args['offset'],
+	// 		$args['number']
+	// 	);
+	// } else {
 		$sql = $wpdb->prepare(
 			"SELECT * FROM {$table}
-			WHERE title Like %s 
-			OR content Like %s
+			WHERE listing_status = %s 
+			AND (title Like %s
+			OR content Like %s)
 			ORDER BY {$args['orderby']} {$args['order']}
 			LIMIT %d, %d",
+			"active",
 			"%$search%",
 			"%$search%",
 			$args['offset'],
 			$args['number']
 		);
-	} else {
-		$sql = $wpdb->prepare(
-			"SELECT * FROM {$table}
-			ORDER BY {$args['orderby']} {$args['order']}
-			LIMIT %d, %d",
-			$args['offset'],
-			$args['number']
-		);
-	}
+	// }
+	
 
 	$items = $wpdb->get_results( $sql );
 
