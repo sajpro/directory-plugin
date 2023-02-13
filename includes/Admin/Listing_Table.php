@@ -155,30 +155,37 @@ class Listing_Table extends \WP_List_Table {
 		 */
 	protected function get_views() {
 		$views   = [];
-		$current = ( ! empty( $_REQUEST['customvar'] ) ? $_REQUEST['customvar'] : 'all' );
+		$current = ( ! empty( $_REQUEST['listing_status'] ) ? $_REQUEST['listing_status'] : 'all' );
 
 		// All link
+		$all_count    = directory_plugin_listings_total_count();
 		$class        = ( $current == 'all' ? ' class="current"' : '' );
 		$all_url      = remove_query_arg( 'listing_status' );
-		$views['all'] = "<a href='{$all_url }' {$class} >All <span class='count'>(1)</span></a>";
+		$views['all'] = "<a href='{$all_url }' {$class} >All <span class='count'>({$all_count})</span></a>";
 
 		// Active link
+		$active_count    = directory_plugin_listings_total_count( [ 'status' => 'active' ] );
 		$active_url      = add_query_arg( 'listing_status', 'active' );
 		$class           = ( $current == 'active' ? ' class="current"' : '' );
-		$views['active'] = "<a href='{$active_url}' {$class} >Active <span class='count'>(1)</span></a>";
+		$views['active'] = "<a href='{$active_url}' {$class} >Active <span class='count'>({$active_count})</span></a>";
 
 		// Inactive link
+		$inactive_count    = directory_plugin_listings_total_count( [ 'status' => 'inactive' ] );
 		$inactive_url      = add_query_arg( 'listing_status', 'inactive' );
-		$class             = ( $current == 'trash' ? ' class="current"' : '' );
-		$views['inactive'] = "<a href='{$inactive_url}' {$class} >Inactive <span class='count'>(1)</span></a>";
+		$class             = ( $current == 'inactive' ? ' class="current"' : '' );
+		$views['inactive'] = "<a href='{$inactive_url}' {$class} >Inactive <span class='count'>({$inactive_count})</span></a>";
 
 		return $views;
 	}
 
 	public function prepare_items() {
-		$search = '';
+		$filter = [];
 		if ( isset( $_POST['s'] ) ) {
-			$search = $_POST['s'];
+			$filter['search'] = $_POST['s'];
+		}
+
+		if ( isset( $_GET['listing_status'] ) ) {
+			$filter['status'] = $_GET['listing_status'];
 		}
 
 		$columns  = $this->get_columns();
@@ -206,7 +213,7 @@ class Listing_Table extends \WP_List_Table {
 			$args['order']   = $_REQUEST['order'];
 		}
 
-		$this->items = directory_plugin_listing_get( $args, $search );
+		$this->items = directory_plugin_listing_get( $args, $filter );
 
 		$this->set_pagination_args(
 			[
