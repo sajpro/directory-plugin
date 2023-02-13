@@ -83,6 +83,21 @@ class Listing_Table extends \WP_List_Table {
 		return $actions;
 	}
 
+	public function extra_tablenav( $which ) {
+		if ( $which == 'top' ) {
+			?>
+			<div class="alignleft actions bulkactions">
+				<select name="filter-listings" id="filter-by-listings">
+					<option value="">All Statuses</option>
+					<option value="active">Active</option>
+					<option value="inactive">Inactive</option>
+				</select>
+				<input type="submit" class="button" value="Filter">
+			</div>
+			<?php
+		}
+	}
+
 	public function prepare_items() {
 		$search = '';
 		if ( isset( $_POST['s'] ) ) {
