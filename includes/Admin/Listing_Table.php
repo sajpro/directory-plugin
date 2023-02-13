@@ -125,7 +125,7 @@ class Listing_Table extends \WP_List_Table {
 	/**
 	 * Message to be displayed when there are no listings
 	 */
-	function no_items() {
+	public function no_items() {
 		esc_html_e( 'No listings found.', 'directory-plugin' );
 	}
 
