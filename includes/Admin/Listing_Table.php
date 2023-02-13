@@ -84,6 +84,11 @@ class Listing_Table extends \WP_List_Table {
 	}
 
 	public function prepare_items() {
+		$search = '';
+		if ( isset( $_POST['s'] ) ) {
+			$search = $_POST['s'];
+		}
+
 		$columns  = $this->get_columns();
 		$hidden   = [];
 		$sortable = $this->get_sortable_columns();
@@ -106,7 +111,7 @@ class Listing_Table extends \WP_List_Table {
 			$args['order']   = $_REQUEST['order'];
 		}
 
-		$this->items = directory_plugin_listing_get( $args );
+		$this->items = directory_plugin_listing_get( $args, $search );
 
 		$this->set_pagination_args(
 			[

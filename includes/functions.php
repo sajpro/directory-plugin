@@ -74,7 +74,7 @@ function directory_plugin_listing_insert( $args = [] ) {
  * @param  array $args [description]
  * @return array
  */
-function directory_plugin_listing_get( $args = [] ) {
+function directory_plugin_listing_get( $args = [], $search = '' ) {
 	global $wpdb;
 
 	$defaults = [
@@ -86,13 +86,29 @@ function directory_plugin_listing_get( $args = [] ) {
 
 	$args = wp_parse_args( $args, $defaults );
 
-	$sql = $wpdb->prepare(
-		"SELECT * FROM {$wpdb->prefix}directory_listings 
-		ORDER BY {$args['orderby']} {$args['order']}
-		LIMIT %d, %d",
-		$args['offset'],
-		$args['number']
-	);
+	$table = $wpdb->prefix . 'directory_listings';
+
+	if ( ! empty( $search ) ) {
+		$sql = $wpdb->prepare(
+			"SELECT * FROM {$table}
+			WHERE title Like %s 
+			OR content Like %s
+			ORDER BY {$args['orderby']} {$args['order']}
+			LIMIT %d, %d",
+			"%$search%",
+			"%$search%",
+			$args['offset'],
+			$args['number']
+		);
+	} else {
+		$sql = $wpdb->prepare(
+			"SELECT * FROM {$table}
+			ORDER BY {$args['orderby']} {$args['order']}
+			LIMIT %d, %d",
+			$args['offset'],
+			$args['number']
+		);
+	}
 
 	$items = $wpdb->get_results( $sql );
 
