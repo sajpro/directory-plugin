@@ -1,10 +1,15 @@
+<?php
+$users = get_users();
+?>
 <div class="wrap">
 
 	<h1 class="wp-heading-inline">
 		<?php esc_html_e( 'Create Listing', 'directory-plugin' ); ?>
 	</h1>
 
-	<form action="" method="post">
+	<hr class="wp-header-end">
+
+	<form id="posts-filter" action="" method="post"> 
 		<table class="form-table">
 			<tbody>
 				<tr class="row">
@@ -28,7 +33,16 @@
 						<label for="author"><?php esc_html_e( 'Author', 'directory-plugin' ); ?></label>
 					</th>
 					<td>
-						<input type="text" name="author" id="author" class="regulr-text" value="">
+						<select name="author" id="filter-by-author">
+							<?php
+							foreach ( $users as $user ) {
+								$name = $user->display_name ? $user->display_name : $user->user_login;
+								?>
+									<option value="<?php echo esc_attr( $user->ID ); ?>"><?php echo esc_html( $name ); ?></option>
+								<?php
+							}
+							?>
+						</select>
 					</td>
 				</tr>
 				<tr class="row">

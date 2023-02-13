@@ -74,7 +74,7 @@ function directory_plugin_listing_insert( $args = [] ) {
  * @param  array $args [description]
  * @return array
  */
-function directory_plugin_listing_get( $args = [] ) {
+function directory_plugin_listing_get( $args = [], $filter = [] ) {
 	global $wpdb;
 
 	$defaults = [
@@ -86,10 +86,33 @@ function directory_plugin_listing_get( $args = [] ) {
 
 	$args = wp_parse_args( $args, $defaults );
 
+	$table = $wpdb->prefix . 'directory_listings';
+
+	$extra_checks = '';
+
+	$search = '';
+
+	if ( is_array( $filter ) && ! empty( $filter['search'] ) ) {
+		$search = $filter['search'];
+	}
+	if ( is_array( $filter ) && ! empty( $filter['status'] ) ) {
+		$status        = $filter['status'];
+		$extra_checks .= $wpdb->prepare( ' AND listing_status = %s', "$status" );
+	}
+	if ( is_array( $filter ) && ! empty( $filter['author'] ) ) {
+		$author        = $filter['author'];
+		$extra_checks .= $wpdb->prepare( ' AND author = %s', "$author" );
+	}
+
 	$sql = $wpdb->prepare(
-		"SELECT * FROM {$wpdb->prefix}directory_listings 
+		"SELECT * FROM {$table}
+		WHERE (title LIKE %s 
+		OR content LIKE %s)
+		$extra_checks
 		ORDER BY {$args['orderby']} {$args['order']}
 		LIMIT %d, %d",
+		"%$search%",
+		"%$search%",
 		$args['offset'],
 		$args['number']
 	);
@@ -104,9 +127,15 @@ function directory_plugin_listing_get( $args = [] ) {
  *
  * @return int
  */
-function directory_plugin_listings_total_count() {
+function directory_plugin_listings_total_count( $filter = [] ) {
 	global $wpdb;
-	return (int) $wpdb->get_var( "SELECT COUNT(id) FROM {$wpdb->prefix}directory_listings" );
+	$extra_checks = '';
+	if ( is_array( $filter ) && ! empty( $filter['status'] ) ) {
+		$status        = $filter['status'];
+		$extra_checks .= $wpdb->prepare( ' WHERE listing_status = %s', "$status" );
+	}
+
+	return (int) $wpdb->get_var( "SELECT COUNT(id) FROM {$wpdb->prefix}directory_listings $extra_checks" );
 }
 
 /**
