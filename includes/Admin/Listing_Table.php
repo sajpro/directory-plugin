@@ -90,10 +90,22 @@ class Listing_Table extends \WP_List_Table {
 		) {
 			$delete_ids = esc_sql( $_POST['bulk-delete'] );
 
-			// loop over the array of record IDs and delete them
+			// loop over the array of record IDs and delete them.
 			foreach ( $delete_ids as $id ) {
 				directory_plugin_delete_listing( $id );
 			}
+			// show admin notice.
+			$number_of_listings = count( $delete_ids );
+
+			$msg = sprintf(
+				_n(
+					'%d item deleted successfully.',
+					'%d items deleted successfully.',
+					$number_of_listings
+				),
+				$number_of_listings
+			);
+			echo '<div class="notice notice-success is-dismissible"><p>' . $msg . '</p></div>';
 		}
 	}
 
