@@ -26,6 +26,7 @@ class Admin {
 	 */
 	public function dispatch_action( $listings ) {
 		add_action( 'admin_init', [ $listings, 'form_handler' ] );
+		add_action( 'admin_init', [ $listings, 'bulk_delete_handler' ] );
 		add_action( 'admin_post_directory-listings-delete', [ $listings, 'delete_listing' ] );
 	}
 }

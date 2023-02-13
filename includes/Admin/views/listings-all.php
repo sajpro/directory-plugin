@@ -4,34 +4,19 @@
 	<a class="page-title-action" href="<?php echo esc_url( admin_url( 'admin.php?page=directory-listings&action=create' ) ); ?>"><?php esc_html_e( 'Add New', 'directory-plugin' ); ?></a>
 	<hr class="wp-header-end">
 	
-	<?php if ( isset( $_GET['deleted'] ) ) : ?>
-		<div class="notice notice-success is-dismissible">
-			<p><?php esc_html_e( '1 Listing deleted successfully.', 'directory-plugin' ); ?></p>
-		</div>
-	<?php endif; ?>
-
 	<?php
-	if ( ( isset( $_POST['action'] ) && $_POST['action'] == 'bulk-delete' )
-		|| ( isset( $_POST['action2'] ) && $_POST['action2'] == 'bulk-delete' )
-		) {
-		$delete_ids = esc_sql( $_POST['bulk-delete'] );
-
-		// loop over the array of record IDs and delete them.
-		foreach ( $delete_ids as $id ) {
-			directory_plugin_delete_listing( $id );
-		}
-		// show admin notice.
-		$number_of_listings = count( $delete_ids );
+	if ( isset( $_GET['deleted'] ) ) {
+		$delete_count = isset( $_GET['delete-total'] ) ? $_GET['delete-total'] : 1;
 
 		$msg = sprintf(
 			_n(
 				'%d Listing deleted successfully.',
 				'%d Listings deleted successfully.',
-				$number_of_listings
+				$delete_count
 			),
-			$number_of_listings
+			$delete_count
 		);
-		echo '<div class="notice notice-success is-dismissible"><p>' . $msg . '</p></div>';
+		echo sprintf('<div class="notice notice-success is-dismissible"><p>%s</p></div>', $msg);
 	}
 	?>
 

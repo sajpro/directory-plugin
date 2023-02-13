@@ -67,6 +67,32 @@ class Listings {
 	}
 
 	/**
+	 * Listing Bulk Delete handler
+	 */
+	public function bulk_delete_handler() {
+		if ( ( isset( $_POST['action'] ) && $_POST['action'] == 'bulk-delete' )
+		|| ( isset( $_POST['action2'] ) && $_POST['action2'] == 'bulk-delete' )
+		) {
+			$delete_ids = esc_sql( $_POST['bulk-delete'] );
+
+			// loop over the array of record IDs and delete them.
+			foreach ( $delete_ids as $id ) {
+				directory_plugin_delete_listing( $id );
+			}
+			// show admin notice.
+			$number_of_listings = count( $delete_ids );
+
+			if ( $number_of_listings ) {
+				$redirected_to = admin_url( 'admin.php?page=directory-listings&deleted=true&delete-total=' . $number_of_listings );
+			} else {
+				$redirected_to = admin_url( 'admin.php?page=directory-listings&deleted=false' );
+			}
+
+			wp_redirect( $redirected_to );
+		}
+	}
+
+	/**
 	 * Listing Delete handler
 	 */
 	public function delete_listing() {
