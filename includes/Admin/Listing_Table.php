@@ -150,6 +150,31 @@ class Listing_Table extends \WP_List_Table {
 		return get_user_option( 'manage' . $screen->id . 'columnshidden' );
 	}
 
+		/**
+		 * Show SubSub Filter
+		 */
+	protected function get_views() {
+		$views   = [];
+		$current = ( ! empty( $_REQUEST['customvar'] ) ? $_REQUEST['customvar'] : 'all' );
+
+		// All link
+		$class        = ( $current == 'all' ? ' class="current"' : '' );
+		$all_url      = remove_query_arg( 'listing_status' );
+		$views['all'] = "<a href='{$all_url }' {$class} >All <span class='count'>(1)</span></a>";
+
+		// Active link
+		$active_url      = add_query_arg( 'listing_status', 'active' );
+		$class           = ( $current == 'active' ? ' class="current"' : '' );
+		$views['active'] = "<a href='{$active_url}' {$class} >Active <span class='count'>(1)</span></a>";
+
+		// Inactive link
+		$inactive_url      = add_query_arg( 'listing_status', 'inactive' );
+		$class             = ( $current == 'trash' ? ' class="current"' : '' );
+		$views['inactive'] = "<a href='{$inactive_url}' {$class} >Inactive <span class='count'>(1)</span></a>";
+
+		return $views;
+	}
+
 	public function prepare_items() {
 		$search = '';
 		if ( isset( $_POST['s'] ) ) {
