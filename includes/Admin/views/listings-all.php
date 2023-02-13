@@ -3,6 +3,12 @@
 
 	<a class="page-title-action" href="<?php echo esc_url( admin_url( 'admin.php?page=directory-listings&action=create' ) ); ?>"><?php esc_html_e( 'Add New', 'directory-plugin' ); ?></a>
 	<hr class="wp-header-end">
+	
+	<?php if ( isset( $_GET['deleted'] ) ) : ?>
+		<div class="notice notice-success is-dismissible">
+			<p><?php esc_html_e( '1 Listing deleted successfully.', 'directory-plugin' ); ?></p>
+		</div>
+	<?php endif; ?>
 
 	<form id="posts-filter" action="" method="post"> 
 
