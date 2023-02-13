@@ -16,9 +16,17 @@ class Assets {
 	 */
 	function __construct() {
 		if ( is_admin() ) {
+			$this->blocks_file = include_once DIRECTORY_PLUGIN_PATH . '/build/index.asset.php';
+			add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
+
 			add_action( 'admin_enqueue_scripts', [ $this, 'admin_assets' ] );
 		}
 	}
+
+	public function enqueue_block_editor_assets() {
+		wp_register_script( 'dp-editor-script', DIRECTORY_PLUGIN_URL . '/build/index.js', $this->blocks_file['dependencies'], $this->blocks_file['version'], true );
+	}
+
 	/**
 	 * Admin Assets
 	 */
