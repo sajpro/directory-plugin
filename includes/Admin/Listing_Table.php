@@ -83,6 +83,20 @@ class Listing_Table extends \WP_List_Table {
 		return $actions;
 	}
 
+	public function process_bulk_action() {
+		// If the delete bulk action is triggered
+		if ( ( isset( $_POST['action'] ) && $_POST['action'] == 'bulk-delete' )
+		|| ( isset( $_POST['action2'] ) && $_POST['action2'] == 'bulk-delete' )
+		) {
+			$delete_ids = esc_sql( $_POST['bulk-delete'] );
+
+			// loop over the array of record IDs and delete them
+			foreach ( $delete_ids as $id ) {
+				directory_plugin_delete_listing( $id );
+			}
+		}
+	}
+
 	public function extra_tablenav( $which ) {
 		if ( $which == 'top' ) {
 			?>
@@ -107,6 +121,9 @@ class Listing_Table extends \WP_List_Table {
 		$columns  = $this->get_columns();
 		$hidden   = [];
 		$sortable = $this->get_sortable_columns();
+
+		// Bulk delete trigger.
+		$this->process_bulk_action();
 
 		$this->_column_headers = [ $columns, $hidden, $sortable ];
 
