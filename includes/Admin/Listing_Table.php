@@ -41,7 +41,6 @@ class Listing_Table extends \WP_List_Table {
 	public function get_sortable_columns() {
 		return [
 			'title'      => [ 'title', true ],
-			'author'     => [ 'author', true ],
 			'created_at' => [ 'created_at', true ],
 		];
 	}
@@ -93,6 +92,11 @@ class Listing_Table extends \WP_List_Table {
 		];
 
 		$total_items = directory_plugin_listings_total_count();
+
+		if( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ){
+			$args['orderby'] = $_REQUEST['orderby'];
+			$args['order']   = $_REQUEST['order'];
+		}
 
 		$this->items = directory_plugin_listing_get( $args );
 
