@@ -129,10 +129,10 @@ class Listing_Table extends \WP_List_Table {
 		if ( $which == 'top' ) {
 			?>
 			<div class="alignleft actions bulkactions">
-				<select name="filter-author" id="filter-by-author">
+				<select name="author" id="filter-by-author">
 					<option value="">All Authors</option>
-					<option value="Sajib">Sajib</option>
-					<option value="Talukder">Talukder</option>
+					<option value="1">Sajib</option>
+					<option value="2">Talukder</option>
 				</select>
 				<input type="submit" class="button" value="Filter">
 			</div>
@@ -150,9 +150,9 @@ class Listing_Table extends \WP_List_Table {
 		return get_user_option( 'manage' . $screen->id . 'columnshidden' );
 	}
 
-		/**
-		 * Show SubSub Filter
-		 */
+	/**
+	 * Show SubSub Filter
+	 */
 	protected function get_views() {
 		$views             = [];
 		$current           = ( ! empty( $_REQUEST['listing_status'] ) ? $_REQUEST['listing_status'] : 'all' );
@@ -182,6 +182,9 @@ class Listing_Table extends \WP_List_Table {
 		$filter = [];
 		if ( isset( $_POST['s'] ) ) {
 			$filter['search'] = $_POST['s'];
+		}
+		if ( isset( $_POST['author'] ) ) {
+			$filter['author'] = $_POST['author'];
 		}
 
 		if ( isset( $_GET['listing_status'] ) ) {

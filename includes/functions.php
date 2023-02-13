@@ -99,6 +99,10 @@ function directory_plugin_listing_get( $args = [], $filter = [] ) {
 		$status        = $filter['status'];
 		$extra_checks .= $wpdb->prepare( ' AND listing_status = %s', "$status" );
 	}
+	if ( is_array( $filter ) && ! empty( $filter['author'] ) ) {
+		$author        = $filter['author'];
+		$extra_checks .= $wpdb->prepare( ' AND author = %s', "$author" );
+	}
 
 	$sql = $wpdb->prepare(
 		"SELECT * FROM {$table}
