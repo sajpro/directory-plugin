@@ -140,15 +140,24 @@ class Listing_Table extends \WP_List_Table {
 		}
 	}
 
+	/**
+	 * Define which columns are hidden
+	 *
+	 * @return Array
+	 */
+	public function get_hidden_columns() {
+		$screen = get_current_screen();
+		return get_user_option( 'manage' . $screen->id . 'columnshidden' );
+	}
+
 	public function prepare_items() {
 		$search = '';
 		if ( isset( $_POST['s'] ) ) {
 			$search = $_POST['s'];
 		}
 
-		$screen = get_current_screen();
 		$columns  = $this->get_columns();
-		$hidden = get_user_option( 'manage' . $screen->id . 'columnshidden' );
+		$hidden   = $this->get_hidden_columns();
 		$sortable = $this->get_sortable_columns();
 
 		// Bulk delete trigger.
