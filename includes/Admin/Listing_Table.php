@@ -129,10 +129,10 @@ class Listing_Table extends \WP_List_Table {
 		if ( $which == 'top' ) {
 			?>
 			<div class="alignleft actions bulkactions">
-				<select name="filter-listings" id="filter-by-listings">
-					<option value="">All Statuses</option>
-					<option value="active">Active</option>
-					<option value="inactive">Inactive</option>
+				<select name="filter-author" id="filter-by-author">
+					<option value="">All Authors</option>
+					<option value="Sajib">Sajib</option>
+					<option value="Talukder">Talukder</option>
 				</select>
 				<input type="submit" class="button" value="Filter">
 			</div>
