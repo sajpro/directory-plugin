@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"title": "Accordion",
+	"name": "directory-plugin/listings",
+	"category": "directory-plugin",
+	"description": "An Directory listing widget for Gutenberg",
+    "textdomain": "directory-plugin",
+	"supports": {
+		"align": ["wide", "full"]
+	},
+	"keywords": [
+        "Directory",
+        "Listings Grid"
+    ],
+	"editorScript": "dp-editor-script"
+}
