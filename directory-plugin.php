@@ -215,23 +215,32 @@ final class Directory_Plugin {
 			$align = 'align' . $attributes['align'];
 		}
 
-		$number = 2;
+		$number = 4;
 
 		$classnames         = [];
 		$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => implode( ' ', $classnames ) ] );
 
 		ob_start(); ?>
 			<div <?php echo esc_attr( $wrapper_attributes ); ?>>
-				<div id="listings-wrap">
-					<span class="loader">Loading....</span>
-					<div class="wrapper <?php echo esc_attr( $align ); ?>">
+					<div id="listings-wrap">
+						<div class="loader-wrap">
+							<div class="loader">
+								<div class="svg-loader">
+									<svg class="svg-container" height="100" width="100" viewBox="0 0 100 100">
+										<circle class="loader-svg bg" cx="50" cy="50" r="45"></circle>
+										<circle class="loader-svg animate" cx="50" cy="50" r="45"></circle>
+									</svg>
+								</div>
+							</div>
+						</div>
+						<div class="wrapper <?php echo esc_attr( $align ); ?>">
+						</div>
 					</div>
 					<div class="listings-pagination">
 						<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
 						<button class="prev-btn hidden" value="">Prev</button>
 						<button class="next-btn hidden" value="">Next</button>
 					</div>
-				</div>
 
 				<button class="submit-toggle">Submit Listing</button>
 

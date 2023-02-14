@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
 		},
 
         // fetch listings
-        FetchListings: function ( number = '', paged = '' ) {
+        FetchListings: function ( number = 0, paged = 0 ) {
             let data = {};
             if(number){
                 data.number = number;
@@ -29,7 +29,7 @@ jQuery(document).ready(function($) {
                     type: "GET",
                     data,
                     beforeSend: function () {
-                        $( '#listings-wrap .loader' ).show();
+                        $( '#listings-wrap .loader-wrap' ).show();
                     },
                     success: function (data) {
                         if(data.success){
@@ -48,26 +48,27 @@ jQuery(document).ready(function($) {
                                 `
                             })
                             $( "#listings-wrap .wrapper" ).html( listings );
-                            $( '#listings-wrap .loader' ).hide();
+                            $( '#listings-wrap .loader-wrap' ).hide();
                             if( paged == 0 ){
                                 $( '.listings-pagination button' ).removeClass('hidden');
                             }
-                            
+
                             $( '.listings-pagination .prev-btn' ).val(data.prev);
-                            if(data.prev < 1){
+                            if(paged < 1){
                                 $( '.listings-pagination .prev-btn' ).addClass('hidden');
                             }else{
                                 $( '.listings-pagination .prev-btn' ).removeClass('hidden');
                             }
+
                             $( '.listings-pagination .next-btn' ).val(data.next);
-                            if(data.next > data.pages){
+                            if(paged >= number){
                                 $( '.listings-pagination .next-btn' ).addClass('hidden');
                             }else{
                                 $( '.listings-pagination .next-btn' ).removeClass('hidden');
                             }
                         }else{
                             console.log('Somethign went wrong.');
-                            $( '#listings-wrap .loader' ).hide();
+                            $( '#listings-wrap .loader-wrap' ).hide();
                         }                        
                     },
                     error: function (err) {
