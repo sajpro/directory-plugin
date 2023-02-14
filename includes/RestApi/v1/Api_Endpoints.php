@@ -63,13 +63,18 @@ class Api_Endpoints extends \WP_REST_Controller {
 	 */
 	public function get_all_listings( $request ) {
 		$number = $request->get_param( 'number' );
+		$paged  = $request->get_param( 'paged' );
 
 		$result['success'] = false;
 		$listings          = [];
 
-		$args = [
-			'number' => $number
-		];
+		if ( $number > 0 ) {
+			$args['number'] = $number;
+		}
+
+		if ( ( $number > 0 ) && ( $paged > 1 ) ) {
+			$args['offset'] = ( $number * $paged ) - $number;
+		}
 
 		$listings = directory_plugin_listing_get( $args );
 
