@@ -52,13 +52,8 @@ jQuery(document).ready(function($) {
                             // inject fetch data to wrapper el
                             $( "#listings-wrap .wrapper" ).html( listings );
 
-                            // hide loader after successfull fetch
-                            $( '#listings-wrap .loader-wrap' ).hide();
-
-                            // pagination hide on initial load
-                            if( paged == 0 ){
-                                $( '.listings-pagination button' ).removeClass('hidden');
-                            }
+                             // hide loader after successfull fetch
+                            $( '#listings-wrap .loader' ).hide();
 
                             // prev button show/hide based on conditon
                             $( '.listings-pagination .prev-btn' ).val(data.prev);
@@ -100,7 +95,11 @@ jQuery(document).ready(function($) {
     $('.listings-pagination button').on('click', function (e) {
         var number = $('#number').val();
         var paged = $(this).val();
+        console.log(number,paged);
         DirectoryPlugin.FetchListings( number, paged );
     });
+
+
+
 
 });
