@@ -4,7 +4,7 @@
 ?>
 <div class="wrap">
 
-	<h1 class="wp-heading-inline"><?php esc_html_e( 'Edit Address', 'directory-plugin' ); ?></h1>
+	<h1 class="wp-heading-inline"><?php esc_html_e( 'Edit Listing', 'directory-plugin' ); ?></h1>
 
 	<hr class="wp-header-end">
 
