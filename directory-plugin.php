@@ -151,7 +151,7 @@ final class Directory_Plugin {
 		self::load_plugin_textdomain();
 
 		// Register blocks.
-		add_action( 'init', [$this,'register_blocks'] );
+		add_action( 'init', [ $this, 'register_blocks' ] );
 
 		// Register block category hook.
 		if ( version_compare( get_bloginfo( 'version' ), '5.8', '>=' ) ) {
@@ -178,24 +178,24 @@ final class Directory_Plugin {
 	public function register_blocks() {
 		// $blocks_dir = DIRECTORY_PLUGIN_PATH . '/blocks/';
 		// foreach ( scandir( $blocks_dir ) as $result ) {
-		// 	$block_location = $blocks_dir . $result;
-		// 	pretty_log('xxxxx',$block_location);
-		// 	if ( ! is_dir( $block_location ) || '.' === $result || '..' === $result ) {
-		// 		continue;
-		// 	}
-		// 	register_block_type( $block_location );
+		// $block_location = $blocks_dir . $result;
+		// pretty_log('xxxxx',$block_location);
+		// if ( ! is_dir( $block_location ) || '.' === $result || '..' === $result ) {
+		// continue;
 		// }
-		
+		// register_block_type( $block_location );
+		// }
+
 		$blocks_dir       = DIRECTORY_PLUGIN_PATH . '/blocks/listings/block.json';
-		$blocks_json      = file_get_contents($blocks_dir);
-		$attributes_array = json_decode($blocks_json,true);
-		
+		$blocks_json      = file_get_contents( $blocks_dir );
+		$attributes_array = json_decode( $blocks_json, true );
+
 		register_block_type(
 			'directory-plugin/listings',
 			[
 				'editor_script'   => 'dp-editor-script',
-				'render_callback' => [$this, 'listing_dynamic_render_callback'],
-				'attributes' => $attributes_array['attributes']
+				'render_callback' => [ $this, 'listing_dynamic_render_callback' ],
+				'attributes'      => $attributes_array['attributes'],
 			]
 		);
 	}
@@ -206,20 +206,20 @@ final class Directory_Plugin {
 	public function listing_dynamic_render_callback( $attributes, $content ) {
 		$title = '';
 		$align = '';
-		
-		if( isset( $attributes['title'] ) && !empty( $attributes['title'] ) ){
-			$title  = $attributes['title'];
-		} 
-		if( isset( $attributes['align'] ) && !empty( $attributes['align'] ) ){
-			$align  = 'align'.$attributes['align'];
-		} 
+
+		if ( isset( $attributes['title'] ) && ! empty( $attributes['title'] ) ) {
+			$title = $attributes['title'];
+		}
+		if ( isset( $attributes['align'] ) && ! empty( $attributes['align'] ) ) {
+			$align = 'align' . $attributes['align'];
+		}
 
 		$classnames = [];
-		
-		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => implode( ' ', $classnames ) ) );
+
+		$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => implode( ' ', $classnames ) ] );
 
 		ob_start(); ?>
-			<div <?php echo esc_attr($wrapper_attributes); ?>>
+			<div <?php echo esc_attr( $wrapper_attributes ); ?>>
 				<div class="listing-form">
 					<form action="">
 						<label for="fname">First Name</label>
@@ -241,11 +241,11 @@ final class Directory_Plugin {
 						<input type="submit" value="Submit">
 					</form>
 				</div>
-				<div class="wrapper <?php echo esc_attr($align); ?>">
-					<div class="cell cell-1"><?php echo $title; ?></div>
-					<div class="cell cell-2"><?php echo $title; ?></div>
-					<div class="cell cell-3"><?php echo $title; ?></div>
-					<div class="cell cell-4"><?php echo $title; ?></div>
+				<div class="wrapper <?php echo esc_attr( $align ); ?>">
+					<div class="cell cell-1"><?php echo esc_html( $title ); ?></div>
+					<div class="cell cell-2"><?php echo esc_html( $title ); ?></div>
+					<div class="cell cell-3"><?php echo esc_html( $title ); ?></div>
+					<div class="cell cell-4"><?php echo esc_html( $title ); ?></div>
 				</div>
 			</div>
 		<?php
@@ -258,7 +258,7 @@ final class Directory_Plugin {
 	public function add_block_category( $block_categories ) {
 		$block_categories[] = [
 			'slug'  => 'directory-plugin',
-			'title' => __( 'Directory Plugin', 'directory-plugin' ),
+			'title' => esc_html__( 'Directory Plugin', 'directory-plugin' ),
 		];
 		return $block_categories;
 	}

@@ -40,8 +40,8 @@ class Menu {
 	 * @return void
 	 */
 	public static function plugin_page() {
-		$action = isset( $_GET['action'] ) ? $_GET['action'] : 'list';
-		$id     = isset( $_GET['listing'] ) ? intval( $_GET['listing'] ) : 0;
+		$action = isset( $_GET['action'] ) ? wp_unslash($_GET['action']) : 'list';
+		$id     = isset( $_GET['listing'] ) ? intval( wp_unslash($_GET['listing']) ) : 0;
 
 		switch ( $action ) {
 			// case 'create':
@@ -84,7 +84,7 @@ class Menu {
 		}
 
 		$args = [
-			'label'   => __( 'Listings per page', 'directory-plugin' ),
+			'label'   => esc_html__( 'Listings per page', 'directory-plugin' ),
 			'default' => 2,
 			'option'  => 'listings_per_page',
 		];

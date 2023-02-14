@@ -6,8 +6,8 @@
 	if ( isset( $_POST['s'] ) && ! empty( $_POST['s'] ) ) {
 		echo sprintf(
 			'<span class="subtitle">%1$s <strong>%2$s</strong></span>',
-			__( 'Search results for:' ),
-			$_POST['s']
+			__( 'Search results for:', 'directory-plugin' ),
+			wp_unslash( $_POST['s'] )
 		);
 	}
 	?>
@@ -15,7 +15,7 @@
 	
 	<?php
 	if ( isset( $_GET['deleted'] ) ) {
-		$delete_count = isset( $_GET['delete-total'] ) ? $_GET['delete-total'] : 1;
+		$delete_count = isset( $_GET['delete-total'] ) ? intval( $_GET['delete-total'] ) : 1;
 
 		$msg = sprintf(
 			_n(
@@ -25,7 +25,7 @@
 			),
 			$delete_count
 		);
-		echo sprintf( '<div class="notice notice-success is-dismissible"><p>%s</p></div>', $msg );
+		echo sprintf( __( '<div class="notice notice-success is-dismissible"><p>%s</p></div>', 'directory-plugin' ), $msg );
 	}
 	?>
 

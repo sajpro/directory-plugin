@@ -22,7 +22,7 @@ class Listings {
 			return;
 		}
 
-		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'directory-listings' ) ) {
+		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'directory-listings' ) ) {
 			wp_die( 'Are you cheating?' );
 		}
 
@@ -30,12 +30,12 @@ class Listings {
 			wp_die( 'Are you cheating?' );
 		}
 
-		$id             = isset( $_POST['id'] ) ? intval( $_POST['id'] ) : 0;
-		$title          = isset( $_POST['title'] ) ? sanitize_text_field( $_POST['title'] ) : '';
-		$content        = isset( $_POST['content'] ) ? sanitize_textarea_field( $_POST['content'] ) : '';
-		$author         = isset( $_POST['author'] ) ? sanitize_text_field( $_POST['author'] ) : '';
-		$listing_status = isset( $_POST['listing_status'] ) ? sanitize_text_field( $_POST['listing_status'] ) : 'active';
-		$preview_image  = isset( $_POST['preview_image'] ) ? sanitize_text_field( $_POST['preview_image'] ) : '';
+		$id             = isset( $_POST['id'] ) ? intval( wp_unslash( $_POST['id'] ) ) : 0;
+		$title          = isset( $_POST['title'] ) ? sanitize_text_field( wp_unslash( $_POST['title'] ) ) : '';
+		$content        = isset( $_POST['content'] ) ? sanitize_textarea_field( wp_unslash( $_POST['content'] ) ) : '';
+		$author         = isset( $_POST['author'] ) ? sanitize_text_field( wp_unslash( $_POST['author'] ) ) : '';
+		$listing_status = isset( $_POST['listing_status'] ) ? sanitize_text_field( wp_unslash( $_POST['listing_status'] ) ) : 'active';
+		$preview_image  = isset( $_POST['preview_image'] ) ? sanitize_text_field( wp_unslash( $_POST['preview_image'] ) ) : '';
 
 		$args = [
 			'title'          => $title,
@@ -73,7 +73,7 @@ class Listings {
 		if ( ( isset( $_POST['action'] ) && $_POST['action'] == 'bulk-delete' )
 		|| ( isset( $_POST['action2'] ) && $_POST['action2'] == 'bulk-delete' )
 		) {
-			$delete_ids = esc_sql( $_POST['bulk-delete'] );
+			$delete_ids = esc_sql( wp_unslash( $_POST['bulk-delete'] ) );
 
 			// loop over the array of record IDs and delete them.
 			foreach ( $delete_ids as $id ) {
@@ -96,7 +96,7 @@ class Listings {
 	 * Listing Delete handler
 	 */
 	public function delete_listing() {
-		if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'directory-listings-delete' ) ) {
+		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'directory-listings-delete' ) ) {
 			wp_die( 'Are you cheating?' );
 		}
 
@@ -104,7 +104,7 @@ class Listings {
 			wp_die( 'Are you cheating?' );
 		}
 
-		$id = isset( $_REQUEST['listing'] ) ? intval( $_REQUEST['listing'] ) : 0;
+		$id = isset( $_REQUEST['listing'] ) ? intval( wp_unslash( $_REQUEST['listing'] ) ) : 0;
 
 		if ( directory_plugin_delete_listing( $id ) ) {
 			$redirected_to = admin_url( 'admin.php?page=directory-listings&deleted=true' );

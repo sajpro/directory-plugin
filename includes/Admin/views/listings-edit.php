@@ -56,8 +56,8 @@
 					</th>
 					<td>
 						<select name="listing_status" id="listing_status">
-							<option value="active" <?php selected( $listing->listing_status, 'active' ); ?>>Active</option>
-							<option value="inactive" <?php selected( $listing->listing_status, 'inactive' ); ?>>In Active</option>
+							<option value="active" <?php selected( $listing->listing_status, 'active' ); ?>><?php echo esc_html_e( 'Active', 'directory-plugin' ); ?></option>
+							<option value="inactive" <?php selected( $listing->listing_status, 'inactive' ); ?>><?php echo esc_html_e( 'In Active', 'directory-plugin' ); ?></option>
 						</select>
 					</td>
 				</tr>
@@ -74,7 +74,7 @@
 							<img class="img-preview <?php echo ( ( is_array( $directory_plugin_image_data ) && ! empty( $directory_plugin_image_data[1] ) ) ? '' : 'hide' ); ?>" src="<?php echo esc_url( $directory_plugin_image_data[1] ); ?>" width="100" height="auto" alt="image"> 
 						</div>
 						<input type="hidden" class="wpx-img-field" id="preview_image" name="preview_image" value="<?php echo esc_attr( $listing->preview_image ); ?>"/> 
-						<input type="button" class="button wpx-browse" data-title="<?php esc_attr_e( 'Media Gallery' ); ?>" data-select-text="<?php esc_attr_e( 'Select Image', 'directory-plugin' ); ?>" value="<?php esc_attr_e( 'Upload/Edit Image', 'directory-plugin' ); ?>"/>
+						<input type="button" class="button wpx-browse" data-title="<?php esc_attr_e( 'Media Gallery', 'directory-plugin' ); ?>" data-select-text="<?php esc_attr_e( 'Select Image', 'directory-plugin' ); ?>" value="<?php esc_attr_e( 'Upload/Edit Image', 'directory-plugin' ); ?>"/>
 					</td>
 				</tr>
 			</tbody>

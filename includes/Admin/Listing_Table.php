@@ -61,21 +61,21 @@ class Listing_Table extends \WP_List_Table {
 		switch ( $column_name ) {
 			case 'preview_image':
 				$image_url = ! empty( $item->$column_name ) ? explode( ',', $item->$column_name )[1] : '';
-				return isset( $item->$column_name ) ? '<img width="100" height="auto" src="' . $image_url . '"/>' : '';
+				return isset( $item->$column_name ) ? '<img width="100" height="auto" src="' . esc_url( $image_url ) . '"/>' : '';
 				break;
 
 			case 'created_at':
-				return isset( $item->$column_name ) ? mysql2date( 'F j, Y \a\t g:i A', $item->$column_name ) : '';
+				return isset( $item->$column_name ) ? esc_html( mysql2date( 'F j, Y \a\t g:i A', $item->$column_name ) ) : '';
 				break;
 
 			case 'author':
 				$user = get_user_by( 'id', $item->$column_name );
 				$name = $user->display_name ? $user->display_name : $user->user_login;
-				return isset( $item->$column_name ) ? $name : '';
+				return isset( $item->$column_name ) ? esc_html( $name ) : '';
 				break;
 
 			default:
-				return isset( $item->$column_name ) ? $item->$column_name : '';
+				return isset( $item->$column_name ) ? esc_html( $item->$column_name ) : '';
 		}
 	}
 
@@ -85,15 +85,15 @@ class Listing_Table extends \WP_List_Table {
 	public function column_title( $item ) {
 		$actions = [];
 
-		$actions['edit'] = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=directory-listings&action=edit&listing=' . $item->id ), esc_html__( 'Edit', 'directory-plugin' ) );
+		$actions['edit'] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=directory-listings&action=edit&listing=' . intval( $item->id ) ) ), esc_html__( 'Edit', 'directory-plugin' ) );
 
-		$actions['delete'] = sprintf( '<a href="%s" onclick="return confirm(\'Are you sure? \');">%s</a>', wp_nonce_url( admin_url( 'admin-post.php?action=directory-listings-delete&listing=' . $item->id ), 'directory-listings-delete' ), esc_html__( 'Delete', 'directory-plugin' ) );
+		$actions['delete'] = sprintf( '<a href="%s" onclick="return confirm(\'Are you sure? \');">%s</a>', esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=directory-listings-delete&listing=' . intval( $item->id ) ), 'directory-listings-delete' ) ), esc_html__( 'Delete', 'directory-plugin' ) );
 
-		return sprintf( '<a href="%1$s"><strong>%2$s</strong></a> %3$s', admin_url( 'admin.php?page=directory-listings&action=edit&listing=' . $item->id ), $item->title, $this->row_actions( $actions ) );
+		return sprintf( '<a href="%1$s"><strong>%2$s</strong></a> %3$s', esc_url( admin_url( 'admin.php?page=directory-listings&action=edit&listing=' . intval( $item->id ) ) ), $item->title, $this->row_actions( $actions ) );
 	}
 
 	public function column_cb( $item ) {
-		return sprintf( '<input type="checkbox" name="bulk-delete[]" value="%d" />', $item->id );
+		return sprintf( '<input type="checkbox" name="bulk-delete[]" value="%d" />', intval( $item->id ) );
 	}
 
 	/**
@@ -113,12 +113,12 @@ class Listing_Table extends \WP_List_Table {
 	 */
 	public function extra_tablenav( $which ) {
 		if ( $which == 'top' ) {
-			$active = ( ! empty( $_REQUEST['author'] ) ? $_REQUEST['author'] : '' );
+			$active = ( ! empty( $_REQUEST['author'] ) ? wp_unslash( $_REQUEST['author'] ) : '' );
 			$users  = get_users();
 			?>
 			<div class="alignleft actions bulkactions">
 				<select name="author" id="filter-by-author">
-					<option value="">All Authors</option>
+					<option value=""><?php esc_html_e( 'All Authors', 'directory-plugin' ); ?></option>
 					<?php
 					foreach ( $users as $user ) {
 						$name = $user->display_name ? $user->display_name : $user->user_login;
@@ -128,7 +128,7 @@ class Listing_Table extends \WP_List_Table {
 					}
 					?>
 				</select>
-				<input type="submit" class="button" value="Filter">
+				<input type="submit" class="button" value="<?php esc_html_e( 'Filter', 'directory-plugin' ); ?>">
 			</div>
 			<?php
 		}
@@ -157,7 +157,7 @@ class Listing_Table extends \WP_List_Table {
 	 */
 	protected function get_views() {
 		$views   = [];
-		$current = ( ! empty( $_REQUEST['listing_status'] ) ? $_REQUEST['listing_status'] : 'all' );
+		$current = ( ! empty( $_REQUEST['listing_status'] ) ? wp_unslash( $_REQUEST['listing_status'] ) : 'all' );
 
 		// All link
 		$all_count    = directory_plugin_listings_total_count();
@@ -186,14 +186,14 @@ class Listing_Table extends \WP_List_Table {
 	public function prepare_items() {
 		$filter = [];
 		if ( isset( $_POST['s'] ) ) {
-			$filter['search'] = $_POST['s'];
+			$filter['search'] = wp_unslash( $_POST['s'] );
 		}
 		if ( isset( $_POST['author'] ) ) {
-			$filter['author'] = $_POST['author'];
+			$filter['author'] = sanitize_text_field( wp_unslash( $_POST['author'] ) );
 		}
 
 		if ( isset( $_GET['listing_status'] ) ) {
-			$filter['status'] = $_GET['listing_status'];
+			$filter['status'] = sanitize_text_field( wp_unslash( $_GET['listing_status'] ) );
 		}
 
 		$columns  = $this->get_columns();
@@ -214,8 +214,8 @@ class Listing_Table extends \WP_List_Table {
 		$total_items = directory_plugin_listings_total_count();
 
 		if ( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
-			$args['orderby'] = $_REQUEST['orderby'];
-			$args['order']   = $_REQUEST['order'];
+			$args['orderby'] = wp_unslash( $_REQUEST['orderby'] );
+			$args['order']   = wp_unslash( $_REQUEST['order'] );
 		}
 
 		$this->items = directory_plugin_listing_get( $args, $filter );
