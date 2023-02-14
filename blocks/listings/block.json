@@ -7,7 +7,7 @@
 	"description": "An Directory listing widget for Gutenberg",
     "textdomain": "directory-plugin",
 	"supports": {
-		"align": ["wide", "full"]
+		"html": false
 	},
 	"keywords": [
         "Directory",
