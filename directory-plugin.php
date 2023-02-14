@@ -260,27 +260,32 @@ final class Directory_Plugin {
 				<?php endif; ?>
 
 				<button class="submit-toggle">Submit Listing</button>
-				
+
+
 				<div class="listing-form hidden">
-					<form action="">
-						<label for="fname">First Name</label>
-						<input type="text" id="fname" name="firstname" placeholder="Your name..">
+					<?php if(is_user_logged_in()):?>
+						<form action="">
+							<label for="fname">First Name</label>
+							<input type="text" id="fname" name="firstname" placeholder="Your name..">
 
-						<label for="lname">Last Name</label>
-						<input type="text" id="lname" name="lastname" placeholder="Your last name..">
+							<label for="lname">Last Name</label>
+							<input type="text" id="lname" name="lastname" placeholder="Your last name..">
 
-						<label for="country">Country</label>
-						<select id="country" name="country">
-						<option value="australia">Australia</option>
-						<option value="canada">Canada</option>
-						<option value="usa">USA</option>
-						</select>
+							<label for="country">Country</label>
+							<select id="country" name="country">
+							<option value="australia">Australia</option>
+							<option value="canada">Canada</option>
+							<option value="usa">USA</option>
+							</select>
 
-						<label for="subject">Subject</label>
-						<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+							<label for="subject">Subject</label>
+							<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
 
-						<input type="submit" value="Submit">
-					</form>
+							<input type="submit" value="Submit">
+						</form>
+					<?php else: ?>
+						<p style="text-align:center">You need to login first to submit a listing.</p>
+					<?php endif; ?>
 				</div>
 			</div>
 		<?php
