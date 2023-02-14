@@ -146,6 +146,10 @@ final class Directory_Plugin {
 	public function init() {
 		self::load_plugin_textdomain();
 
+		// Register blocks.
+		add_action( 'init', [$this,'register_blocks'] );
+
+		// Register block category hook.
 		if ( version_compare( get_bloginfo( 'version' ), '5.8', '>=' ) ) {
 			add_filter( 'block_categories_all', [ $this, 'add_block_category' ], 10, 2 );
 		} else {
@@ -162,6 +166,20 @@ final class Directory_Plugin {
 	 */
 	public static function load_plugin_textdomain() {
 		load_plugin_textdomain( 'directory-plugin', false, dirname( DIRECTORY_PLUGIN_BASENAME ) . '/languages' );
+	}
+
+	/**
+	 * Register blocks
+	 */
+	public function register_blocks() {
+		$blocks_dir = DIRECTORY_PLUGIN_PATH . '/blocks/';
+		foreach ( scandir( $blocks_dir ) as $result ) {
+			$block_location = $blocks_dir . $result;
+			if ( ! is_dir( $block_location ) || '.' === $result || '..' === $result ) {
+				continue;
+			}
+			register_block_type( $block_location );
+		}
 	}
 
 	/**
