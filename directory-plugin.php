@@ -146,6 +146,12 @@ final class Directory_Plugin {
 	public function init() {
 		self::load_plugin_textdomain();
 
+		if ( version_compare( get_bloginfo( 'version' ), '5.8', '>=' ) ) {
+			add_filter( 'block_categories_all', [ $this, 'add_block_category' ], 10, 2 );
+		} else {
+			add_filter( 'block_categories', [ $this, 'add_block_category' ], 10, 2 );
+		}
+
 		if ( is_admin() ) {
 			new Sajib\DP\Admin();
 		}
@@ -156,6 +162,17 @@ final class Directory_Plugin {
 	 */
 	public static function load_plugin_textdomain() {
 		load_plugin_textdomain( 'directory-plugin', false, dirname( DIRECTORY_PLUGIN_BASENAME ) . '/languages' );
+	}
+
+	/**
+	 * Block category register
+	 */
+	public function add_block_category( $block_categories ) {
+		$block_categories[] = [
+			'slug'  => 'directory-plugin',
+			'title' => __( 'Directory Plugin', 'directory-plugin' ),
+		];
+		return $block_categories;
 	}
 
 } // End class
