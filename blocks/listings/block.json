@@ -23,5 +23,6 @@
         "Directory",
         "Listings Grid"
     ],
-	"editorScript": "dp-editor-script"
+	"editorScript": "dp-editor-script",
+	"style": "dp-block-style"
 }

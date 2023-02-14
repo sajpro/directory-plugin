@@ -34,7 +34,7 @@ class Assets {
 	 * Register blocks styles/scripts for both frontend & backend
 	 */
 	public function enqueue_block_assets() {
-		wp_enqueue_style( 'dp-block-style', DIRECTORY_PLUGIN_BLOCK_ASSETS . '/blocks-style.css', [], md5_file( DIRECTORY_PLUGIN_BLOCK_ASSETS . '/blocks-style.css' ), 'all' );
+		wp_register_style( 'dp-block-style', DIRECTORY_PLUGIN_BLOCK_ASSETS . '/blocks-style.css', [], md5_file( DIRECTORY_PLUGIN_BLOCK_ASSETS . '/blocks-style.css' ), 'all' );
 	}
 
 	/**

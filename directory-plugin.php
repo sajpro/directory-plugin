@@ -186,6 +186,7 @@ final class Directory_Plugin {
 		// register_block_type( $block_location );
 		// }
 
+
 		$blocks_dir       = DIRECTORY_PLUGIN_PATH . '/blocks/listings/block.json';
 		$blocks_json      = file_get_contents( $blocks_dir );
 		$attributes_array = json_decode( $blocks_json, true );
@@ -193,7 +194,8 @@ final class Directory_Plugin {
 		register_block_type(
 			'directory-plugin/listings',
 			[
-				'editor_script'   => 'dp-editor-script',
+				'style'           => $attributes_array['style'],
+				'editor_script'   => $attributes_array['editorScript'],
 				'render_callback' => [ $this, 'listing_dynamic_render_callback' ],
 				'attributes'      => $attributes_array['attributes'],
 			]
