@@ -261,6 +261,7 @@ final class Directory_Plugin {
 								foreach ( $response_body['listings'] as $listing ) {
 									?>
 										<div class="cell">
+											<h2>ID: <?php echo esc_html( $listing->id ); ?></h2>
 											<h5>Title: <?php echo esc_html( $listing->title ); ?></h5>
 											<span>Content: <?php echo esc_html( $listing->content ); ?></span>
 											<span>Status: <?php echo esc_html( $listing->listing_status ); ?></span>
