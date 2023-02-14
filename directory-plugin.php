@@ -259,15 +259,16 @@ final class Directory_Plugin {
 							<?php
 							if ( count( $response_body['listings'] ) > 0 ) {
 								foreach ( $response_body['listings'] as $listing ) {
+									$image_url = explode(',',$listing->preview_image)[1];
 									?>
 										<div class="cell">
+											<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $listing->id ); ?>">
 											<h2>ID: <?php echo esc_html( $listing->id ); ?></h2>
 											<h5>Title: <?php echo esc_html( $listing->title ); ?></h5>
 											<span>Content: <?php echo esc_html( $listing->content ); ?></span>
 											<span>Status: <?php echo esc_html( $listing->listing_status ); ?></span>
 											<span>Author: <?php echo esc_html( $listing->author ); ?></span>
 											<span>Created at: <?php echo esc_html( $listing->created_at ); ?></span>
-											<span>Image Url: <?php echo esc_html( $listing->preview_image ); ?></span>
 										</div>
 									<?php
 								}

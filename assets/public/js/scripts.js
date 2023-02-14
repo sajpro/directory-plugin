@@ -36,8 +36,11 @@ jQuery(document).ready(function($) {
                         if(data.success){
                             let listings = '';
                             data.listings.map(item=> {
+                                let image_url = item.preview_image.split(",")[1];
+
                                 listings += `
                                     <div class="cell">
+                                        <img src="${image_url}" alt="${item.id}">
                                         <h2>ID: ${item.id}</h2>
                                         <h5>Title: ${item.title}</h5>
                                         <span>${item.content}</span>
@@ -104,7 +107,6 @@ jQuery(document).ready(function($) {
     $('.listings-pagination button').on('click', function (e) {
         var number = $('#number').val();
         var paged = $(this).val();
-        console.log(number,paged);
         DirectoryPlugin.FetchListings( number, paged );
     });
 
