@@ -225,23 +225,6 @@ final class Directory_Plugin {
 		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => implode( ' ', $classnames ) ) );
 
 		ob_start(); ?>
-			<style>
-				.wrapper {
-					/* height: 90vh; */
-					margin: 2rem;
-					display: grid;
-					grid-template-columns: 1fr 1fr 1fr 1fr;
-					/* grid-template-rows: 1fr 1fr 1fr; */
-				}
-				.cell {
-					color: white;
-					font-size: 1.2rem;
-					text-align: center;
-					padding: 2rem;
-					background: red;
-					margin: 10px;
-				}
-			</style>
 			<div <?php echo $wrapper_attributes; ?>>
 				<div class="cell cell-1"><?php echo $title; ?></div>
 				<div class="cell cell-2"><?php echo $title; ?></div>
