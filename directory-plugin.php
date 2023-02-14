@@ -151,7 +151,7 @@ final class Directory_Plugin {
 		self::load_plugin_textdomain();
 
 		// Register blocks.
-		add_action( 'init', [$this,'register_blocks'] );
+		add_action( 'init', [ $this, 'register_blocks' ] );
 
 		// Register block category hook.
 		if ( version_compare( get_bloginfo( 'version' ), '5.8', '>=' ) ) {
@@ -178,19 +178,19 @@ final class Directory_Plugin {
 	public function register_blocks() {
 		// $blocks_dir = DIRECTORY_PLUGIN_PATH . '/blocks/';
 		// foreach ( scandir( $blocks_dir ) as $result ) {
-		// 	$block_location = $blocks_dir . $result;
-		// 	pretty_log('xxxxx',$block_location);
-		// 	if ( ! is_dir( $block_location ) || '.' === $result || '..' === $result ) {
-		// 		continue;
-		// 	}
-		// 	register_block_type( $block_location );
+		// $block_location = $blocks_dir . $result;
+		// pretty_log('xxxxx',$block_location);
+		// if ( ! is_dir( $block_location ) || '.' === $result || '..' === $result ) {
+		// continue;
+		// }
+		// register_block_type( $block_location );
 		// }
 
 		register_block_type(
 			'directory-plugin/listings',
 			[
 				'editor_script'   => 'dp-editor-script',
-				'render_callback' => [$this, 'listing_dynamic_render_callback'],
+				'render_callback' => [ $this, 'listing_dynamic_render_callback' ],
 			]
 		);
 	}
