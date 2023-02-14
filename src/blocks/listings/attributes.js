@@ -3,10 +3,10 @@ const attributes = {
 		type: "string",
         default: "This is Title"
 	},
-	titleColor: {
+	align: {
 		type: "string",
-        default: "red"
-	},
+        default: "wide"
+	}
 };
 
 export default attributes;

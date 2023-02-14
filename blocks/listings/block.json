@@ -6,8 +6,18 @@
 	"category": "directory-plugin",
 	"description": "An Directory listing widget for Gutenberg",
     "textdomain": "directory-plugin",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "This is Title xxx"
+		},
+		"align": {
+			"type": "string",
+			"default": "full"
+		}
+	},
 	"supports": {
-		"html": false
+		"align": ["wide", "full"]
 	},
 	"keywords": [
         "Directory",

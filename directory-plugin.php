@@ -185,31 +185,44 @@ final class Directory_Plugin {
 		// 	}
 		// 	register_block_type( $block_location );
 		// }
-
+		
+		$blocks_dir       = DIRECTORY_PLUGIN_PATH . '/blocks/listings/block.json';
+		$blocks_json      = file_get_contents($blocks_dir);
+		$attributes_array = json_decode($blocks_json,true);
+		
 		register_block_type(
 			'directory-plugin/listings',
 			[
 				'editor_script'   => 'dp-editor-script',
 				'render_callback' => [$this, 'listing_dynamic_render_callback'],
-				'attributes'      => array(
-					'title'    => array(
-						'type'      => 'string',
-						'default'   => 'This is Title',
-					),
-					'titleColor' => array(
-						'type'      => 'string',
-						'default'   => 'red',
-					),
-				),
+				'attributes' => $attributes_array['attributes']
+				// 'attributes' => [
+				// 	'title' => [
+				// 		'type' => 'string',
+				// 		'default' => 'xxx'
+				// 	]
+				// ]
 			]
 		);
 	}
 
 	public function listing_dynamic_render_callback( $attributes, $content ) {
 		$title = '';
+		$align = '';
+		
 		if( isset( $attributes['title'] ) && !empty( $attributes['title'] ) ){
 			$title  = $attributes['title'];
 		} 
+		if( isset( $attributes['align'] ) && !empty( $attributes['align'] ) ){
+			$align  = 'align'.$attributes['align'];
+		} 
+
+		$classnames = [
+			'wrapper',
+			$align
+		];
+		
+		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => implode( ' ', $classnames ) ) );
 
 		ob_start(); ?>
 			<style>
@@ -229,7 +242,7 @@ final class Directory_Plugin {
 					margin: 10px;
 				}
 			</style>
-			<div class="wrapper">
+			<div <?php echo $wrapper_attributes; ?>>
 				<div class="cell cell-1"><?php echo $title; ?></div>
 				<div class="cell cell-2"><?php echo $title; ?></div>
 				<div class="cell cell-3"><?php echo $title; ?></div>
