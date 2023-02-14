@@ -217,7 +217,7 @@ final class Directory_Plugin {
 
 		$api_url = add_query_arg(
 			[
-				'number' => 12
+				'number' => 12,
 			],
 			get_rest_url( null, 'directory/v1/listings' )
 		);
@@ -263,28 +263,30 @@ final class Directory_Plugin {
 
 
 				<div class="listing-form hidden">
-					<?php if(is_user_logged_in()):?>
-						<form action="">
-							<label for="fname">First Name</label>
-							<input type="text" id="fname" name="firstname" placeholder="Your name..">
+					<?php if ( is_user_logged_in() ) : ?>
+						<form method="post" action="" enctype="multipart/form-data">
+							<label for="title"><?php esc_html_e( 'Title:', 'directory-plugin' ); ?></label>
+							<input type="text" id="title" name="title" placeholder="Title...">
 
-							<label for="lname">Last Name</label>
-							<input type="text" id="lname" name="lastname" placeholder="Your last name..">
+							<label for="content"><?php esc_html_e( 'Content:', 'directory-plugin' ); ?></label>
+							<textarea id="content" name="content" placeholder="Content..." style="height:200px"></textarea>
 
-							<label for="country">Country</label>
-							<select id="country" name="country">
-							<option value="australia">Australia</option>
-							<option value="canada">Canada</option>
-							<option value="usa">USA</option>
+							<label for="status"><?php esc_html_e( 'Status:', 'directory-plugin' ); ?></label>
+							<select id="status" name="status">
+								<option value="active"><?php esc_html_e( 'Active', 'directory-plugin' ); ?></option>
+								<option value="inactive"><?php esc_html_e( 'Inactive', 'directory-plugin' ); ?></option>
 							</select>
 
-							<label for="subject">Subject</label>
-							<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-
+							<label for="image"><?php esc_html_e( 'Image:', 'directory-plugin' ); ?></label>
+							<br>
+							<input type="file" name="image">
+							<br>
+							<br>
+							<?php wp_nonce_field( 'dp_listing_image_upload', 'dp_listing_image_upload_nonce' ); ?>
 							<input type="submit" value="Submit">
 						</form>
-					<?php else: ?>
-						<p style="text-align:center">You need to login first to submit a listing.</p>
+					<?php else : ?>
+						<p style="text-align:center"><?php esc_html_e( 'You need to login first to submit a listing.', 'directory-plugin' ); ?></p>
 					<?php endif; ?>
 				</div>
 			</div>
