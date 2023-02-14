@@ -71,6 +71,15 @@
         }
     }
 }
+.listings-pagination{
+    .page-number{
+        margin: 0 2px;
+        &.active{
+            background-color: #CC3366;
+            color: #fff;
+        }
+    }
+}
 // form css
 .submit-toggle{
     display: flex;

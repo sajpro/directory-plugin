@@ -245,7 +245,7 @@ final class Directory_Plugin {
 			<div <?php echo esc_attr( $wrapper_attributes ); ?>>
 				<?php if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ) : ?>
 					<div id="listings-wrap">
-						<!-- <div class="loader-wrap">
+						<div class="loader-wrap hidden">
 							<div class="loader">
 								<div class="svg-loader">
 									<svg class="svg-container" height="100" width="100" viewBox="0 0 100 100">
@@ -254,7 +254,7 @@ final class Directory_Plugin {
 									</svg>
 								</div>
 							</div>
-						</div> -->
+						</div>
 						<div class="wrapper <?php echo esc_attr( $align ); ?>">
 							<?php
 							if ( count( $response_body['listings'] ) > 0 ) {
@@ -273,11 +273,17 @@ final class Directory_Plugin {
 							}
 							?>
 						</div>
-						<div class="listings-pagination">
-							<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
-							<button class="prev-btn <?php echo esc_attr($prev < 2 ? 'hidden' : ''); ?>" value="<?php echo esc_attr( $prev ); ?>">Prev</button>
-							<button class="next-btn <?php echo esc_attr($next > $pages ? 'hidden' : ''); ?>" value="<?php echo esc_attr( $next ); ?>">Next</button>
-						</div>
+					</div>
+					<div class="listings-pagination">
+						<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
+						<button class="prev-btn <?php echo esc_attr( $prev < 2 ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $prev ); ?>">Prev</button>
+						<?php
+						for ( $i = 0; $i < ( $number ); $i++ ) {
+							$current = $i + 1;
+							echo '<button class="page-number ' . esc_attr( $current == ( $next - 1 ) ? 'active' : '' ) . '" value="' . esc_html( $current ) . '">' . esc_html( $current ) . '</button>';
+						}
+						?>
+						<button class="next-btn <?php echo esc_attr( $next > $pages ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $next ); ?>">Next</button>
 					</div>
 				<?php endif; ?>
 

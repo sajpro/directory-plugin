@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
                     data,
                     beforeSend: function () {
                         // enable loader once user sent request
-                        $( '#listings-wrap .loader-wrap' ).show();
+                        $( '#listings-wrap .loader-wrap' ).removeClass('hidden');
                     },
                     success: function (data) {
                         if(data.success){
@@ -53,15 +53,24 @@ jQuery(document).ready(function($) {
                             $( "#listings-wrap .wrapper" ).html( listings );
 
                              // hide loader after successfull fetch
-                            $( '#listings-wrap .loader' ).hide();
+                            $( '#listings-wrap .loader-wrap' ).addClass('hidden');
 
                             // prev button show/hide based on conditon
                             $( '.listings-pagination .prev-btn' ).val(data.prev);
-                            if(paged < 1){
+                            if(paged <= 1){
                                 $( '.listings-pagination .prev-btn' ).addClass('hidden');
                             }else{
                                 $( '.listings-pagination .prev-btn' ).removeClass('hidden');
                             }
+
+                            // page-number active/deactive
+                            $( '.listings-pagination .page-number' ).each(function(){
+                                if($(this).val() == paged){
+                                    $(this).addClass('active');
+                                }else{
+                                    $(this).removeClass('active');
+                                }
+                            });
 
                             // next button show/hide based on conditon
                             $( '.listings-pagination .next-btn' ).val(data.next);
@@ -72,7 +81,7 @@ jQuery(document).ready(function($) {
                             }
                         }else{
                             console.log('Somethign went wrong.');
-                            $( '#listings-wrap .loader-wrap' ).hide();
+                            $( '#listings-wrap .loader-wrap' ).addClass('hidden');
                         }                        
                     },
                     error: function (err) {
@@ -88,8 +97,8 @@ jQuery(document).ready(function($) {
     DirectoryPlugin.ToggleModal();
 
     // Fetch listings initialpage load
-    var number = $('#number').val();
-    DirectoryPlugin.FetchListings( number, 0 );
+    // var number = $('#number').val();
+    // DirectoryPlugin.FetchListings( number, 0 );
 
     // listings load by pagination
     $('.listings-pagination button').on('click', function (e) {
