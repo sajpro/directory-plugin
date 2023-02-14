@@ -13,6 +13,7 @@ jQuery(document).ready(function($) {
             });
 		},
 
+        // fetch listings
         FetchListings: function ( number = '', paged = '' ) {
             let data = {};
             if(number){
@@ -48,6 +49,10 @@ jQuery(document).ready(function($) {
                             })
                             $( "#listings-wrap .wrapper" ).html( listings );
                             $( '#listings-wrap .loader' ).hide();
+                            if( paged == 0 ){
+                                $( '.listings-pagination button' ).removeClass('hidden');
+                            }
+                            
                             $( '.listings-pagination .prev-btn' ).val(data.prev);
                             if(data.prev < 1){
                                 $( '.listings-pagination .prev-btn' ).addClass('hidden');
@@ -74,20 +79,18 @@ jQuery(document).ready(function($) {
 
     }
 
-
+    // Listing modal toggle
     DirectoryPlugin.ToggleModal();
 
+    // Fetch listings initialpage load
+    var number = $('#number').val();
+    DirectoryPlugin.FetchListings( number, 0 );
 
+    // listings load by pagination
     $('.listings-pagination button').on('click', function (e) {
-        var pages = $('#pages').val();
         var number = $('#number').val();
         var paged = $(this).val();
-        console.log(paged);
-        console.log(pages);
         DirectoryPlugin.FetchListings( number, paged );
     });
-
-
-
 
 });

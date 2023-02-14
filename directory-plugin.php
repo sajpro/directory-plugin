@@ -217,61 +217,21 @@ final class Directory_Plugin {
 
 		$number = 2;
 
-		$api_url = add_query_arg(
-			[
-				'number' => $number,
-			],
-			get_rest_url( null, 'directory/v1/listings' )
-		);
-		// pretty_log('api_url',$api_url);
-
-		$remote_request = wp_remote_get(
-			$api_url,
-			[
-				'timeout' => apply_filters( 'dp_remote_get_timeout', 300 ),
-			]
-		);
-
-		$response_code = wp_remote_retrieve_response_code( $remote_request );
-		$response_body = (array) json_decode( wp_remote_retrieve_body( $remote_request ) );
-		$pages         = $response_body['pages'];
-		$prev          = $response_body['prev'];
-		$next          = $response_body['next'];
-
 		$classnames         = [];
 		$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => implode( ' ', $classnames ) ] );
 
 		ob_start(); ?>
 			<div <?php echo esc_attr( $wrapper_attributes ); ?>>
-				<?php if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ) : ?>
-					<div id="listings-wrap">
-						<span class="loader">Loading....</span>
-						<div class="wrapper <?php echo esc_attr( $align ); ?>">
-							<?php
-							if ( count( $response_body['listings'] ) > 0 ) {
-								foreach ( $response_body['listings'] as $listing ) {
-									?>
-										<div class="cell">
-											<h5>Title: <?php echo esc_html( $listing->title ); ?></h5>
-											<span>Content: <?php echo esc_html( $listing->content ); ?></span>
-											<span>Status: <?php echo esc_html( $listing->listing_status ); ?></span>
-											<span>Author: <?php echo esc_html( $listing->author ); ?></span>
-											<span>Created at: <?php echo esc_html( $listing->created_at ); ?></span>
-											<span>Image Url: <?php echo esc_html( $listing->preview_image ); ?></span>
-										</div>
-									<?php
-								}
-							}
-							?>
-						</div>
-						<div class="listings-pagination">
-							<input type="hidden" name="pages" id="pages" value="<?php echo esc_attr( $pages ); ?>">
-							<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
-							<button class="prev-btn <?php echo esc_attr($prev < 2 ? 'hidden' : ''); ?>" value="<?php echo esc_attr( $prev ); ?>">Prev</button>
-							<button class="next-btn <?php echo esc_attr($next > $pages ? 'hidden' : ''); ?>" value="<?php echo esc_attr( $next ); ?>">Next</button>
-						</div>
+				<div id="listings-wrap">
+					<span class="loader">Loading....</span>
+					<div class="wrapper <?php echo esc_attr( $align ); ?>">
 					</div>
-				<?php endif; ?>
+					<div class="listings-pagination">
+						<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
+						<button class="prev-btn hidden" value="">Prev</button>
+						<button class="next-btn hidden" value="">Next</button>
+					</div>
+				</div>
 
 				<button class="submit-toggle">Submit Listing</button>
 
