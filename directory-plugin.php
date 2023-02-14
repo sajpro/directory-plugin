@@ -265,10 +265,10 @@ final class Directory_Plugin {
 											<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $listing->id ); ?>">
 											<h2>ID: <?php echo esc_html( $listing->id ); ?></h2>
 											<h5>Title: <?php echo esc_html( $listing->title ); ?></h5>
-											<span>Content: <?php echo esc_html( $listing->content ); ?></span>
-											<span>Status: <?php echo esc_html( $listing->listing_status ); ?></span>
-											<span>Author: <?php echo esc_html( $listing->author ); ?></span>
-											<span>Created at: <?php echo esc_html( $listing->created_at ); ?></span>
+											<p><b>Content</b>: <?php echo esc_html( wp_trim_words($listing->content, 12, '...') ); ?></p>
+											<p><b>Status</b>: <?php echo esc_html( $listing->listing_status ); ?></p>
+											<p><b>Author</b>: <?php echo esc_html( $listing->author ); ?></p>
+											<p><b>Submitted</b>: <?php echo esc_html( $listing->created_at ); ?></p>
 										</div>
 									<?php
 								}

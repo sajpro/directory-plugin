@@ -43,11 +43,10 @@ jQuery(document).ready(function($) {
                                         <img src="${image_url}" alt="${item.id}">
                                         <h2>ID: ${item.id}</h2>
                                         <h5>Title: ${item.title}</h5>
-                                        <span>${item.content}</span>
-                                        <span>Status: ${item.listing_status}</span>
-                                        <span>Author: ${item.author}</span>
-                                        <span>Created at: ${item.created_at}</span>
-                                        <span>Image Url: ${item.preview_image}</span>
+                                        <p><b>Content</b>: ${item.content.substring(0, 90)}...</p>
+                                        <p><b>Status</b>: ${item.listing_status}</p>
+                                        <p><b>Author</b>: ${item.author}</p>
+                                        <p><b>Submitted</b>: ${item.created_at}</p>
                                     </div>
                                 `
                             })
