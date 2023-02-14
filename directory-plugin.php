@@ -274,7 +274,6 @@ final class Directory_Plugin {
 							?>
 						</div>
 						<div class="listings-pagination">
-							<input type="hidden" name="pages" id="pages" value="<?php echo esc_attr( $pages ); ?>">
 							<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
 							<button class="prev-btn <?php echo esc_attr($prev < 2 ? 'hidden' : ''); ?>" value="<?php echo esc_attr( $prev ); ?>">Prev</button>
 							<button class="next-btn <?php echo esc_attr($next > $pages ? 'hidden' : ''); ?>" value="<?php echo esc_attr( $next ); ?>">Next</button>
