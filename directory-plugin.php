@@ -114,6 +114,10 @@ final class Directory_Plugin {
 		if ( ! defined( 'DIRECTORY_PLUGIN_ASSETS' ) ) {
 			define( 'DIRECTORY_PLUGIN_ASSETS', DIRECTORY_PLUGIN_URL . '/assets' );
 		}
+
+		if ( ! defined( 'DIRECTORY_PLUGIN_BLOCK_ASSETS' ) ) {
+			define( 'DIRECTORY_PLUGIN_BLOCK_ASSETS', DIRECTORY_PLUGIN_URL . '/build' );
+		}
 	}
 
 	/**

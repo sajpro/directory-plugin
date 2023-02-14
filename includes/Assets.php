@@ -24,7 +24,7 @@ class Assets {
 	}
 
 	public function enqueue_block_editor_assets() {
-		wp_register_script( 'dp-editor-script', DIRECTORY_PLUGIN_URL . '/build/index.js', $this->blocks_file['dependencies'], $this->blocks_file['version'], true );
+		wp_register_script( 'dp-editor-script', DIRECTORY_PLUGIN_BLOCK_ASSETS . '/index.js', $this->blocks_file['dependencies'], $this->blocks_file['version'], true );
 	}
 
 	/**
