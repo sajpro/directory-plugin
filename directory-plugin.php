@@ -186,7 +186,6 @@ final class Directory_Plugin {
 		// register_block_type( $block_location );
 		// }
 
-
 		$blocks_dir       = DIRECTORY_PLUGIN_PATH . '/blocks/listings/block.json';
 		$blocks_json      = file_get_contents( $blocks_dir );
 		$attributes_array = json_decode( $blocks_json, true );
@@ -216,8 +215,18 @@ final class Directory_Plugin {
 			$align = 'align' . $attributes['align'];
 		}
 
-		$classnames = [];
+		$api_url        = get_rest_url( null, 'directory/v1/listings' );
+		$remote_request = wp_remote_get(
+			$api_url,
+			[
+				'timeout' => apply_filters( 'dp_remote_get_timeout', 300 ),
+			]
+		);
 
+		$response_code = wp_remote_retrieve_response_code( $remote_request );
+		$response_body = (array) json_decode( wp_remote_retrieve_body( $remote_request ) );
+
+		$classnames         = [];
 		$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => implode( ' ', $classnames ) ] );
 
 		ob_start(); ?>
@@ -243,12 +252,28 @@ final class Directory_Plugin {
 						<input type="submit" value="Submit">
 					</form>
 				</div>
-				<div class="wrapper <?php echo esc_attr( $align ); ?>">
-					<div class="cell cell-1"><?php echo esc_html( $title ); ?></div>
-					<div class="cell cell-2"><?php echo esc_html( $title ); ?></div>
-					<div class="cell cell-3"><?php echo esc_html( $title ); ?></div>
-					<div class="cell cell-4"><?php echo esc_html( $title ); ?></div>
-				</div>
+
+				<?php if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ) : ?>
+					<div class="wrapper <?php echo esc_attr( $align ); ?>">
+							<?php pretty_log( '$response_body', $response_body ); ?>
+						<?php
+						if ( count( $response_body['listings'] ) > 0 ) {
+							foreach ( $response_body['listings'] as $listing ) {
+								?>
+									<div class="cell">
+										<h4>Title: <?php echo esc_html( $listing->title ); ?></h4>
+										<span>Content: <?php echo esc_html( $listing->content ); ?></span>
+										<span>Status: <?php echo esc_html( $listing->listing_status ); ?></span>
+										<span>Author: <?php echo esc_html( $listing->author ); ?></span>
+										<span>Created at: <?php echo esc_html( $listing->created_at ); ?></span>
+										<span>Image Url: <?php echo esc_html( $listing->preview_image ); ?></span>
+									</div>
+								<?php
+							}
+						}
+						?>
+					</div>
+				<?php endif; ?>
 			</div>
 		<?php
 		return ob_get_clean();
