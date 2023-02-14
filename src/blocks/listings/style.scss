@@ -5,7 +5,7 @@
 #listings-wrap{
     min-height: 280px;
     position: relative;
-    margin-bottom: 70px;
+    margin-bottom: 50px;
 
     .loader-wrap{
         width: 100%;
@@ -71,6 +71,7 @@
         }
     }
 }
+// pagination
 .listings-pagination{
     .page-number{
         margin: 0 2px;
@@ -86,7 +87,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 0 auto 20px;
+    margin: 50px auto 20px;
 }
 .dp-modal {
     opacity: 0;
