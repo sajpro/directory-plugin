@@ -190,11 +190,16 @@ final class Directory_Plugin {
 			'directory-plugin/listings',
 			[
 				'editor_script'   => 'dp-editor-script',
-				'render_callback' => function ( $attributes, $content ) {
-					return $content;
-				},
+				'render_callback' => [$this, 'listing_dynamic_render_callback'],
 			]
 		);
+	}
+
+	public function listing_dynamic_render_callback( $attributes, $content ) {
+		ob_start(); ?>
+			hello listing block
+		<?php
+		return ob_get_clean();
 	}
 
 	/**

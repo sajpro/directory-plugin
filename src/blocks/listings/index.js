@@ -1,4 +1,5 @@
 import { __ } from "@wordpress/i18n";
+import ServerSideRender from '@wordpress/server-side-render';
 import {dpRegisterBlockType} from "../../utils/register-blocks";
 import metadata from '../../../blocks/listings/block.json';
 import attributes from "./attributes";
@@ -6,10 +7,15 @@ import attributes from "./attributes";
 dpRegisterBlockType(metadata, {
     icon: 'book-alt',
     attributes,
-    edit: () => {
-        return ( <p> Listing Editor page </p > );
+    edit: (props) => {
+        return ( 
+            <ServerSideRender
+                block="directory-plugin/listings"
+                attributes={ props.attributes }
+            />
+        );
     },
-    save: () => {
-        return ( <p> Listing Frontend page </p> );
+    save: (props) => {
+        return null;
     }
 });
