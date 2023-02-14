@@ -217,7 +217,7 @@ final class Directory_Plugin {
 
 		$api_url = add_query_arg(
 			[
-				'number' => 12,
+				'number' => 3,
 			],
 			get_rest_url( null, 'directory/v1/listings' )
 		);
@@ -232,6 +232,9 @@ final class Directory_Plugin {
 
 		$response_code = wp_remote_retrieve_response_code( $remote_request );
 		$response_body = (array) json_decode( wp_remote_retrieve_body( $remote_request ) );
+		$pages         = $response_body['pages'];
+		$prev          = $response_body['prev'];
+		$next          = $response_body['next'];
 
 		$classnames         = [];
 		$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => implode( ' ', $classnames ) ] );
@@ -256,6 +259,10 @@ final class Directory_Plugin {
 							}
 						}
 						?>
+					</div>
+					<div class="pagination">
+						<button class="prev-btn" data-next="<?php echo esc_attr( $prev ); ?>">Prev</button>
+						<button class="next-btn" data-next="<?php echo esc_attr( $next ); ?>">Next</button>
 					</div>
 				<?php endif; ?>
 

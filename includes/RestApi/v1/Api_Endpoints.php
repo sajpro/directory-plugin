@@ -71,9 +71,13 @@ class Api_Endpoints extends \WP_REST_Controller {
 		if ( $number > 0 ) {
 			$args['number'] = $number;
 		}
-
+		
+		$prev = 1;
+		$next = 2;
 		if ( ( $number > 0 ) && ( $paged > 1 ) ) {
 			$args['offset'] = ( $number * $paged ) - $number;
+			$prev = $paged;
+			$next = $paged + 1;
 		}
 
 		$listings       = directory_plugin_listing_get( $args );
@@ -81,7 +85,9 @@ class Api_Endpoints extends \WP_REST_Controller {
 
 		if ( $listings ) {
 			$result['success']  = true;
-			$result['total']    = $total_listings;
+			$result['pages']    = ceil( $total_listings / count( $listings ) );
+			$result['prev']     = $prev;
+			$result['next']     = $next;
 			$result['listings'] = $listings;
 		}
 
