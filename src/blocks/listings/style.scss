@@ -44,3 +44,13 @@
         background-color: #45a049;
     }
 }
+.hidden{
+    display: none;
+}
+.submit-toggle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+}

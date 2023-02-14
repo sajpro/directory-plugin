@@ -238,28 +238,6 @@ final class Directory_Plugin {
 
 		ob_start(); ?>
 			<div <?php echo esc_attr( $wrapper_attributes ); ?>>
-				<div class="listing-form">
-					<form action="">
-						<label for="fname">First Name</label>
-						<input type="text" id="fname" name="firstname" placeholder="Your name..">
-
-						<label for="lname">Last Name</label>
-						<input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-						<label for="country">Country</label>
-						<select id="country" name="country">
-						<option value="australia">Australia</option>
-						<option value="canada">Canada</option>
-						<option value="usa">USA</option>
-						</select>
-
-						<label for="subject">Subject</label>
-						<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-
-						<input type="submit" value="Submit">
-					</form>
-				</div>
-
 				<?php if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ) : ?>
 					<div class="wrapper <?php echo esc_attr( $align ); ?>">
 						<?php
@@ -280,6 +258,30 @@ final class Directory_Plugin {
 						?>
 					</div>
 				<?php endif; ?>
+
+				<button class="submit-toggle">Submit Listing</button>
+				
+				<div class="listing-form hidden">
+					<form action="">
+						<label for="fname">First Name</label>
+						<input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+						<label for="lname">Last Name</label>
+						<input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+						<label for="country">Country</label>
+						<select id="country" name="country">
+						<option value="australia">Australia</option>
+						<option value="canada">Canada</option>
+						<option value="usa">USA</option>
+						</select>
+
+						<label for="subject">Subject</label>
+						<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+						<input type="submit" value="Submit">
+					</form>
+				</div>
 			</div>
 		<?php
 		return ob_get_clean();
