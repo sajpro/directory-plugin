@@ -29,6 +29,7 @@ jQuery(document).ready(function($) {
                     type: "GET",
                     data,
                     beforeSend: function () {
+                        // enable loader once user sent request
                         $( '#listings-wrap .loader-wrap' ).show();
                     },
                     success: function (data) {
@@ -47,12 +48,19 @@ jQuery(document).ready(function($) {
                                     </div>
                                 `
                             })
+
+                            // inject fetch data to wrapper el
                             $( "#listings-wrap .wrapper" ).html( listings );
+
+                            // hide loader after successfull fetch
                             $( '#listings-wrap .loader-wrap' ).hide();
+
+                            // pagination hide on initial load
                             if( paged == 0 ){
                                 $( '.listings-pagination button' ).removeClass('hidden');
                             }
 
+                            // prev button show/hide based on conditon
                             $( '.listings-pagination .prev-btn' ).val(data.prev);
                             if(paged < 1){
                                 $( '.listings-pagination .prev-btn' ).addClass('hidden');
@@ -60,6 +68,7 @@ jQuery(document).ready(function($) {
                                 $( '.listings-pagination .prev-btn' ).removeClass('hidden');
                             }
 
+                            // next button show/hide based on conditon
                             $( '.listings-pagination .next-btn' ).val(data.next);
                             if(paged >= number){
                                 $( '.listings-pagination .next-btn' ).addClass('hidden');
