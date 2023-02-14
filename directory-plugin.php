@@ -196,16 +196,13 @@ final class Directory_Plugin {
 				'editor_script'   => 'dp-editor-script',
 				'render_callback' => [$this, 'listing_dynamic_render_callback'],
 				'attributes' => $attributes_array['attributes']
-				// 'attributes' => [
-				// 	'title' => [
-				// 		'type' => 'string',
-				// 		'default' => 'xxx'
-				// 	]
-				// ]
 			]
 		);
 	}
 
+	/**
+	 * Listing blocks dynaic content
+	 */
 	public function listing_dynamic_render_callback( $attributes, $content ) {
 		$title = '';
 		$align = '';
@@ -254,6 +251,7 @@ final class Directory_Plugin {
 		<?php
 		return ob_get_clean();
 	}
+
 	/**
 	 * Block category register
 	 */

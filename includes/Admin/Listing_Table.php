@@ -16,6 +16,9 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
  */
 class Listing_Table extends \WP_List_Table {
 
+	/**
+	 * Constructor
+	 */
 	function __construct() {
 		parent::__construct(
 			[
@@ -26,6 +29,9 @@ class Listing_Table extends \WP_List_Table {
 		);
 	}
 
+	/**
+	 * Get a list of columns
+	 */
 	public function get_columns() {
 		return [
 			'cb'             => '<input type="checkbox">',
@@ -38,6 +44,9 @@ class Listing_Table extends \WP_List_Table {
 		];
 	}
 
+	/**
+	 * Get a list of sortable columns.
+	 */
 	public function get_sortable_columns() {
 		return [
 			'title'      => [ 'title', true ],
@@ -45,6 +54,9 @@ class Listing_Table extends \WP_List_Table {
 		];
 	}
 
+	/**
+	 * Default columns to display its value.
+	 */
 	protected function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
 			case 'preview_image':
@@ -67,6 +79,9 @@ class Listing_Table extends \WP_List_Table {
 		}
 	}
 
+	/**
+	 * Title column of the table
+	 */
 	public function column_title( $item ) {
 		$actions = [];
 
@@ -81,6 +96,10 @@ class Listing_Table extends \WP_List_Table {
 		return sprintf( '<input type="checkbox" name="bulk-delete[]" value="%d" />', $item->id );
 	}
 
+	/**
+	 * Get an associative array ( option_name => option_title ) with the list
+	 * of bulk actions available on this table.
+	 */
 	public function get_bulk_actions() {
 		$actions = [
 			'bulk-delete' => esc_html__( 'Delete', 'directory-plugin' ),
@@ -89,6 +108,9 @@ class Listing_Table extends \WP_List_Table {
 		return $actions;
 	}
 
+	/**
+	 * Extra controls to be displayed between bulk actions and pagination
+	 */
 	public function extra_tablenav( $which ) {
 		if ( $which == 'top' ) {
 			$active = ( ! empty( $_REQUEST['author'] ) ? $_REQUEST['author'] : '' );
@@ -130,7 +152,8 @@ class Listing_Table extends \WP_List_Table {
 	}
 
 	/**
-	 * Show SubSub Filter
+	 * Get an associative array ( id => link ) with the list
+	 * of views available on this table.
 	 */
 	protected function get_views() {
 		$views   = [];
@@ -157,6 +180,9 @@ class Listing_Table extends \WP_List_Table {
 		return $views;
 	}
 
+	/**
+	 * Prepares the list of items for displaying
+	 */
 	public function prepare_items() {
 		$filter = [];
 		if ( isset( $_POST['s'] ) ) {

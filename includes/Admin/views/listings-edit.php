@@ -1,6 +1,6 @@
 <?php
-$users         = get_users();
-$selected_user = $listing->author;
+	$users         = get_users();
+	$selected_user = $listing->author;
 ?>
 <div class="wrap">
 

@@ -70,7 +70,9 @@ class Menu {
 		include __DIR__ . '/views/listings-create.php';
 	}
 
-	// add screen options
+	/**
+	 * Add screen options to Listing page
+	 */
 	public function direcotry_plugin_screen_options() {
 		global $direcotry_plugin_page;
 

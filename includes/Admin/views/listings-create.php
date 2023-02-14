@@ -1,5 +1,5 @@
 <?php
-$users = get_users();
+	$users = get_users();
 ?>
 <div class="wrap">
 
