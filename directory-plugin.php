@@ -217,19 +217,39 @@ final class Directory_Plugin {
 			$align  = 'align'.$attributes['align'];
 		} 
 
-		$classnames = [
-			'wrapper',
-			$align
-		];
+		$classnames = [];
 		
 		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => implode( ' ', $classnames ) ) );
 
 		ob_start(); ?>
-			<div <?php echo $wrapper_attributes; ?>>
-				<div class="cell cell-1"><?php echo $title; ?></div>
-				<div class="cell cell-2"><?php echo $title; ?></div>
-				<div class="cell cell-3"><?php echo $title; ?></div>
-				<div class="cell cell-4"><?php echo $title; ?></div>
+			<div <?php echo esc_attr($wrapper_attributes); ?>>
+				<div class="listing-form">
+					<form action="">
+						<label for="fname">First Name</label>
+						<input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+						<label for="lname">Last Name</label>
+						<input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+						<label for="country">Country</label>
+						<select id="country" name="country">
+						<option value="australia">Australia</option>
+						<option value="canada">Canada</option>
+						<option value="usa">USA</option>
+						</select>
+
+						<label for="subject">Subject</label>
+						<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+						<input type="submit" value="Submit">
+					</form>
+				</div>
+				<div class="wrapper <?php echo esc_attr($align); ?>">
+					<div class="cell cell-1"><?php echo $title; ?></div>
+					<div class="cell cell-2"><?php echo $title; ?></div>
+					<div class="cell cell-3"><?php echo $title; ?></div>
+					<div class="cell cell-4"><?php echo $title; ?></div>
+				</div>
 			</div>
 		<?php
 		return ob_get_clean();
