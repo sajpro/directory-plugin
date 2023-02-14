@@ -215,9 +215,11 @@ final class Directory_Plugin {
 			$align = 'align' . $attributes['align'];
 		}
 
+		$number = 2;
+
 		$api_url = add_query_arg(
 			[
-				'number' => 3,
+				'number' => $number,
 			],
 			get_rest_url( null, 'directory/v1/listings' )
 		);
@@ -242,27 +244,32 @@ final class Directory_Plugin {
 		ob_start(); ?>
 			<div <?php echo esc_attr( $wrapper_attributes ); ?>>
 				<?php if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ) : ?>
-					<div class="wrapper <?php echo esc_attr( $align ); ?>">
-						<?php
-						if ( count( $response_body['listings'] ) > 0 ) {
-							foreach ( $response_body['listings'] as $listing ) {
-								?>
-									<div class="cell">
-										<h5>Title: <?php echo esc_html( $listing->title ); ?></h5>
-										<span>Content: <?php echo esc_html( $listing->content ); ?></span>
-										<span>Status: <?php echo esc_html( $listing->listing_status ); ?></span>
-										<span>Author: <?php echo esc_html( $listing->author ); ?></span>
-										<span>Created at: <?php echo esc_html( $listing->created_at ); ?></span>
-										<span>Image Url: <?php echo esc_html( $listing->preview_image ); ?></span>
-									</div>
-								<?php
+					<div id="listings-wrap">
+						<span class="loader">Loading....</span>
+						<div class="wrapper <?php echo esc_attr( $align ); ?>">
+							<?php
+							if ( count( $response_body['listings'] ) > 0 ) {
+								foreach ( $response_body['listings'] as $listing ) {
+									?>
+										<div class="cell">
+											<h5>Title: <?php echo esc_html( $listing->title ); ?></h5>
+											<span>Content: <?php echo esc_html( $listing->content ); ?></span>
+											<span>Status: <?php echo esc_html( $listing->listing_status ); ?></span>
+											<span>Author: <?php echo esc_html( $listing->author ); ?></span>
+											<span>Created at: <?php echo esc_html( $listing->created_at ); ?></span>
+											<span>Image Url: <?php echo esc_html( $listing->preview_image ); ?></span>
+										</div>
+									<?php
+								}
 							}
-						}
-						?>
-					</div>
-					<div class="pagination">
-						<button class="prev-btn" data-next="<?php echo esc_attr( $prev ); ?>">Prev</button>
-						<button class="next-btn" data-next="<?php echo esc_attr( $next ); ?>">Next</button>
+							?>
+						</div>
+						<div class="listings-pagination">
+							<input type="hidden" name="pages" id="pages" value="<?php echo esc_attr( $pages ); ?>">
+							<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
+							<button class="prev-btn <?php echo esc_attr($prev < 2 ? 'hidden' : ''); ?>" value="<?php echo esc_attr( $prev ); ?>">Prev</button>
+							<button class="next-btn <?php echo esc_attr($next > $pages ? 'hidden' : ''); ?>" value="<?php echo esc_attr( $next ); ?>">Next</button>
+						</div>
 					</div>
 				<?php endif; ?>
 

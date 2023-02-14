@@ -1,18 +1,23 @@
 // grid css
-.wrapper {
-    /* height: 90vh; */
-    margin: 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    // grid-template-rows: 1fr 1fr 1fr;
-}
-.cell {
-    color: white;
-    font-size: 14px;
-    text-align: center;
-    padding: 15px;
-    background: #333;
-    margin: 10px;
+#listings-wrap{
+    .hidden{
+        display: none !important;
+    }
+    .wrapper {
+        /* height: 90vh; */
+        margin: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        // grid-template-rows: 1fr 1fr 1fr;
+        .cell {
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            padding: 15px;
+            background: #333;
+            margin: 10px;
+        }
+    }
 }
 // form css
 .submit-toggle{
