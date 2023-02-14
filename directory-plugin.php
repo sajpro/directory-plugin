@@ -261,33 +261,35 @@ final class Directory_Plugin {
 
 				<button class="submit-toggle">Submit Listing</button>
 
+				<div class="dp-modal">
+					<div class="listing-form <?php echo esc_attr( ! is_user_logged_in() ? 'login-first' : '' ); ?>">
+						<span class="close-modal">&times;</span>
+						<?php if ( is_user_logged_in() ) : ?>
+							<form method="post" action="" enctype="multipart/form-data">
+								<label for="title"><?php esc_html_e( 'Title:', 'directory-plugin' ); ?></label>
+								<input type="text" id="title" name="title" placeholder="Title...">
 
-				<div class="listing-form hidden">
-					<?php if ( is_user_logged_in() ) : ?>
-						<form method="post" action="" enctype="multipart/form-data">
-							<label for="title"><?php esc_html_e( 'Title:', 'directory-plugin' ); ?></label>
-							<input type="text" id="title" name="title" placeholder="Title...">
+								<label for="content"><?php esc_html_e( 'Content:', 'directory-plugin' ); ?></label>
+								<textarea id="content" name="content" placeholder="Content..." style="height:200px"></textarea>
 
-							<label for="content"><?php esc_html_e( 'Content:', 'directory-plugin' ); ?></label>
-							<textarea id="content" name="content" placeholder="Content..." style="height:200px"></textarea>
+								<label for="status"><?php esc_html_e( 'Status:', 'directory-plugin' ); ?></label>
+								<select id="status" name="status">
+									<option value="active"><?php esc_html_e( 'Active', 'directory-plugin' ); ?></option>
+									<option value="inactive"><?php esc_html_e( 'Inactive', 'directory-plugin' ); ?></option>
+								</select>
 
-							<label for="status"><?php esc_html_e( 'Status:', 'directory-plugin' ); ?></label>
-							<select id="status" name="status">
-								<option value="active"><?php esc_html_e( 'Active', 'directory-plugin' ); ?></option>
-								<option value="inactive"><?php esc_html_e( 'Inactive', 'directory-plugin' ); ?></option>
-							</select>
-
-							<label for="image"><?php esc_html_e( 'Image:', 'directory-plugin' ); ?></label>
-							<br>
-							<input type="file" name="image">
-							<br>
-							<br>
-							<?php wp_nonce_field( 'dp_listing_image_upload', 'dp_listing_image_upload_nonce' ); ?>
-							<input type="submit" value="Submit">
-						</form>
-					<?php else : ?>
-						<p style="text-align:center"><?php esc_html_e( 'You need to login first to submit a listing.', 'directory-plugin' ); ?></p>
-					<?php endif; ?>
+								<label for="image"><?php esc_html_e( 'Image:', 'directory-plugin' ); ?></label>
+								<br>
+								<input type="file" name="image">
+								<br>
+								<br>
+								<?php wp_nonce_field( 'dp_listing_image_upload', 'dp_listing_image_upload_nonce' ); ?>
+								<input type="submit" value="Submit">
+							</form>
+						<?php else : ?>
+							<p class="no-access"><?php esc_html_e( 'You need to login first to submit a listing.', 'directory-plugin' ); ?></p>
+						<?php endif; ?>
+					</div>
 				</div>
 			</div>
 		<?php
