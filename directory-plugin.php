@@ -255,13 +255,12 @@ final class Directory_Plugin {
 
 				<?php if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ) : ?>
 					<div class="wrapper <?php echo esc_attr( $align ); ?>">
-							<?php pretty_log( '$response_body', $response_body ); ?>
 						<?php
 						if ( count( $response_body['listings'] ) > 0 ) {
 							foreach ( $response_body['listings'] as $listing ) {
 								?>
 									<div class="cell">
-										<h4>Title: <?php echo esc_html( $listing->title ); ?></h4>
+										<h5>Title: <?php echo esc_html( $listing->title ); ?></h5>
 										<span>Content: <?php echo esc_html( $listing->content ); ?></span>
 										<span>Status: <?php echo esc_html( $listing->listing_status ); ?></span>
 										<span>Author: <?php echo esc_html( $listing->author ); ?></span>
