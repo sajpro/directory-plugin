@@ -215,7 +215,14 @@ final class Directory_Plugin {
 			$align = 'align' . $attributes['align'];
 		}
 
-		$api_url        = get_rest_url( null, 'directory/v1/listings' );
+		$api_url = add_query_arg(
+			[
+				'number' => 12
+			],
+			get_rest_url( null, 'directory/v1/listings' )
+		);
+		// pretty_log('api_url',$api_url);
+
 		$remote_request = wp_remote_get(
 			$api_url,
 			[

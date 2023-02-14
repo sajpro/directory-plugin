@@ -62,10 +62,16 @@ class Api_Endpoints extends \WP_REST_Controller {
 	 * @param array $request User request data.
 	 */
 	public function get_all_listings( $request ) {
+		$number = $request->get_param( 'number' );
+
 		$result['success'] = false;
 		$listings          = [];
 
-		$listings = directory_plugin_listing_get();
+		$args = [
+			'number' => $number
+		];
+
+		$listings = directory_plugin_listing_get( $args );
 
 		if ( $listings ) {
 			$result['success']  = true;
