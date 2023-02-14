@@ -176,14 +176,25 @@ final class Directory_Plugin {
 	 * Register blocks
 	 */
 	public function register_blocks() {
-		$blocks_dir = DIRECTORY_PLUGIN_PATH . '/blocks/';
-		foreach ( scandir( $blocks_dir ) as $result ) {
-			$block_location = $blocks_dir . $result;
-			if ( ! is_dir( $block_location ) || '.' === $result || '..' === $result ) {
-				continue;
-			}
-			register_block_type( $block_location );
-		}
+		// $blocks_dir = DIRECTORY_PLUGIN_PATH . '/blocks/';
+		// foreach ( scandir( $blocks_dir ) as $result ) {
+		// 	$block_location = $blocks_dir . $result;
+		// 	pretty_log('xxxxx',$block_location);
+		// 	if ( ! is_dir( $block_location ) || '.' === $result || '..' === $result ) {
+		// 		continue;
+		// 	}
+		// 	register_block_type( $block_location );
+		// }
+
+		register_block_type(
+			'directory-plugin/listings',
+			[
+				'editor_script'   => 'dp-editor-script',
+				'render_callback' => function ( $attributes, $content ) {
+					return $content;
+				},
+			]
+		);
 	}
 
 	/**
