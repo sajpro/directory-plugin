@@ -86,7 +86,7 @@ class Menu {
 
 		$args = [
 			'label'   => esc_html__( 'Listings per page', 'directory-plugin' ),
-			'default' => 2,
+			'default' => 20,
 			'option'  => 'listings_per_page',
 		];
 		add_screen_option( 'per_page', $args );
