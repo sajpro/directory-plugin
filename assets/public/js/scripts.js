@@ -91,6 +91,69 @@ jQuery(document).ready(function($) {
                     }
                 }
             );
+        },
+
+        // upload listing image functionality
+        UploadListingImage: function () {
+            let image = $('#submit-listing-form #image')[0].files[0];
+            let form_data = new FormData();
+            form_data.append("file", image);
+            form_data.append( 'action', 'upload_listing_image' );
+            $.ajax(
+                {
+                    url: DpListings.ajax_url,
+                    type: "POST",
+					contentType: false,
+					processData: false,
+                    data: form_data,
+                    beforeSend: function () {
+                        // enable loader once user sent request
+                        // $( '#listings-wrap .loader-wrap' ).removeClass('hidden');
+                    },
+                    success: function (data) {
+                        if( data.success ) {
+                            // Once image is uploaded then insert listing to DB with image id
+                            DirectoryPlugin.SubmitListing(data.attachment_id);
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                }
+            );
+        },
+
+        // Listing form submit functionality
+        SubmitListing: function ( image_id ) {
+            
+            let title = $('#submit-listing-form #title').val();
+            let content = $('#submit-listing-form #content').val();
+            let status = $('#submit-listing-form #status').val();
+            let autor = $('#submit-listing-form #autor').val();
+            
+            $.ajax(
+                {
+                    url: DpListings.rest_url,
+                    type: "POST",
+                    data: {
+                        title,
+                        content,
+                        status,
+                        autor,
+                        image_id,
+                    },
+                    beforeSend: function () {
+                        console.log('sending listing data');
+                    },
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                }
+            );
+
         }
 
     }
@@ -109,7 +172,11 @@ jQuery(document).ready(function($) {
         DirectoryPlugin.FetchListings( number, paged );
     });
 
-
+    // Submit lisiting form
+    $('#submit-listing-form').submit( function (e) {
+        e.preventDefault();
+        DirectoryPlugin.UploadListingImage();
+    });
 
 
 });

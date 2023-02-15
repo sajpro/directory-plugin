@@ -295,7 +295,7 @@ final class Directory_Plugin {
 					<div class="listing-form <?php echo esc_attr( ! is_user_logged_in() ? 'login-first' : '' ); ?>">
 						<span class="close-modal">&times;</span>
 						<?php if ( is_user_logged_in() ) : ?>
-							<form method="post" action="" enctype="multipart/form-data">
+							<form id="submit-listing-form" method="post" action="" enctype="multipart/form-data">
 								<label for="title"><?php esc_html_e( 'Title:', 'directory-plugin' ); ?></label>
 								<input type="text" id="title" name="title" placeholder="Title...">
 
@@ -310,11 +310,12 @@ final class Directory_Plugin {
 
 								<label for="image"><?php esc_html_e( 'Image:', 'directory-plugin' ); ?></label>
 								<br>
-								<input type="file" name="image">
+								<input type="file" id="image" name="image">
 								<br>
 								<br>
-								<?php wp_nonce_field( 'dp_listing_image_upload', 'dp_listing_image_upload_nonce' ); ?>
-								<input type="submit" value="Submit">
+								<?php wp_nonce_field( 'dp-listing-image-upload', 'dp-listing-image-upload-nonce' ); ?>
+								<input type="hidden" id="autor" value="<? echo get_current_user_id(); ?>">
+								<input type="submit" id="submit-listing" value="Submit">
 							</form>
 						<?php else : ?>
 							<p class="no-access"><?php esc_html_e( 'You need to login first to submit a listing.', 'directory-plugin' ); ?></p>

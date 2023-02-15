@@ -164,3 +164,26 @@ function directory_plugin_delete_listing( $id ) {
 		[ '%d' ]
 	);
 }
+
+/**
+ * Upload  Listing imaeg
+ *
+ * @return array
+ */
+function directory_plugin_upload_listing_image() {
+	if ( isset( $_FILES['file']['name'] ) ) {
+		// pretty_log( '$request', $_FILES['file'] );
+		$attachment_id = media_handle_upload( 'file', 0 );
+		if ( is_wp_error( $attachment_id ) ) {
+			$result['success']  = false;
+			$result['message']  = __( 'Error uploading file.', 'directory-plugin' );
+		} else {
+			$result['attachment_id']   = $attachment_id;
+			$result['success']         = true;
+			$result['message']         = __( 'File uploading successfull.', 'directory-plugin' );
+		}
+		wp_send_json( $result );
+	}
+}
+add_action( 'wp_ajax_upload_listing_image', 'directory_plugin_upload_listing_image' );
+add_action( 'wp_ajax_nopriv_upload_listing_image', 'directory_plugin_upload_listing_image' );

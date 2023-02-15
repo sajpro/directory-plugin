@@ -101,14 +101,15 @@ class Api_Endpoints extends \WP_REST_Controller {
 	 * @param array $request User request data.
 	 */
 	public function create_listings( $request ) {
+
 		$result['success'] = false;
 		$id                = 0;
 
 		$title          = $request->get_param( 'title' );
 		$content        = $request->get_param( 'content' );
-		$listing_status = $request->get_param( 'listing_status' );
-		$preview_image  = $request->get_param( 'preview_image' );
-		$author         = $request->get_param( 'author' );
+		$listing_status = $request->get_param( 'status' );
+		$preview_image  = $request->get_param( 'image_id' );
+		$author         = $request->get_param( 'autor' );
 
 		$id = directory_plugin_listing_insert(
 			[
