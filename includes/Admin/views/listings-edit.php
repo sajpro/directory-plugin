@@ -67,13 +67,15 @@
 					</th>
 					<td>
 						<?php
-						$directory_plugin_image_data = ! empty( $listing->preview_image ) ? explode( ',', $listing->preview_image ) : [];
+						$image_id = $listing->preview_image;
+
+						$image_url = wp_get_attachment_url( $image_id );
 						?>
 						<div class="img-wrap">
 							<span class="img-remove">X</span>
-							<img class="img-preview <?php echo ( ( is_array( $directory_plugin_image_data ) && ! empty( $directory_plugin_image_data[1] ) ) ? '' : 'hide' ); ?>" src="<?php echo esc_url( $directory_plugin_image_data[1] ); ?>" width="100" height="auto" alt="image"> 
+							<img class="img-preview <?php echo ( ! empty( $image_id ) ? '' : 'hide' ); ?>" src="<?php echo esc_url( $image_url ); ?>" width="100" height="auto" alt="image"> 
 						</div>
-						<input type="hidden" class="wpx-img-field" id="preview_image" name="preview_image" value="<?php echo esc_attr( $listing->preview_image ); ?>"/> 
+						<input type="hidden" class="wpx-img-field" id="preview_image" name="preview_image" value="<?php echo esc_attr( $image_id ); ?>"/> 
 						<input type="button" class="button wpx-browse" data-title="<?php esc_attr_e( 'Media Gallery', 'directory-plugin' ); ?>" data-select-text="<?php esc_attr_e( 'Select Image', 'directory-plugin' ); ?>" value="<?php esc_attr_e( 'Upload/Edit Image', 'directory-plugin' ); ?>"/>
 					</td>
 				</tr>
