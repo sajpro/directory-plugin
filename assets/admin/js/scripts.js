@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
     // clear image
     $('.img-remove').on('click', function (event) {
         var self = $(this);
-        self.parent('.img-wrap').siblings('.wpx-img-field').val('');
+        self.parent('.img-wrap').siblings('.wpx-img-field').val(0);
         self.siblings('.img-preview ').addClass('hide'); 
     });
 

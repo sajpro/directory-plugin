@@ -17,7 +17,8 @@ class Installer {
 	 */
 	public static function run() {
 		self::activate_version();
-		self::create_tables();
+		self::create_table_for_listings();
+		self::create_table_for_empty_image();
 	}
 
 	/**
@@ -34,9 +35,9 @@ class Installer {
 	}
 
 	/**
-	 * Creating table during plugin activation
+	 * Creating table for listings
 	 */
-	public static function create_tables() {
+	public static function create_table_for_listings() {
 		global $wpdb;
 
 		$charset_collate = $wpdb->get_charset_collate();
@@ -57,5 +58,27 @@ class Installer {
 		}
 
 		dbDelta( $schema );
+	}
+
+	/**
+	 * Creating table for listings that has no image, since using sql join query to
+	 * fetch data with where conditon. So preview_image column value can not be empty.
+	 */
+	public static function create_table_for_empty_image() {
+		global $wpdb;
+
+		$metakey   = '_wp_attached_file';
+		$metavalue = '';
+
+		$wpdb->query(
+			$wpdb->prepare(
+				"INSERT INTO $wpdb->postmeta
+				( post_id, meta_key, meta_value )
+				VALUES ( %d, %s, %s )",
+				0,
+				$metakey,
+				$metavalue
+			)
+		);
 	}
 }
