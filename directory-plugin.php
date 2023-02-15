@@ -215,7 +215,7 @@ final class Directory_Plugin {
 			$align = 'align' . $attributes['align'];
 		}
 
-		$number = 4;
+		$number = 2;
 
 		$api_url = add_query_arg(
 			[
@@ -277,10 +277,11 @@ final class Directory_Plugin {
 						</div>
 					</div>
 					<div class="listings-pagination">
+						<input type="hidden" name="pages" id="pages" value="<?php echo esc_attr( $pages ); ?>">
 						<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
 						<button class="prev-btn <?php echo esc_attr( $prev < 2 ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $prev ); ?>">Prev</button>
 						<?php
-						for ( $i = 0; $i < ( $number ); $i++ ) {
+						for ( $i = 0; $i < ( $pages ); $i++ ) {
 							$current = $i + 1;
 							echo '<button class="page-number ' . esc_attr( $current == ( $next - 1 ) ? 'active' : '' ) . '" value="' . esc_html( $current ) . '">' . esc_html( $current ) . '</button>';
 						}

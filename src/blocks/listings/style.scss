@@ -97,6 +97,8 @@
         &.active{
             background-color: #CC3366;
             color: #fff;
+            pointer-events: none;
+            cursor: default;
         }
     }
 }

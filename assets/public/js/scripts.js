@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
 		},
 
         // fetch listings
-        FetchListings: function ( number = 0, paged = 0 ) {
+        FetchListings: function ( number = 0, paged = 0, pages = 0 ) {
             let data = {};
             if(number){
                 data.number = number;
@@ -33,7 +33,6 @@ jQuery(document).ready(function($) {
                         $( '#listings-wrap .loader-wrap' ).removeClass('hidden');
                     },
                     success: function (data) {
-                        console.log(data);
                         if(data.success){
                             let listings = '';
                             data.listings.map(item=> {
@@ -77,7 +76,7 @@ jQuery(document).ready(function($) {
 
                             // next button show/hide based on conditon
                             $( '.listings-pagination .next-btn' ).val(data.next);
-                            if(paged >= number){
+                            if(paged >= pages){
                                 $( '.listings-pagination .next-btn' ).addClass('hidden');
                             }else{
                                 $( '.listings-pagination .next-btn' ).removeClass('hidden');
@@ -176,9 +175,10 @@ jQuery(document).ready(function($) {
 
     // listings load by pagination
     $('.listings-pagination button').on('click', function (e) {
+        var pages = $('#pages').val();
         var number = $('#number').val();
         var paged = $(this).val();
-        DirectoryPlugin.FetchListings( number, paged );
+        DirectoryPlugin.FetchListings( number, paged, pages );
     });
 
     // Submit lisiting form
