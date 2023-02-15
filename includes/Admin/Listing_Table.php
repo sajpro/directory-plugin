@@ -197,7 +197,7 @@ class Listing_Table extends \WP_List_Table {
 		}
 
 		$columns  = $this->get_columns();
-		$hidden   = $this->get_hidden_columns();
+		$hidden   = $this->get_hidden_columns() ? $this->get_hidden_columns() : [];
 		$sortable = $this->get_sortable_columns();
 
 		$this->_column_headers = [ $columns, $hidden, $sortable ];
