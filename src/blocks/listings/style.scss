@@ -1,60 +1,74 @@
 .hidden{
     display: none !important;
 }
+
+.loader-wrap{
+    width: 100%;
+    height: 100%;
+    background: #ffffff96;
+    position: absolute;
+    .loader{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        .svg-loader{
+            display:flex;
+            position: relative;
+            align-content: space-around;
+            justify-content: center;
+        }
+        .loader-svg{
+            position: absolute;
+            left: 0; right: 0; top: 0; bottom: 0;
+            fill: none;
+            stroke-width: 5px;
+            stroke-linecap: round;
+            stroke: rgb(64, 0, 148);
+        }
+        .loader-svg.bg{
+            stroke-width: 8px;
+            stroke: rgb(207, 205, 245);
+        }
+        .animate{
+            stroke-dasharray: 242.6;
+            animation: fill-animation 1s cubic-bezier(1,1,1,1) 0s infinite;
+        }
+        @keyframes fill-animation{
+            0%{
+                stroke-dasharray: 40 242.6;
+                stroke-dashoffset: 0;
+            }
+            50%{
+                stroke-dasharray: 141.3;
+                stroke-dashoffset: 141.3;
+            }
+            100%{
+                stroke-dasharray: 40 242.6;
+                stroke-dashoffset: 282.6;
+            }
+        }
+    }
+}
+.submit-btn{
+    .loader-wrap{
+        position: inherit;
+    }
+    .success-msg{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        color: green;
+        font-size: 50px;
+    }
+}
 // grid css
 #listings-wrap{
     min-height: 280px;
     position: relative;
     margin-bottom: 50px;
 
-    .loader-wrap{
-        width: 100%;
-        height: 100%;
-        background: #ffffff96;
-        position: absolute;
-        .loader{
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            .svg-loader{
-                display:flex;
-                position: relative;
-                align-content: space-around;
-                justify-content: center;
-            }
-            .loader-svg{
-                position: absolute;
-                left: 0; right: 0; top: 0; bottom: 0;
-                fill: none;
-                stroke-width: 5px;
-                stroke-linecap: round;
-                stroke: rgb(64, 0, 148);
-            }
-            .loader-svg.bg{
-                stroke-width: 8px;
-                stroke: rgb(207, 205, 245);
-            }
-            .animate{
-                stroke-dasharray: 242.6;
-                animation: fill-animation 1s cubic-bezier(1,1,1,1) 0s infinite;
-            }
-            @keyframes fill-animation{
-                0%{
-                    stroke-dasharray: 40 242.6;
-                    stroke-dashoffset: 0;
-                }
-                50%{
-                    stroke-dasharray: 141.3;
-                    stroke-dashoffset: 141.3;
-                }
-                100%{
-                    stroke-dasharray: 40 242.6;
-                    stroke-dashoffset: 282.6;
-                }
-            }
-        }
-    }
     .wrapper {
         /* height: 90vh; */
         margin: 2rem;

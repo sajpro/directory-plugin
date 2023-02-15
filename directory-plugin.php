@@ -315,7 +315,21 @@ final class Directory_Plugin {
 								<br>
 								<?php wp_nonce_field( 'dp-listing-image-upload', 'dp-listing-image-upload-nonce' ); ?>
 								<input type="hidden" id="autor" value="<? echo get_current_user_id(); ?>">
-								<input type="submit" id="submit-listing" value="Submit">
+								<div class="submit-btn">
+									<input type="submit" id="submit-listing" value="Submit">
+									<div class="loader-wrap hidden">
+										<div class="loader">
+											<div class="svg-loader">
+												<svg class="svg-container" height="100" width="100" viewBox="0 0 100 100">
+													<circle class="loader-svg bg" cx="50" cy="50" r="45"></circle>
+													<circle class="loader-svg animate" cx="50" cy="50" r="45"></circle>
+												</svg>
+											</div>
+										</div>
+									</div>
+									<h1 class="success-msg hidden">Success</h1>
+								</div>
+
 							</form>
 						<?php else : ?>
 							<p class="no-access"><?php esc_html_e( 'You need to login first to submit a listing.', 'directory-plugin' ); ?></p>

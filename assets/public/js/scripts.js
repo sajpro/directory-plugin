@@ -107,8 +107,8 @@ jQuery(document).ready(function($) {
 					processData: false,
                     data: form_data,
                     beforeSend: function () {
-                        // enable loader once user sent request
-                        // $( '#listings-wrap .loader-wrap' ).removeClass('hidden');
+                        $('#submit-listing').prop( "disabled", true );
+                        $('.submit-btn .loader-wrap').removeClass( "hidden" );
                     },
                     success: function (data) {
                         if( data.success ) {
@@ -146,6 +146,14 @@ jQuery(document).ready(function($) {
                         console.log('sending listing data');
                     },
                     success: function (data) {
+                        $('#submit-listing').prop( "disabled", false );
+                        $('.submit-btn .loader-wrap').addClass( "hidden" );
+                        $('.submit-btn .success-msg').removeClass( "hidden" );
+                        setTimeout(() => {
+                            $('.dp-modal').removeClass( "open" );
+                            $('.submit-btn .success-msg').addClass( "hidden" );
+                            $( '#submit-listing-form' )[0].reset();
+                        }, 700);
                         console.log(data);
                     },
                     error: function (err) {
