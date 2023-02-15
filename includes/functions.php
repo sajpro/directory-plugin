@@ -86,8 +86,6 @@ function directory_plugin_listing_get( $args = [], $filter = [] ) {
 
 	$args = wp_parse_args( $args, $defaults );
 
-	$table = $wpdb->prefix . 'directory_listings';
-
 	$extra_checks = '';
 
 	$search = '';
@@ -104,14 +102,17 @@ function directory_plugin_listing_get( $args = [], $filter = [] ) {
 		$extra_checks .= $wpdb->prepare( ' AND author = %s', "$author" );
 	}
 
+	$listings = $wpdb->prefix . 'directory_listings';
+	$postmeta = $wpdb->postmeta;
+
 	$sql = $wpdb->prepare(
-		"SELECT $table.*, $wpdb->postmeta.meta_value as image_url FROM {$table}
-		JOIN $wpdb->postmeta
-		ON $table.preview_image = $wpdb->postmeta.post_id
-		WHERE ($table.title LIKE %s 
-		OR $table.content LIKE %s)
-		AND $wpdb->postmeta.post_id = $table.preview_image
-		AND $wpdb->postmeta.meta_key = %s
+		"SELECT $listings.*, $postmeta.meta_value as image_url FROM {$listings}
+		JOIN $postmeta
+		ON $listings.preview_image = $postmeta.post_id
+		WHERE ($listings.title LIKE %s 
+		OR $listings.content LIKE %s)
+		AND $postmeta.post_id = $listings.preview_image
+		AND $postmeta.meta_key = %s
 		$extra_checks
 		ORDER BY {$args['orderby']} {$args['order']}
 		LIMIT %d, %d",
