@@ -67,7 +67,7 @@ class Api_Endpoints extends \WP_REST_Controller {
 
 		$result['success'] = false;
 		$listings          = [];
-
+		$args= [];
 		if ( $number > 0 ) {
 			$args['number'] = $number;
 		}
