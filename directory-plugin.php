@@ -259,7 +259,7 @@ final class Directory_Plugin {
 							<?php
 							if ( count( $response_body['listings'] ) > 0 ) {
 								foreach ( $response_body['listings'] as $listing ) {
-									$image_url = explode(',',$listing->preview_image)[1];
+									$image_url = wp_get_attachment_url($listing->preview_image);
 									?>
 										<div class="cell">
 											<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $listing->id ); ?>">
