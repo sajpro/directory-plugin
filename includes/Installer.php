@@ -61,8 +61,10 @@ class Installer {
 	}
 
 	/**
-	 * Creating table for listings that has no image, since using sql join query to
-	 * fetch data with where conditon. So preview_image column value can not be empty.
+	 * Creating table for listings that has no images, since using sql join query to
+	 * fetch data with where conditon it makes error. Listing preview_image column needs a default value and it can not be empty.
+	 * So during activation inserting this default value with post_id = 0. (zero means false. 0 can not be a (real) post id that
+	 * created from dashboard, its auto incremental)
 	 */
 	public static function create_table_for_empty_image() {
 		global $wpdb;
