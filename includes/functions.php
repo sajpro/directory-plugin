@@ -180,12 +180,12 @@ function directory_plugin_upload_listing_image() {
 		// pretty_log( '$request', $_FILES['file'] );
 		$attachment_id = media_handle_upload( 'file', 0 );
 		if ( is_wp_error( $attachment_id ) ) {
-			$result['success']  = false;
-			$result['message']  = __( 'Error uploading file.', 'directory-plugin' );
+			$result['success'] = false;
+			$result['message'] = __( 'Error uploading file.', 'directory-plugin' );
 		} else {
-			$result['attachment_id']   = $attachment_id;
-			$result['success']         = true;
-			$result['message']         = __( 'File uploading successfull.', 'directory-plugin' );
+			$result['attachment_id'] = $attachment_id;
+			$result['success']       = true;
+			$result['message']       = __( 'File uploading successfull.', 'directory-plugin' );
 		}
 		wp_send_json( $result );
 	}
