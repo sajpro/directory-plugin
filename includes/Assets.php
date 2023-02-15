@@ -67,7 +67,8 @@ class Assets {
 		return [
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
 			'nonce'    => wp_create_nonce( 'dp-listing-public-nonce' ),
-			'rest_url' => get_rest_url( null, 'directory/v1/listings' )
+			'rest_url' => get_rest_url( null, 'directory/v1/listings' ),
+			'base_url' => wp_upload_dir()['baseurl'] .'/'
 		];
 	}
 }

@@ -105,14 +105,19 @@ function directory_plugin_listing_get( $args = [], $filter = [] ) {
 	}
 
 	$sql = $wpdb->prepare(
-		"SELECT * FROM {$table}
-		WHERE (title LIKE %s 
-		OR content LIKE %s)
+		"SELECT $table.*, $wpdb->postmeta.meta_value as image_url FROM {$table}
+		JOIN $wpdb->postmeta
+		ON $table.preview_image = $wpdb->postmeta.post_id
+		WHERE ($table.title LIKE %s 
+		OR $table.content LIKE %s)
+		AND $wpdb->postmeta.post_id = $table.preview_image
+		AND $wpdb->postmeta.meta_key = %s
 		$extra_checks
 		ORDER BY {$args['orderby']} {$args['order']}
 		LIMIT %d, %d",
 		"%$search%",
 		"%$search%",
+		'_wp_attached_file',
 		$args['offset'],
 		$args['number']
 	);

@@ -33,14 +33,15 @@ jQuery(document).ready(function($) {
                         $( '#listings-wrap .loader-wrap' ).removeClass('hidden');
                     },
                     success: function (data) {
+                        console.log(data);
                         if(data.success){
                             let listings = '';
                             data.listings.map(item=> {
-                                let image_url = item.preview_image.split(",")[1];
-
+                                // let image_url = item.preview_image.split(",")[1];
+                                
                                 listings += `
                                     <div class="cell">
-                                        <img src="${image_url}" alt="${item.id}">
+                                        <img src="${DpListings.base_url + item.image_url}" alt="${item.id}">
                                         <h2>ID: ${item.id}</h2>
                                         <h5>Title: ${item.title}</h5>
                                         <p><b>Content</b>: ${item.content.substring(0, 90)}...</p>
