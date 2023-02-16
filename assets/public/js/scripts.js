@@ -36,11 +36,10 @@ jQuery(document).ready(function($) {
                         if(data.success){
                             let listings = '';
                             data.listings.map(item=> {
-                                // let image_url = item.preview_image.split(",")[1];
-                                
+                                let image_url = item.image_url ? (DpListings.base_url + item.image_url) : ''
                                 listings += `
                                     <div class="cell">
-                                        <img src="${DpListings.base_url + item.image_url}" alt="${item.id}">
+                                        <img src="${image_url}" alt="${item.id}">
                                         <h2>ID: ${item.id}</h2>
                                         <h5>Title: ${item.title}</h5>
                                         <p><b>Content</b>: ${item.content.substring(0, 90)}...</p>
