@@ -123,7 +123,7 @@ jQuery(document).ready(function($) {
         },
 
         // Listing form submit functionality
-        SubmitListing: function ( image_id ) {
+        SubmitListing: function ( image_id = 0 ) {
             
             let title = $('#submit-listing-form #title').val();
             let content = $('#submit-listing-form #content').val();
@@ -139,10 +139,11 @@ jQuery(document).ready(function($) {
                         content,
                         status,
                         autor,
-                        image_id,
+                        image_id
                     },
                     beforeSend: function () {
-                        console.log('sending listing data');
+                        $('#submit-listing').prop( "disabled", true );
+                        $('.submit-btn .loader-wrap').removeClass( "hidden" );
                     },
                     success: function (data) {
                         $('#submit-listing').prop( "disabled", false );
@@ -153,7 +154,6 @@ jQuery(document).ready(function($) {
                             $('.submit-btn .success-msg').addClass( "hidden" );
                             $( '#submit-listing-form' )[0].reset();
                         }, 700);
-                        console.log(data);
                     },
                     error: function (err) {
                         console.log(err);
@@ -183,7 +183,13 @@ jQuery(document).ready(function($) {
     // Submit lisiting form
     $('#submit-listing-form').submit( function (e) {
         e.preventDefault();
-        DirectoryPlugin.UploadListingImage();
+
+        let image = $('#submit-listing-form #image')[0].files[0];
+        if(image != undefined ){
+            DirectoryPlugin.UploadListingImage();
+        }else{
+            DirectoryPlugin.SubmitListing();
+        }
     });
 
 
