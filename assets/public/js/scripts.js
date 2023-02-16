@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
                         if(data.success){
                             let listings = '';
                             data.listings.map(item=> {
-                                let image_url = item.image_url ? (DpListings.base_url + item.image_url) : ''
+                                let image_url = item.preview_image ? (DpListings.base_url + item.image_url) : ''
                                 listings += `
                                     <div class="cell">
                                         <img src="${image_url}" alt="${item.id}">
