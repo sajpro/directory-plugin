@@ -173,7 +173,7 @@ jQuery(document).ready(function($) {
                                     ${image_url && `<img src="${image_url}" alt="${data?.data?.id}">`}
                                     <h2>ID: ${data?.data?.id}</h2>
                                     <h5>Title: ${title}</h5>
-                                    <p><b>Content</b>: ${content.substring(0, 90)}...</p>
+                                    <p><b>Content</b>: ${content ? `${content.substring(0, 90)}...` : ''}</p>
                                     <p><b>Status</b>: ${status}</p>
                                     <p><b>Author</b>: ${autor}</p>
                                     <p><b>Submitted</b>: ${data?.data?.created_at}</p>
