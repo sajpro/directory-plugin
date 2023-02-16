@@ -130,7 +130,6 @@ final class Directory_Plugin {
 		$api_endpoint = new Sajib\DP\RestApi\v1\Api_Endpoints();
 		$api_endpoint->init();
 
-		new Sajib\DP\Assets();
 	}
 
 	/**
@@ -149,6 +148,9 @@ final class Directory_Plugin {
 	 */
 	public function init() {
 		self::load_plugin_textdomain();
+
+		// Assets stuff.
+		new Sajib\DP\Assets();
 
 		// Dynamic blocks stuff.
 		new Sajib\DP\Dynamic_Blocks();
