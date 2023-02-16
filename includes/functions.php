@@ -81,7 +81,7 @@ function directory_plugin_listing_get( $args = [], $filter = [] ) {
 		'number'  => 20,
 		'offset'  => 0,
 		'orderby' => 'id',
-		'order'   => 'asc',
+		'order'   => 'desc',
 	];
 
 	$args = wp_parse_args( $args, $defaults );
