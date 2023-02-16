@@ -344,7 +344,7 @@ final class Directory_Plugin {
 
 							</form>
 						<?php else : ?>
-							<p class="no-access"><?php esc_html_e( 'You need to login first to submit a listing.', 'directory-plugin' ); ?></p>
+							<p class="no-access"><?php echo sprintf( __('You need to <a href="%1$s">login</a> first to submit a listing.', 'directory-plugin'), esc_url( wp_login_url() ) ); ?></p>
 						<?php endif; ?>
 					</div>
 				</div>
