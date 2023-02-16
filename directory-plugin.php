@@ -160,6 +160,11 @@ final class Directory_Plugin {
 			add_filter( 'block_categories', [ $this, 'add_block_category' ], 10, 2 );
 		}
 
+		// Perform ajax request.
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			new Sajib\DP\Ajax();
+		}
+
 		if ( is_admin() ) {
 			new Sajib\DP\Admin();
 		}
