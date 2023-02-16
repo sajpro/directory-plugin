@@ -161,9 +161,11 @@ jQuery(document).ready(function($) {
                         $('.submit-btn .loader-wrap').removeClass( "hidden" );
                     },
                     success: function (data) {
+                        image_url = image_id ? $('.preview-image img').attr('src') : '';
                         if(data.success){
                             let listings = `
                                 <div class="cell">
+                                    ${image_url && `<img src="${image_url}" alt="${data?.data?.id}">`}
                                     <h2>ID: ${data?.data?.id}</h2>
                                     <h5>Title: ${title}</h5>
                                     <p><b>Content</b>: ${content.substring(0, 90)}...</p>
