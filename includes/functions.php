@@ -64,7 +64,10 @@ function directory_plugin_listing_insert( $args = [] ) {
 			return new \WP_Error( 'failed-to-insert', esc_html__( 'Failed to insert data', 'directory-plugin' ) );
 		}
 
-		return $wpdb->insert_id;
+		return [
+			'id'         => $wpdb->insert_id,
+			'created_at' => $data['created_at']
+		];
 	}
 }
 
@@ -180,13 +183,16 @@ function directory_plugin_upload_listing_image() {
 	if ( isset( $_FILES['file']['name'] ) ) {
 		// pretty_log( '$request', $_FILES['file'] );
 		$attachment_id = media_handle_upload( 'file', 0 );
+		$image_url     = wp_get_attachment_url( $attachment_id );
+
 		if ( is_wp_error( $attachment_id ) ) {
 			$result['success'] = false;
 			$result['message'] = __( 'Error uploading file.', 'directory-plugin' );
 		} else {
-			$result['attachment_id'] = $attachment_id;
-			$result['success']       = true;
-			$result['message']       = __( 'File uploading successfull.', 'directory-plugin' );
+			$result['attachment_id']  = $attachment_id;
+			$result['attachment_url'] = $attachment_url;
+			$result['success']        = true;
+			$result['message']        = __( 'File uploading successfull.', 'directory-plugin' );
 		}
 		wp_send_json( $result );
 	}

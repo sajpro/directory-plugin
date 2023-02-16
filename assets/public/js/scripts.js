@@ -112,7 +112,7 @@ jQuery(document).ready(function($) {
                     success: function (data) {
                         if( data.success ) {
                             // Once image is uploaded then insert listing to DB with image id
-                            DirectoryPlugin.SubmitListing(data.attachment_id);
+                            DirectoryPlugin.SubmitListing(data.attachment_id, data.attachment_url);
                         }
                     },
                     error: function (err) {
@@ -123,7 +123,7 @@ jQuery(document).ready(function($) {
         },
 
         // Listing form submit functionality
-        SubmitListing: function ( image_id = 0 ) {
+        SubmitListing: function ( image_id = 0, image_url = '' ) {
             
             let title = $('#submit-listing-form #title').val();
             let content = $('#submit-listing-form #content').val();
@@ -146,14 +146,31 @@ jQuery(document).ready(function($) {
                         $('.submit-btn .loader-wrap').removeClass( "hidden" );
                     },
                     success: function (data) {
-                        $('#submit-listing').prop( "disabled", false );
-                        $('.submit-btn .loader-wrap').addClass( "hidden" );
-                        $('.submit-btn .success-msg').removeClass( "hidden" );
-                        setTimeout(() => {
-                            $('.dp-modal').removeClass( "open" );
-                            $('.submit-btn .success-msg').addClass( "hidden" );
-                            $( '#submit-listing-form' )[0].reset();
-                        }, 700);
+                        if(data.success){
+                            let listings = `
+                                <div class="cell">
+                                    <h2>ID: ${data?.data?.id}</h2>
+                                    <h5>Title: ${title}</h5>
+                                    <p><b>Content</b>: ${content.substring(0, 90)}...</p>
+                                    <p><b>Status</b>: ${status}</p>
+                                    <p><b>Author</b>: ${autor}</p>
+                                    <p><b>Submitted</b>: ${data?.data?.created_at}</p>
+                                </div>
+                            `
+                            // inject fetch data to wrapper el
+                            $( "#listings-wrap .wrapper" ).prepend( listings );
+
+                            $('#submit-listing').prop( "disabled", false );
+                            $('.submit-btn .loader-wrap').addClass( "hidden" );
+                            $('.submit-btn .success-msg').removeClass( "hidden" );
+                            setTimeout(() => {
+                                $('.dp-modal').removeClass( "open" );
+                                $('.submit-btn .success-msg').addClass( "hidden" );
+                                $( '#submit-listing-form' )[0].reset();
+                            }, 700);
+                        }else{
+                            console.log('something went wrong!');
+                        }
                     },
                     error: function (err) {
                         console.log(err);
