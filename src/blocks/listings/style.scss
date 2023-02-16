@@ -76,16 +76,19 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
         // grid-template-rows: 1fr 1fr 1fr;
         .cell {
-            color: white;
+            color: #000;
             font-size: 14px;
             text-align: center;
             padding: 15px;
-            background: #333;
+            background: #fff;
             margin: 10px;
+            box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+            text-align: left;
             img{
-                width: 100px;
+                width: 200px;
                 height: auto;
-                margin-bottom: 15px;
+                margin: 10px auto 25px;
+                display: block;
             }
         }
     }

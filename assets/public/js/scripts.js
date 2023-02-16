@@ -54,7 +54,7 @@ jQuery(document).ready(function($) {
                                 let image_url = item.preview_image ? (DpListings.base_url + item.image_url) : ''
                                 listings += `
                                     <div class="cell">
-                                        <img src="${image_url}" alt="${item.id}">
+                                        ${(item.preview_image > 0) ? `<img src="${image_url}" alt="${item.id}">` :'' }
                                         <h2>ID: ${item.id}</h2>
                                         <h5>Title: ${item.title}</h5>
                                         <p><b>Content</b>: ${item.content.substring(0, 90)}...</p>
