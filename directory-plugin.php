@@ -262,12 +262,12 @@ final class Directory_Plugin {
 									$image_url = wp_get_attachment_url( $listing->preview_image );
 									?>
 										<div class="cell">
-											<?php if($image_url): ?>
+											<?php if ( $image_url ) : ?>
 												<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $listing->id ); ?>">
 											<?php endif; ?>
 											<h2>ID: <?php echo esc_html( $listing->id ); ?></h2>
 											<h5>Title: <?php echo esc_html( $listing->title ); ?></h5>
-											<p><b>Content</b>: <?php echo esc_html( wp_trim_words($listing->content, 12, '...') ); ?></p>
+											<p><b>Content</b>: <?php echo esc_html( wp_trim_words( $listing->content, 12, '...' ) ); ?></p>
 											<p><b>Status</b>: <?php echo esc_html( $listing->listing_status ); ?></p>
 											<p><b>Author</b>: <?php echo esc_html( $listing->author ); ?></p>
 											<p><b>Submitted</b>: <?php echo esc_html( $listing->created_at ); ?></p>
@@ -344,7 +344,7 @@ final class Directory_Plugin {
 
 							</form>
 						<?php else : ?>
-							<p class="no-access"><?php echo sprintf( __('You need to <a href="%1$s">login</a> first to submit a listing.', 'directory-plugin'), esc_url( wp_login_url() ) ); ?></p>
+							<p class="no-access"><?php echo sprintf( __( 'You need to <a href="%1$s">login</a> first to submit a listing.', 'directory-plugin' ), esc_url( wp_login_url() ) ); ?></p>
 						<?php endif; ?>
 					</div>
 				</div>
