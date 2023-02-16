@@ -65,10 +65,10 @@ class Assets {
 	 */
 	public static function public_localize_js_object() {
 		return [
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'nonce'    => wp_create_nonce( 'dp-listing-public-nonce' ),
-			'rest_url' => get_rest_url( null, 'directory/v1/listings' ),
-			'base_url' => wp_upload_dir()['baseurl'] .'/'
+			'ajax_url'      => admin_url( 'admin-ajax.php' ),
+			'rest_nonce'    => wp_create_nonce( 'wp_rest' ),
+			'rest_url'      => get_rest_url( null, 'directory/v1/listings' ),
+			'base_url'      => wp_upload_dir()['baseurl'] .'/'
 		];
 	}
 }

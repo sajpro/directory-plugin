@@ -161,7 +161,8 @@ jQuery(document).ready(function($) {
                         autor,
                         image_id
                     },
-                    beforeSend: function () {
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('X-WP-Nonce', DpListings.rest_nonce);
                         $('#submit-listing').prop( "disabled", true );
                         $('.submit-btn .loader-wrap').removeClass( "hidden" );
                     },
@@ -193,11 +194,16 @@ jQuery(document).ready(function($) {
                                 $('.preview-image img').attr('src', '');
                             }, 700);
                         }else{
-                            console.log('something went wrong!');
+                            $('#submit-listing').prop( "disabled", false );
+                            $('.submit-btn .loader-wrap').addClass( "hidden" );
+                            $('.submit-btn .error-msg').removeClass( "hidden" ).text('Something went wrong!');
                         }
                     },
                     error: function (err) {
-                        console.log(err);
+                        let error = JSON.parse(err.responseText);
+                        $('#submit-listing').prop( "disabled", false );
+                        $('.submit-btn .loader-wrap').addClass( "hidden" );
+                        $('.submit-btn .error-msg').removeClass( "hidden" ).text(error?.code + '. ' + error?.message);
                     }
                 }
             );

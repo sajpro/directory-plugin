@@ -340,6 +340,7 @@ final class Directory_Plugin {
 										</div>
 									</div>
 									<h1 class="success-msg hidden">Success</h1>
+									<h1 class="error-msg hidden"></h1>
 								</div>
 
 							</form>
