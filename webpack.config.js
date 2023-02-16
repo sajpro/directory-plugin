@@ -9,7 +9,7 @@ const mode = isProduction ? "production" : "development";
 
 defaultConfig.output = {
     ...defaultConfig.output,
-    path: path.resolve(process.cwd(), "build"),
+    path: path.resolve(process.cwd(), "assets/blocks"),
 };
 
 defaultConfig.entry = {
@@ -88,8 +88,8 @@ const assetsConfig = {
         // chunkFilename: "[name].[chunkhash].useless.js",
 
         // Where the CSS is saved to
-        path: path.resolve(__dirname, "build"),
-        publicPath: "/build",
+        path: path.resolve(__dirname, "assets/blocks"),
+        publicPath: "/assets/blocks",
     },
     plugins: [
         new MiniCssExtractPlugin({
@@ -101,25 +101,14 @@ const assetsConfig = {
             after: {
                 test: [
                     {
-                        folder: "build",
+                        folder: "assets/blocks",
                         method: (absoluteItemPath) => {
-                            // return new RegExp(/\.useless.js$/, 'm').test(absoluteItemPath);
                             return new RegExp(/\-style.js|-editor.js|index.css$/, "m").test(
                                 absoluteItemPath
                             );
                         },
                         recursive: false,
-                    },
-                    // {
-                    //     folder: "build/admin/css",
-                    //     method: (absoluteItemPath) => {
-                    //         // return new RegExp(/\.useless.js$/, 'm').test(absoluteItemPath);
-                    //         return new RegExp(/\.js$/, "m").test(
-                    //             absoluteItemPath
-                    //         );
-                    //     },
-                    //     recursive: true,
-                    // }
+                    }
                 ],
             },
         }),
