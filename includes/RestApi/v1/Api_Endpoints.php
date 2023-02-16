@@ -42,13 +42,13 @@ class Api_Endpoints extends \WP_REST_Controller {
 				[
 					'methods'             => \WP_REST_Server::READABLE,
 					'callback'            => [ $this, 'get_all_listings' ],
-					'permission_callback' => '__return_true', // [ $this, 'get_permission_check' ],
+					'permission_callback' => '__return_true',
 					'args'                => parent::get_endpoint_args_for_item_schema( true ),
 				],
 				[
 					'methods'             => \WP_REST_Server::CREATABLE,
 					'callback'            => [ $this, 'create_listings' ],
-					'permission_callback' => '__return_true', // [ $this, 'get_permission_check' ],
+					'permission_callback' => [ $this, 'get_permission_check' ],
 					// 'args'                => parent::get_endpoint_args_for_item_schema( true ),
 				],
 			]
@@ -135,7 +135,7 @@ class Api_Endpoints extends \WP_REST_Controller {
 	 * @return boolean
 	 */
 	public function get_permission_check() {
-		return current_user_can( 'manage_options' );
+		return current_user_can( 'edit_posts' );
 	}
 
 }
