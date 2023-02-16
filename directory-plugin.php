@@ -309,9 +309,17 @@ final class Directory_Plugin {
 									<option value="inactive"><?php esc_html_e( 'Inactive', 'directory-plugin' ); ?></option>
 								</select>
 
-								<label for="image"><?php esc_html_e( 'Image:', 'directory-plugin' ); ?></label>
-								<br>
-								<input type="file" id="image" name="image">
+								<label><?php esc_html_e( 'Image:', 'directory-plugin' ); ?></label>
+								<div class="image-upload-area">
+									<div>
+										<input type="file" id="image" name="image" class="hidden">
+										<label for="image" class="upload-btn">Upload Image</label>
+									</div>
+									<div class="preview-image hidden">
+										<span>&times;</span>
+										<img src="" alt="preview image">
+									</div>
+								</div>
 								<br>
 								<br>
 								<?php wp_nonce_field( 'dp-listing-image-upload', 'dp-listing-image-upload-nonce' ); ?>

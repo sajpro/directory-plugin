@@ -13,6 +13,21 @@ jQuery(document).ready(function($) {
             });
 		},
 
+        // Form preview image handler
+        PreivewImage: function (e) {
+            $('#image').on('change', function(e) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.preview-image img').attr('src', e.target.result).width(120).height('auto');
+                    $('.preview-image').removeClass('hidden');
+                };
+                reader.readAsDataURL($(this)[0].files[0]);
+            });
+            $('.preview-image span').on('click', function (e) {
+                $('.preview-image').addClass('hidden').find('img').attr('src','');
+            });
+		},
+
         // fetch listings
         FetchListings: function ( number = 0, paged = 0, pages = 0 ) {
             let data = {};
@@ -167,6 +182,8 @@ jQuery(document).ready(function($) {
                                 $('.dp-modal').removeClass( "open" );
                                 $('.submit-btn .success-msg').addClass( "hidden" );
                                 $( '#submit-listing-form' )[0].reset();
+                                $('.preview-image').addClass('hidden');
+                                $('.preview-image img').attr('src', '');
                             }, 700);
                         }else{
                             console.log('something went wrong!');
@@ -184,6 +201,8 @@ jQuery(document).ready(function($) {
 
     // Listing modal toggle
     DirectoryPlugin.ToggleModal();
+
+    DirectoryPlugin.PreivewImage();
 
     // Fetch listings initialpage load
     // var number = $('#number').val();
