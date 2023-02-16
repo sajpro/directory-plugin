@@ -16,7 +16,7 @@ class Assets {
 	 */
 	function __construct() {
 		if ( is_admin() ) {
-			$this->blocks_file = include_once DIRECTORY_PLUGIN_PATH . '/build/index.asset.php';
+			$this->blocks_file = include_once DIRECTORY_PLUGIN_PATH . '/assets/blocks/index.asset.php';
 			add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 			add_action( 'admin_enqueue_scripts', [ $this, 'admin_assets' ] );
 		} else {
