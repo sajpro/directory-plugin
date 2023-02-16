@@ -215,7 +215,7 @@ final class Directory_Plugin {
 			$align = 'align' . $attributes['align'];
 		}
 
-		$number = 2;
+		$number = 4;
 
 		$api_url = add_query_arg(
 			[
@@ -259,10 +259,12 @@ final class Directory_Plugin {
 							<?php
 							if ( count( $response_body['listings'] ) > 0 ) {
 								foreach ( $response_body['listings'] as $listing ) {
-									$image_url = wp_get_attachment_url($listing->preview_image);
+									$image_url = wp_get_attachment_url( $listing->preview_image );
 									?>
 										<div class="cell">
-											<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $listing->id ); ?>">
+											<?php if($image_url): ?>
+												<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $listing->id ); ?>">
+											<?php endif; ?>
 											<h2>ID: <?php echo esc_html( $listing->id ); ?></h2>
 											<h5>Title: <?php echo esc_html( $listing->title ); ?></h5>
 											<p><b>Content</b>: <?php echo esc_html( wp_trim_words($listing->content, 12, '...') ); ?></p>
