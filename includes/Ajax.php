@@ -25,9 +25,12 @@ class Ajax {
 	 * @return array
 	 */
 	function upload_listing_image() {
+
+		check_ajax_referer( 'upload_nonce', 'security' );
+
 		if ( isset( $_FILES['file']['name'] ) ) {
-			$attachment_id = media_handle_upload( 'file', 0 );
-			$image_url     = wp_get_attachment_url( $attachment_id );
+			$attachment_id  = media_handle_upload( 'file', 0 );
+			$attachment_url = wp_get_attachment_url( $attachment_id );
 
 			if ( is_wp_error( $attachment_id ) ) {
 				$result['success'] = false;

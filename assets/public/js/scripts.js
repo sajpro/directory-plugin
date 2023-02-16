@@ -118,6 +118,7 @@ jQuery(document).ready(function($) {
             let form_data = new FormData();
             form_data.append("file", image);
             form_data.append( 'action', 'upload_listing_image' );
+            form_data.append( 'security', DpListings.upload_nonce );
             $.ajax(
                 {
                     url: DpListings.ajax_url,
