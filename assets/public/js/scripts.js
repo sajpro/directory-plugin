@@ -28,6 +28,11 @@ jQuery(document).ready(function($) {
             });
 		},
 
+        // trim word similar to wp_trim_words()
+        ShortText: function (text) {
+            return text.trim().substring(0, 80).split(" ").slice(0, -1).join(" ");
+        },
+
         // fetch listings
         FetchListings: function ( number = 0, paged = 0, pages = 0 ) {
             let data = {};
@@ -57,7 +62,7 @@ jQuery(document).ready(function($) {
                                         ${(item.preview_image > 0) ? `<img src="${image_url}" alt="${item.id}">` :'' }
                                         <h2>ID: ${item.id}</h2>
                                         <h5>Title: ${item.title}</h5>
-                                        <p><b>Content</b>: ${item.content.substring(0, 90)}...</p>
+                                        <p><b>Content</b>: ${DirectoryPlugin.ShortText(item.content)}...</p>
                                         <p><b>Status</b>: ${item.listing_status}</p>
                                         <p><b>Author</b>: ${item.author}</p>
                                         <p><b>Submitted</b>: ${item.created_at}</p>
