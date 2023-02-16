@@ -183,6 +183,13 @@ jQuery(document).ready(function($) {
                             // inject fetch data to wrapper el
                             $( "#listings-wrap .wrapper" ).prepend( listings );
 
+                            let number = $('#number').val();
+                            let total = $('#listings-wrap .wrapper .cell').size();
+                            if(total > number ){ // remove element if total items more than 'per_page'
+                                let remove = total - number;
+                                $('#listings-wrap .wrapper .cell').slice(-remove).remove();
+                            }
+
                             $('#submit-listing').prop( "disabled", false );
                             $('.submit-btn .loader-wrap').addClass( "hidden" );
                             $('.submit-btn .success-msg').removeClass( "hidden" );
