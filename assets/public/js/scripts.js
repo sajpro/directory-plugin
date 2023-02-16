@@ -227,11 +227,27 @@ jQuery(document).ready(function($) {
     $('#submit-listing-form').submit( function (e) {
         e.preventDefault();
 
+        // Prevent Form submission if field value is empty START
+        let title = true;
+        let titleEl = $('#submit-listing-form #title')
+
+        $('#submit-listing-form .error').each(function (e) {
+            $(this).addClass('hidden');
+        })
+        if(!titleEl.val()){
+            titleEl.next().removeClass('hidden');
+            title = false
+        }
+        if ( title === false ) {
+            return false;
+        }
+        // Prevent Form submission if field value is empty END
+
         let image = $('#submit-listing-form #image')[0].files[0];
         if(image != undefined ){
-            DirectoryPlugin.UploadListingImage();
+            DirectoryPlugin.UploadListingImage(); // submitting form with image
         }else{
-            DirectoryPlugin.SubmitListing();
+            DirectoryPlugin.SubmitListing(); // submitting form without image
         }
     });
 

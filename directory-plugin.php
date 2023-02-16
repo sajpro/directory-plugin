@@ -301,6 +301,7 @@ final class Directory_Plugin {
 							<form id="submit-listing-form" method="post" action="" enctype="multipart/form-data">
 								<label for="title"><?php esc_html_e( 'Title:', 'directory-plugin' ); ?></label>
 								<input type="text" id="title" name="title" placeholder="Title...">
+								<span class="error hidden">Title can not be empty.</span><br>
 
 								<label for="content"><?php esc_html_e( 'Content:', 'directory-plugin' ); ?></label>
 								<textarea id="content" name="content" placeholder="Content..." style="height:200px"></textarea>

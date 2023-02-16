@@ -152,6 +152,9 @@
             text-align:center;
             margin: 0;
         }
+        label{
+            margin-top: 15px;
+        }
         input[type=text], select, textarea {
             width: 100%;
             padding: 12px;
@@ -159,7 +162,7 @@
             border-radius: 4px;
             box-sizing: border-box;
             margin-top: 6px;
-            margin-bottom: 16px;
+            margin-bottom: 6px;
             resize: vertical;
         }
         
@@ -201,6 +204,9 @@
                 cursor: pointer;
             }
         } 
+        .error{
+            color: red;
+        }
 
     }
 }
