@@ -406,7 +406,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _com
   \**********************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"AdvancedAttributes\": function() { return /* binding */ AdvancedAttributes; }\n/* harmony export */ });\n/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper */ \"./src/utils/helper.js\");\n\nconst AdvancedAttributes = {\n  ...(0,_helper__WEBPACK_IMPORTED_MODULE_0__.generateDimensionAttributes)('wrapperMargin', {\n    top: '',\n    right: '',\n    bottom: '',\n    left: '',\n    unit: '',\n    isLinked: true\n  })\n};\n\n//# sourceURL=webpack://directory-plugin/./src/utils/AdvancedControls/AdvancedAttributes.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"AdvancedAttributes\": function() { return /* binding */ AdvancedAttributes; }\n/* harmony export */ });\n/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper */ \"./src/utils/helper.js\");\n\nconst AdvancedAttributes = {\n  blockId: {\n    type: \"string\"\n  },\n  blockStyleDynamic: {\n    type: \"object\"\n  },\n  ...(0,_helper__WEBPACK_IMPORTED_MODULE_0__.generateDimensionAttributes)('wrapperMargin', {\n    top: '',\n    right: '',\n    bottom: '',\n    left: '',\n    unit: '',\n    isLinked: true\n  })\n};\n\n//# sourceURL=webpack://directory-plugin/./src/utils/AdvancedControls/AdvancedAttributes.js?");
 
 /***/ }),
 
