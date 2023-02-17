@@ -10,7 +10,7 @@ import Inspector from "./inspector";
 
 import Loader from "./Loader";
 
-import { getBlockId, generateDimensionStyles, minifyCSS } from "../../utils/helper";
+import { getBlockId, generateDimensionStyles, generateBgImageStyle, minifyCSS } from "../../utils/helper";
 
 const Edit = (props) => {
     let {attributes,setAttributes,className,clientId} = props;
@@ -57,29 +57,47 @@ const Edit = (props) => {
         attributes
     })
 
+    // wrapper background styles
+    let {backgroundStyles:{
+        Desktop: wrapperBgStylesDesktop,
+        Tablet: wrapperBgStylesTablet,
+        Mobile: wrapperBgStylesMobile,
+        Transition: wrapperBgTransition
+    }} = generateBgImageStyle({
+		attributesIdType: 'wrapperBgType',
+		attributesIdColor: 'wrapperBgColor',
+		attributesIdImage: 'wrapperBgImage',
+		attributesIdGradient: 'wrapperBgGradient',
+		attributesIdTransition: 'wrapperBgTransition',
+        attributes
+    })
+
     // Wrapper styles css for desktop
     const wrapperStylesDesktop = `
-        ${wrapperMarginDesktop ? (`
+        ${(wrapperMarginDesktop || wrapperBgStylesDesktop) ? (`
             .dp-listings-wrapper.${blockId}{
                 ${wrapperMarginDesktop}
+                ${wrapperBgStylesDesktop}
             }
         `):''}
     `;
 
     // Wrapper styles css for Tablet
     const wrapperStylesTablet = `
-        ${wrapperMarginTablet ? (`
+        ${(wrapperMarginTablet || wrapperBgStylesTablet) ? (`
             .dp-listings-wrapper.${blockId}{
                 ${wrapperMarginTablet}
+                ${wrapperBgStylesTablet}
             }
         `):''}
     `;
 
     // Wrapper styles css for mobile
     const wrapperStylesMobile = `
-        ${wrapperMarginMobile ? (`
+        ${(wrapperMarginMobile || wrapperBgStylesMobile) ? (`
             .dp-listings-wrapper.${blockId}{
                 ${wrapperMarginMobile}
+                ${wrapperBgStylesMobile}
             }
         `):''}
     `;

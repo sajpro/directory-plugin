@@ -110,3 +110,36 @@ export const generateDimensionStyles = ({attributesId,styleFor,attributes}) => {
 
     return {dimensionStyle};
 }
+
+export const generateBgImageStyle = ({attributesIdType, attributesIdColor, attributesIdImage, attributesIdGradient, attributesIdTransition, attributes}) => {
+    let unit_default = attributes[attributesIdImage].unitDefault
+
+    let devices = [
+        'Desktop',
+        'Tablet',
+        'Mobile'
+    ]
+
+    let backgroundStyles={}
+    
+    if(attributes[attributesIdType] == 'classic'){
+        let bgColor = ((attributes[attributesIdColor]) ? `background-color: ${attributes[attributesIdColor]};` : '')
+        let bgImage = (attributes[attributesIdImage].url ? `background-image: url(${attributes[attributesIdImage].url});` : '')
+        let attachment = (attributes[attributesIdImage].attachment ? `background-attachment: ${attributes[attributesIdImage].attachment};` : '')
+        devices.forEach(device=>{
+            let position = (attributes[attributesIdImage][device].position ? `background-position: ${attributes[attributesIdImage][device].position};` : '')
+            let repeat = (attributes[attributesIdImage][device].repeat ? `background-repeat: ${attributes[attributesIdImage][device].repeat};` : '')
+            let size = (((attributes[attributesIdImage][device].size) && (attributes[attributesIdImage][device].size != 'custom' ))? `background-size: ${attributes[attributesIdImage][device].size};` : (attributes[attributesIdImage][device].custom_size ? `background-size: ${attributes[attributesIdImage][device].custom_size}${attributes[attributesIdImage][device].unit || unit_default };` : ''))
+            let backgroundStyless = `${position} ${repeat} ${size}`
+            backgroundStyles[device] = backgroundStyless.trim() || '';
+        })
+
+        backgroundStyles['Transition'] = (attributes[attributesIdTransition] ? `background ${attributes[attributesIdTransition]}s` : '')
+        let backgroundDesktopOnly = `${bgColor} ${bgImage} ${attachment}`
+        backgroundStyles['Desktop'] = (backgroundDesktopOnly.trim() || '') + backgroundStyles['Desktop']
+    }else{
+        backgroundStyles['Desktop'] = (attributes[attributesIdGradient] ? `background: ${attributes[attributesIdGradient]};` : '')
+    }
+
+    return {backgroundStyles};
+}
