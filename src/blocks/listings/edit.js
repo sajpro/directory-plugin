@@ -1,6 +1,7 @@
 import { __ } from "@wordpress/i18n";
 import ServerSideRender from '@wordpress/server-side-render';
 import { useEffect } from "@wordpress/element";
+import classnames from "classnames";
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import {
 	Disabled
@@ -28,6 +29,11 @@ const Edit = (props) => {
     }
     console.log(attributes);
 
+    // blocks prop wrapper div
+    const blockProps = useBlockProps({
+		className: classnames(className, `dp-listings-wrapper`),
+	});
+
     // create a unique id for blocks
     useEffect(() => {
         const blockPrefix = "dp-block";
@@ -42,7 +48,7 @@ const Edit = (props) => {
 	}, [ blockId ]);
 
     return (
-        <div { ...useBlockProps() }>
+        <div { ...blockProps }>
             
             <Inspector {...{attributes,setAttributes}}/>
 
