@@ -61,6 +61,17 @@ console.log(serverAttr);
         attributes
     })
 
+    // wrapper padding
+    let {dimensionStyle:{
+        Desktop: wrapperPaddingDesktop,
+        Tablet: wrapperPaddingTablet,
+        Mobile: wrapperPaddingMobile
+    }} = generateDimensionStyles({
+		attributesId: 'wrapperPadding',
+		styleFor: "padding",
+        attributes
+    })
+
     // wrapper background styles
     let {backgroundStyles:{
         Desktop: wrapperBgStylesDesktop,
@@ -112,9 +123,10 @@ console.log(serverAttr);
     
     // Wrapper styles css for desktop
     const wrapperStylesDesktop = `
-        ${(wrapperMarginDesktop || wrapperBgStylesDesktop) ? (`
+        ${(wrapperMarginDesktop || wrapperBgStylesDesktop || wrapperPaddingDesktop) ? (`
             .dp-listings-wrapper.${blockId}{
                 ${wrapperMarginDesktop}
+                ${wrapperPaddingDesktop}
                 ${wrapperBgStylesDesktop}
                 transition: ${wrapperBgTransitonValue.join(", ")};
             }
@@ -144,9 +156,10 @@ console.log(serverAttr);
 
     // Wrapper styles css for Tablet
     const wrapperStylesTablet = `
-        ${(wrapperMarginTablet || wrapperBgStylesTablet) ? (`
+        ${(wrapperMarginTablet || wrapperBgStylesTablet || wrapperPaddingTablet) ? (`
             .dp-listings-wrapper.${blockId}{
                 ${wrapperMarginTablet}
+                ${wrapperPaddingTablet}
                 ${wrapperBgStylesTablet}
             }
         `):''}
@@ -169,9 +182,10 @@ console.log(serverAttr);
 
     // Wrapper styles css for mobile
     const wrapperStylesMobile = `
-        ${(wrapperMarginMobile || wrapperBgStylesMobile) ? (`
+        ${(wrapperMarginMobile || wrapperBgStylesMobile || wrapperPaddingMobile) ? (`
             .dp-listings-wrapper.${blockId}{
                 ${wrapperMarginMobile}
+                ${wrapperPaddingMobile}
                 ${wrapperBgStylesMobile}
             }
         `):''}

@@ -92,6 +92,13 @@ class Listings {
 							'type' => 'string',
 						],
 					],
+					'wrapperPadding' => [
+						'type'    => 'object',
+						'default' => [],
+						'items'   => [
+							'type' => 'string',
+						],
+					],
 					'wrapperBgType' => [
 						'type'    => 'string',
 						'default' => 'classic',

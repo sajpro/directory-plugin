@@ -25,6 +25,10 @@ export const AdvancedControls = (props) => {
                     label={__('Margin','directory-plugin')}
                     attributesId = 'wrapperMargin'
                 />
+                <DpSpacingControls {...{attributes, setAttributes}}
+                    label={__('Padding','directory-plugin')}
+                    attributesId = 'wrapperPadding'
+                />
             </PanelBody>
 
             <PanelBody
