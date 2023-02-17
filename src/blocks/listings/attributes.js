@@ -30,7 +30,7 @@ const attributes = {
 		right: '',
 		bottom: '',
 		left: '',
-		isLinked: false,
+		isLinked: true,
 	})
 };
 

@@ -87,7 +87,7 @@ const Inspector = (props) => {
                         >
                             <DpSpacingControls {...{attributes, setAttributes}}
                                 label={__('Margin','directory-plugin')}
-                                attrId = 'wrapperMargin'
+                                attributesId = 'wrapperMargin'
                             />
                         </PanelBody>
                     )}
