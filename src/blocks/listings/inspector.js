@@ -33,7 +33,7 @@ const Inspector = (props) => {
 
     let {
         title, 
-        subtitle
+        subtitle,
     } = attributes;
 
     return (
