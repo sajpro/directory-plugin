@@ -2,7 +2,7 @@ import { Button, Dropdown, BaseControl, SelectControl, RangeControl } from "@wor
 import { pencil } from "@wordpress/icons";
 import { useState, useEffect } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
-// import {DpCssUnitTypo} from "../DpCssUnitTypo"
+import {DpUnitTypo} from "../DpUnitTypo"
 import DpResponsiveControls from "../DpResponsiveControls/DpResponsiveControls"
 import { useGetDevice } from "../../utils/getDevice";
 import { FiRotateCcw } from "react-icons/fi";
@@ -102,8 +102,8 @@ export const DpTypography = (props) => {
         const link = document.createElement("link");
         link.rel = "stylesheet";
         console.log(meta);
-        if ( typeof meta !== "undefined" && typeof meta._fb_fonts_attr !== "undefined" && meta._fb_fonts_attr !== "" ) {
-            fmObj = JSON.parse(meta._fb_fonts_attr)
+        if ( typeof meta !== "undefined" && typeof meta._dp_attr !== "undefined" && meta._dp_attr !== "" ) {
+            fmObj = JSON.parse(meta._dp_attr)
         }
 
         link.href = "https://fonts.googleapis.com/css?family=" + v.value.replace(/ /g, "+") + googleFontsAttr;
@@ -113,7 +113,7 @@ export const DpTypography = (props) => {
 
         wp.data.dispatch("core/editor").editPost({
             meta: {
-                _fb_fonts_attr: JSON.stringify(fmObj)
+                _dp_attr: JSON.stringify(fmObj)
             }
         });
 
@@ -155,22 +155,19 @@ export const DpTypography = (props) => {
                                     onChange={ v => fontFamilyHandle(attributes,attributesId,v) }
                                     options={fonts}
                                 />
-                                {/* <SelectControl
-                                    value={ attributes[attributesId].fontFamily }
-                                    options={fonts}
-                                    onChange={ v => handleSingleTypo(v,"fontFamily") }
-                                /> */}
                             </BaseControl>
 
                             <BaseControl
                                 label="Size"
                                 className={`dp-css-value-wrapper dp-not-flex`}
                             >
-                                <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
-                                {/* <DpCssUnitTypo {...{attributes, setAttributes,attributesId, }}
-                                attrUnit="fontSize"
-                                attrUnitD="fontSizeD"
-                                /> */}
+                                <div className="units-responsive">
+                                    <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
+                                    <DpUnitTypo {...{attributes, setAttributes,attributesId, }}
+                                    attributesUnit="fontSize"
+                                    attributesUnitDefault="fontSizeDefaultUnit"
+                                    />
+                                </div>
 
                                 <RangeControl
                                     value={ attributes[attributesId][getDevice].fontSize.value }
@@ -243,11 +240,13 @@ export const DpTypography = (props) => {
                                 label="Line Height"
                                 className={`dp-css-value-wrapper dp-not-flex`}
                             >
-                                <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
-                                {/* <DpCssUnitTypo {...{attributes, setAttributes,attributesId, }}
-                                attrUnit="lineHeight"
-                                attrUnitD="lineHeightD"
-                                /> */}
+                                <div className="units-responsive">
+                                    <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
+                                    <DpUnitTypo {...{attributes, setAttributes,attributesId, }}
+                                    attributesUnit="lineHeight"
+                                    attributesUnitDefault="lineHeightDefaultUnit"
+                                    />
+                                </div>
 
                                 <RangeControl
                                     value={ attributes[attributesId][getDevice].lineHeight.value }
@@ -262,11 +261,13 @@ export const DpTypography = (props) => {
                                 label="Letter Spacing"
                                 className={`dp-css-value-wrapper dp-not-flex`}
                             >
-                                <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
-                                {/* <DpCssUnitTypo {...{attributes, setAttributes,attributesId, }}
-                                attrUnit="letterSpacing"
-                                attrUnitD="letterSpacingD"
-                                /> */}
+                                <div className="units-responsive">
+                                    <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
+                                    <DpUnitTypo {...{attributes, setAttributes,attributesId, }}
+                                    attributesUnit="letterSpacing"
+                                    attributesUnitDefault="letterSpacingDefaultUnit"
+                                    />
+                                </div>
 
                                 <RangeControl
                                     value={ attributes[attributesId][getDevice].letterSpacing.value }
@@ -281,11 +282,13 @@ export const DpTypography = (props) => {
                                 label="Word Spacing"
                                 className={`dp-css-value-wrapper dp-not-flex`}
                             >
-                                <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
-                                {/* <DpCssUnitTypo {...{attributes, setAttributes,attributesId, }}
-                                attrUnit="wordSpacing"
-                                attrUnitD="wordSpacingD"
-                                /> */}
+                                <div className="units-responsive">
+                                    <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
+                                    <DpUnitTypo {...{attributes, setAttributes,attributesId, }}
+                                    attributesUnit="wordSpacing"
+                                    attributesUnitDefault="wordSpacingDefaultUnit"
+                                    />
+                                </div>
 
                                 <RangeControl
                                     value={ attributes[attributesId][getDevice].wordSpacing.value }
