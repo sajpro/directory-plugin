@@ -15,6 +15,10 @@
 			"type": "string",
 			"default": "This is Subtitle"
 		},
+		"number": {
+			"type": "integer",
+			"default": 12
+		},
 		"align": {
 			"type": "string",
 			"default": "wide"

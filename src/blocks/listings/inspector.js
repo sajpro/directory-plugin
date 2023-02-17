@@ -6,6 +6,8 @@ import {
     TabPanel
 } from '@wordpress/components';
 
+import { DpRangeControl } from "../../components/DpRangeControl";
+
 export const TAB_BUTTONS = [
     {
         name: 'general',
@@ -29,7 +31,8 @@ const Inspector = (props) => {
 
     let {
         title, 
-        subtitle
+        subtitle,
+        number,
     } = attributes;
 
     return (
@@ -55,6 +58,13 @@ const Inspector = (props) => {
                                 onChange={ (v) =>
                                     setAttributes( { subtitle: v } )
                                 }
+                            />
+                            <DpRangeControl {...{attributes, setAttributes}}
+                                label={__('Number of Listings to Show','directory-plugin')}
+                                attrId = 'number'
+                                min="1"
+                                max="20"
+                                step="1"
                             />
                         </PanelBody>
                     )}
