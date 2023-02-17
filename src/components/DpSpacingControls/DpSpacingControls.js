@@ -63,7 +63,7 @@ export const DpSpacingControls = (props) => {
                     <li>
                         <button
                             type="submit"
-                            className={ `linked` }
+                            className={ `global-btn ${attributes[attributesId][getDevice]['isLinked'] ? '' : 'no'}` }
                             onClick={ () => {
                                 let top = attributes[attributesId][getDevice].top
                                 let right = attributes[attributesId][getDevice].right

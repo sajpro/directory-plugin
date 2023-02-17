@@ -64,7 +64,7 @@
   box-shadow: none;
   outline: none;
 }
-.dp-space-controls ul li button.not {
+.dp-space-controls ul li button.no {
   background: transparent;
 }
 .dp-space-controls ul li:last-child {
