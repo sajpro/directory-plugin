@@ -124,8 +124,7 @@ export const DpTypography = (props) => {
             label={label}
         >
             <Dropdown
-                className="fb-base-control"
-                contentClassName="fb-base-popover-control"
+                contentClassName="dp-base-popover-control"
                 position="bottom left"
                 renderToggle={ ( { isOpen, onToggle } ) => (
                     <Button
@@ -136,21 +135,22 @@ export const DpTypography = (props) => {
                     />
                 ) }
                 renderContent={ () => (
-                    <div className="fb-base-popover">
-                        <div className="fb-base-popover-heading">
+                    <div className="dp-base-popover">
+                        <div className="dp-base-popover-heading">
                             <div className="title">
-                                Typography
+                                <h5>Typography</h5>
                             </div>
                             <div className="reset-btn">
                                 <FiRotateCcw/>
                             </div>
                         </div>
-                        <div className="fb-base-popover-body">
+                        <br/>
+                        <div className="dp-base-popover-body">
                             <BaseControl
                                 label="Font Family"
                             >
                                 <Select
-                                    className='fb-select-font-family'
+                                    className='dp-select-font-family'
                                     value={ attributes[attributesId].fontFamily }
                                     onChange={ v => fontFamilyHandle(attributes,attributesId,v) }
                                     options={fonts}
@@ -164,13 +164,13 @@ export const DpTypography = (props) => {
 
                             <BaseControl
                                 label="Size"
-                                className={`fb-css-value-wrapper fb-not-flex`}
+                                className={`dp-css-value-wrapper dp-not-flex`}
                             >
                                 <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
-                                {/* <DpCssUnitTypo {...{attributes, setAttributes,attributesId, }} */}
+                                {/* <DpCssUnitTypo {...{attributes, setAttributes,attributesId, }}
                                 attrUnit="fontSize"
                                 attrUnitD="fontSizeD"
-                                />
+                                /> */}
 
                                 <RangeControl
                                     value={ attributes[attributesId][getDevice].fontSize.value }
@@ -241,13 +241,13 @@ export const DpTypography = (props) => {
 
                             <BaseControl
                                 label="Line Height"
-                                className={`fb-css-value-wrapper fb-not-flex`}
+                                className={`dp-css-value-wrapper dp-not-flex`}
                             >
                                 <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
-                                {/* <DpCssUnitTypo {...{attributes, setAttributes,attributesId, }} */}
+                                {/* <DpCssUnitTypo {...{attributes, setAttributes,attributesId, }}
                                 attrUnit="lineHeight"
                                 attrUnitD="lineHeightD"
-                                />
+                                /> */}
 
                                 <RangeControl
                                     value={ attributes[attributesId][getDevice].lineHeight.value }
@@ -260,13 +260,13 @@ export const DpTypography = (props) => {
 
                             <BaseControl
                                 label="Letter Spacing"
-                                className={`fb-css-value-wrapper fb-not-flex`}
+                                className={`dp-css-value-wrapper dp-not-flex`}
                             >
                                 <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
-                                {/* <DpCssUnitTypo {...{attributes, setAttributes,attributesId, }} */}
+                                {/* <DpCssUnitTypo {...{attributes, setAttributes,attributesId, }}
                                 attrUnit="letterSpacing"
                                 attrUnitD="letterSpacingD"
-                                />
+                                /> */}
 
                                 <RangeControl
                                     value={ attributes[attributesId][getDevice].letterSpacing.value }
@@ -279,13 +279,13 @@ export const DpTypography = (props) => {
 
                             <BaseControl
                                 label="Word Spacing"
-                                className={`fb-css-value-wrapper fb-not-flex`}
+                                className={`dp-css-value-wrapper dp-not-flex`}
                             >
                                 <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
-                                {/* <DpCssUnitTypo {...{attributes, setAttributes,attributesId, }} */}
+                                {/* <DpCssUnitTypo {...{attributes, setAttributes,attributesId, }}
                                 attrUnit="wordSpacing"
                                 attrUnitD="wordSpacingD"
-                                />
+                                /> */}
 
                                 <RangeControl
                                     value={ attributes[attributesId][getDevice].wordSpacing.value }

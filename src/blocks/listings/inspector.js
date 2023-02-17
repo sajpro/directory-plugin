@@ -9,6 +9,7 @@ import {
 import { DpRangeControl } from "../../components/DpRangeControl";
 import { DpToggleControl } from "../../components/DpToggleControl";
 import { DpColorPalette } from "../../components/DpColorPalette";
+import { DpTypography } from "../../components/DpTypography";
 
 import { AdvancedControls } from "../../utils/AdvancedControls"
 
@@ -81,7 +82,10 @@ const Inspector = (props) => {
                         </PanelBody>
                     )}
                     {(tab.name == 'style') && (
-                        <PanelBody title={ __( 'Section Title', 'directory-plugin' ) }>
+                        <PanelBody 
+                        className="dp-style-tab"
+                        title={ __( 'Section Title', 'directory-plugin' ) }
+                        >
                             <DpTypography {...{attributes, setAttributes}}
                                 label={__('Typography','directory-plugin')}
                                 attributesId = 'secTitleTypography'
