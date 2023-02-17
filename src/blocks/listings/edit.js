@@ -10,7 +10,7 @@ import Inspector from "./inspector";
 
 import Loader from "./Loader";
 
-import {getBlockId} from "../../utils/helper";
+import { getBlockId, generateDimensionStyles, minifyCSS } from "../../utils/helper";
 
 const Edit = (props) => {
     let {attributes,setAttributes,className,clientId} = props;
@@ -29,11 +29,6 @@ const Edit = (props) => {
     }
     console.log(attributes);
 
-    // blocks prop wrapper div
-    const blockProps = useBlockProps({
-		className: classnames(className, `dp-listings-wrapper`),
-	});
-
     // create a unique id for blocks
     useEffect(() => {
         const blockPrefix = "dp-block";
@@ -47,33 +42,127 @@ const Edit = (props) => {
 
 	}, [ blockId ]);
 
+    // blocks prop wrapper div
+    const blockProps = useBlockProps({
+		className: classnames(className, `dp-listings-block`),
+	});
+
+    // wrapper margin
+    let {dimensionStyle:{
+        Desktop: wrapperMarginDesktop,
+        Tablet: wrapperMarginTablet,
+        Mobile: wrapperMarginMobile
+    }} = generateDimensionStyles({
+		attributesId: 'wrapperMargin',
+		styleFor: "margin",
+        attributes
+    })
+
+    // Wrapper styles css for desktop
+    const wrapperStylesDesktop = `
+        ${wrapperMarginDesktop ? (`
+            .dp-listings-wrapper.${blockId}{
+                ${wrapperMarginDesktop}
+            }
+        `):''}
+    `;
+
+    // Wrapper styles css for Tablet
+    const wrapperStylesTablet = `
+        ${wrapperMarginTablet ? (`
+            .dp-listings-wrapper.${blockId}{
+                ${wrapperMarginTablet}
+            }
+        `):''}
+    `;
+
+    // Wrapper styles css for mobile
+    const wrapperStylesMobile = `
+        ${wrapperMarginMobile ? (`
+            .dp-listings-wrapper.${blockId}{
+                ${wrapperMarginMobile}
+            }
+        `):''}
+    `;
+
+	// all css styles for desktop in strings
+	const desktopAllStyles = `
+        ${wrapperStylesDesktop}
+    `;
+
+	// all css styles for desktop in strings
+	const tabletAllStyles = `
+        ${wrapperStylesTablet}
+    `;
+
+    // all css styles for desktop in strings
+	const mobileAllStyles = `
+        ${wrapperStylesMobile}
+    `;
+
+	// Set All Style in "blockStyles" Attribute
+	useEffect(() => {
+		const stylesObject = {
+			desktop: desktopAllStyles,
+			tablet: tabletAllStyles,
+			mobile: mobileAllStyles,
+		};
+		if (JSON.stringify(blockStyles) != JSON.stringify(stylesObject)) {
+			setAttributes({ blockStyles: stylesObject });
+		}
+	}, [attributes]);
+
     return (
-        <div { ...blockProps }>
-            
+        <>
             <Inspector {...{attributes,setAttributes}}/>
 
-            <RichText
-                tagName="h2"
-                className="dp-sec-title"
-                style={{textAlign:"center"}}
-                onChange={(v) => setAttributes({ title: v })}
-                value={title}
-            />
-            <RichText
-                tagName="p"
-                className="dp-sec-subtitle"
-                style={{textAlign:"center"}}
-                onChange={(v) => setAttributes({ subtitle: v })}
-                value={subtitle}
-            />
-            <Disabled>
-                <ServerSideRender
-                    LoadingResponsePlaceholder={Loader}
-                    block="directory-plugin/listings"
-                    attributes={ serverAttr }
-                />
-            </Disabled>
-        </div>
+            <div { ...blockProps }>
+                <style>
+                    {`
+                        /* Desktop styles Start */
+                        ${minifyCSS(desktopAllStyles)}
+                        /* Desktop styles End */
+
+                        @media all and (max-width: 1024px) {
+                            /* tablet styles Start */
+                            ${minifyCSS(tabletAllStyles)}
+                            /* tablet styles End */
+                        }
+
+                        @media all and (max-width: 767px) {
+                            /* mobile styles Start */
+                            ${minifyCSS(mobileAllStyles)}
+                            /* mobile styles End */
+                        }
+                    `}
+
+                </style>
+
+                <div className={`dp-listings-wrapper ${blockId}`}>
+                    <RichText
+                        tagName="h2"
+                        className="dp-sec-title"
+                        style={{textAlign:"center"}}
+                        onChange={(v) => setAttributes({ title: v })}
+                        value={title}
+                    />
+                    <RichText
+                        tagName="p"
+                        className="dp-sec-subtitle"
+                        style={{textAlign:"center"}}
+                        onChange={(v) => setAttributes({ subtitle: v })}
+                        value={subtitle}
+                    />
+                    <Disabled>
+                        <ServerSideRender
+                            LoadingResponsePlaceholder={Loader}
+                            block="directory-plugin/listings"
+                            attributes={ serverAttr }
+                        />
+                    </Disabled>
+                </div>
+            </div>
+        </>
     );
 }
 
