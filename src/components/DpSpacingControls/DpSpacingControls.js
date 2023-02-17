@@ -1,6 +1,8 @@
 import { BaseControl } from "@wordpress/components";
 import { FaLink} from 'react-icons/fa';
 
+import DpResponsiveControls from "../DpResponsiveControls/DpResponsiveControls"
+
 export const DpSpacingControls = (props) => {
     let { attributes, setAttributes,attributesId, label } = props;
 
@@ -15,6 +17,9 @@ export const DpSpacingControls = (props) => {
         <BaseControl
             label={label}
         >
+            <div className="units-responsive">
+                <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
+            </div>
 
             <div className="dp-space-controls">
                 <ul>
