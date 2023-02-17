@@ -57,7 +57,7 @@ export const AdvancedControls = (props) => {
                                         { label: 'Gradient', value: 'gradient', icon: '' }
                                     ]}
                                 />
-                                {attributes.wrapperHoverBackgroundType == 'gradient' ? (
+                                {attributes.wrapperHoverBgType == 'gradient' ? (
                                     <>
                                         <DpGradientPicker {...{attributes, setAttributes}}
                                             label={__('Gradient Color','directory-plugin')}

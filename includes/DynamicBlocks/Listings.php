@@ -199,12 +199,14 @@ class Listings {
 
 		ob_start(); ?>
 			<div <?php echo esc_attr( $wrapper_attributes ); ?>>
-				<?php if($title){
-					echo sprintf(__('<h2 class="sec-title text-center">%s</h2>','directory-plugin'), $title);
-				} ?>
-				<?php if($subtitle){
-					echo sprintf(__('<p class="sec-subtitle text-center">%s</p>','directory-plugin'), $subtitle);
-				} ?>
+				<?php 
+					if($title){
+						echo sprintf(__('<h2 class="sec-title text-center">%s</h2>','directory-plugin'), $title);
+					} 
+					if($subtitle){
+						echo sprintf(__('<p class="sec-subtitle text-center">%s</p>','directory-plugin'), $subtitle);
+					} 
+				?>
 				<?php if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ) : ?>
 					<div id="listings-wrap">
 						<div class="loader-wrap hidden">
