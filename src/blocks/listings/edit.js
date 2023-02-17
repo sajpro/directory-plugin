@@ -32,7 +32,7 @@ const Edit = (props) => {
 console.log(serverAttr);
     // create a unique id for blocks
     useEffect(() => {
-        const blockPrefix = "dp-block";
+        const blockPrefix = "dpid";
 
         getBlockId({
             blockPrefix,
@@ -97,7 +97,7 @@ console.log(serverAttr);
     // Title styles css desktop in strings ⬇
 	const sectionTitleStylesDesktop = `
         ${(secTitleNormalColor || secTitleTypoStyleDesktop) ? (`
-            .dp-listings-wrapper.${blockId} .dp-sec-title {
+            .dp-listings-wrapper.${blockId} .sec-title {
                 ${secTitleNormalColor ? (`color: ${secTitleNormalColor};`) : ''}
                 ${secTitleTypoStyleDesktop}
             }
@@ -117,7 +117,7 @@ console.log(serverAttr);
     // Title styles css desktop in strings ⬇
 	const sectionTitleStylesTablet = `
         ${(secTitleTypoStyleTablet) ? (`
-            .dp-listings-wrapper.${blockId} .dp-sec-title {
+            .dp-listings-wrapper.${blockId} .sec-title {
                 ${secTitleTypoStyleDesktop}
             }
         `):''}
@@ -137,7 +137,7 @@ console.log(serverAttr);
     // Title styles css desktop in strings ⬇
 	const sectionTitleStylesMobile = `
         ${(secTitleTypoStyleMobile) ? (`
-            .dp-listings-wrapper.${blockId} .dp-sec-title {
+            .dp-listings-wrapper.${blockId} .sec-title {
                 ${secTitleTypoStyleMobile}
             }
         `):''}
@@ -205,7 +205,7 @@ console.log(serverAttr);
                 <div className={`dp-listings-wrapper ${blockId}`}>
                     <RichText
                         tagName="h2"
-                        className="dp-sec-title"
+                        className="sec-title"
                         style={{textAlign:"center"}}
                         onChange={(v) => setAttributes({ title: v })}
                         value={title}

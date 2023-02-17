@@ -11,9 +11,9 @@ const blockIdExist = ( blockId, clientId ) => {
 };
 
 const getUniqueId = (blockPrefix,setAttributes,clientId) => {
-    const uid = uuidv1().split("-").pop();
-    const cid = clientId.split("-").pop();
-    setAttributes({ blockId: `${blockPrefix}-${uid}-${cid}` });
+    const uid = uuidv1().split("-").pop().match(/.{1,3}/g).pop();
+    const cid = clientId.split("-").pop().match(/.{1,3}/g).pop();
+    setAttributes({ blockId: `${blockPrefix}-${uid}${cid}` });
 }
 
 // generate unique block id
