@@ -18,6 +18,7 @@ class Dynamic_Blocks {
 
 		new BlocksFontLoader();
 		new BlocksPostMeta();
+		new Blocks\StyleLoader();
 	}
 
 	/**

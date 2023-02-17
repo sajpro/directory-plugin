@@ -143,12 +143,17 @@ class Listings {
 	 * Listing blocks dynaic content
 	 */
 	public function listing_dynamic_render_callback( $attributes, $content ) {
+		$block_id        = '';
 		$title           = '';
 		$subtitle        = '';
 		$number          = 12;
 		$show_pagination = true;
 		$show_submit_btn = true;
 		$align           = '';
+
+		if ( isset( $attributes['blockId'] ) && ! empty( $attributes['blockId'] ) ) {
+			$block_id = $attributes['blockId'];
+		}
 
 		if ( isset( $attributes['title'] ) && ! empty( $attributes['title'] ) ) {
 			$title = $attributes['title'];
@@ -198,123 +203,125 @@ class Listings {
 		$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => implode( ' ', $classnames ) ] );
 
 		ob_start(); ?>
-			<div <?php echo esc_attr( $wrapper_attributes ); ?>>
-				<?php
-				if ( $title ) {
-					echo sprintf( __( '<h2 class="sec-title text-center">%s</h2>', 'directory-plugin' ), $title );
-				}
-				if ( $subtitle ) {
-					echo sprintf( __( '<p class="sec-subtitle text-center">%s</p>', 'directory-plugin' ), $subtitle );
-				}
-				?>
-				<?php if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ) : ?>
-					<div id="listings-wrap">
-						<div class="loader-wrap hidden">
-							<div class="loader">
-								<div class="svg-loader">
-									<svg class="svg-container" height="100" width="100" viewBox="0 0 100 100">
-										<circle class="loader-svg bg" cx="50" cy="50" r="45"></circle>
-										<circle class="loader-svg animate" cx="50" cy="50" r="45"></circle>
-									</svg>
+			<div class="dp-listings-wrapper <?php echo esc_attr($block_id); ?>">
+				<div <?php echo esc_attr( $wrapper_attributes ); ?>>
+					<?php
+					if ( $title ) {
+						echo sprintf( __( '<h2 class="sec-title text-center">%s</h2>', 'directory-plugin' ), $title );
+					}
+					if ( $subtitle ) {
+						echo sprintf( __( '<p class="sec-subtitle text-center">%s</p>', 'directory-plugin' ), $subtitle );
+					}
+					?>
+					<?php if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ) : ?>
+						<div id="listings-wrap">
+							<div class="loader-wrap hidden">
+								<div class="loader">
+									<div class="svg-loader">
+										<svg class="svg-container" height="100" width="100" viewBox="0 0 100 100">
+											<circle class="loader-svg bg" cx="50" cy="50" r="45"></circle>
+											<circle class="loader-svg animate" cx="50" cy="50" r="45"></circle>
+										</svg>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="wrapper <?php echo esc_attr( $align ); ?>">
-							<?php
-							if ( count( $response_body['listings'] ) > 0 ) {
-								foreach ( $response_body['listings'] as $listing ) {
-									$image_url = wp_get_attachment_url( $listing->preview_image );
-									?>
-										<div class="cell">
-											<?php if ( $image_url ) : ?>
-												<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $listing->id ); ?>">
-											<?php endif; ?>
-											<h2>ID: <?php echo esc_html( $listing->id ); ?></h2>
-											<h5>Title: <?php echo esc_html( $listing->title ); ?></h5>
-											<p><b>Content</b>: <?php echo esc_html( wp_trim_words( $listing->content, 12, '...' ) ); ?></p>
-											<p><b>Status</b>: <?php echo esc_html( $listing->listing_status ); ?></p>
-											<p><b>Author</b>: <?php echo esc_html( $listing->author ); ?></p>
-											<p><b>Submitted</b>: <?php echo esc_html( $listing->created_at ); ?></p>
-										</div>
-									<?php
+							<div class="wrapper <?php echo esc_attr( $align ); ?>">
+								<?php
+								if ( count( $response_body['listings'] ) > 0 ) {
+									foreach ( $response_body['listings'] as $listing ) {
+										$image_url = wp_get_attachment_url( $listing->preview_image );
+										?>
+											<div class="cell">
+												<?php if ( $image_url ) : ?>
+													<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $listing->id ); ?>">
+												<?php endif; ?>
+												<h2>ID: <?php echo esc_html( $listing->id ); ?></h2>
+												<h5>Title: <?php echo esc_html( $listing->title ); ?></h5>
+												<p><b>Content</b>: <?php echo esc_html( wp_trim_words( $listing->content, 12, '...' ) ); ?></p>
+												<p><b>Status</b>: <?php echo esc_html( $listing->listing_status ); ?></p>
+												<p><b>Author</b>: <?php echo esc_html( $listing->author ); ?></p>
+												<p><b>Submitted</b>: <?php echo esc_html( $listing->created_at ); ?></p>
+											</div>
+										<?php
+									}
 								}
-							}
-							?>
+								?>
+							</div>
 						</div>
-					</div>
-					<?php if ( $show_pagination ) : ?>
-						<div class="listings-pagination">
-							<input type="hidden" name="pages" id="pages" value="<?php echo esc_attr( $pages ); ?>">
-							<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
-							<button class="prev-btn <?php echo esc_attr( $prev < 2 ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $prev ); ?>">Prev</button>
-							<?php
-							for ( $i = 0; $i < ( $pages ); $i++ ) {
-								$current = $i + 1;
-								echo '<button class="page-number ' . esc_attr( $current == ( $next - 1 ) ? 'active' : '' ) . '" value="' . esc_html( $current ) . '">' . esc_html( $current ) . '</button>';
-							}
-							?>
-							<button class="next-btn <?php echo esc_attr( $next > $pages ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $next ); ?>">Next</button>
-						</div>
+						<?php if ( $show_pagination ) : ?>
+							<div class="listings-pagination">
+								<input type="hidden" name="pages" id="pages" value="<?php echo esc_attr( $pages ); ?>">
+								<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
+								<button class="prev-btn <?php echo esc_attr( $prev < 2 ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $prev ); ?>">Prev</button>
+								<?php
+								for ( $i = 0; $i < ( $pages ); $i++ ) {
+									$current = $i + 1;
+									echo '<button class="page-number ' . esc_attr( $current == ( $next - 1 ) ? 'active' : '' ) . '" value="' . esc_html( $current ) . '">' . esc_html( $current ) . '</button>';
+								}
+								?>
+								<button class="next-btn <?php echo esc_attr( $next > $pages ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $next ); ?>">Next</button>
+							</div>
+						<?php endif; ?>
 					<?php endif; ?>
-				<?php endif; ?>
 
-				<?php if ( $show_submit_btn ) : ?>
-					<button class="submit-toggle">Submit Listing</button>
-				<?php endif; ?>
+					<?php if ( $show_submit_btn ) : ?>
+						<button class="submit-toggle">Submit Listing</button>
+					<?php endif; ?>
 
-				<div class="dp-modal">
-					<div class="listing-form <?php echo esc_attr( ! is_user_logged_in() ? 'login-first' : '' ); ?>">
-						<span class="close-modal">&times;</span>
-						<?php if ( is_user_logged_in() ) : ?>
-							<form id="submit-listing-form" method="post" action="" enctype="multipart/form-data">
-								<label for="title"><?php esc_html_e( 'Title:', 'directory-plugin' ); ?></label>
-								<input type="text" id="title" name="title" placeholder="Title...">
-								<span class="error hidden">Title can not be empty.</span><br>
+					<div class="dp-modal">
+						<div class="listing-form <?php echo esc_attr( ! is_user_logged_in() ? 'login-first' : '' ); ?>">
+							<span class="close-modal">&times;</span>
+							<?php if ( is_user_logged_in() ) : ?>
+								<form id="submit-listing-form" method="post" action="" enctype="multipart/form-data">
+									<label for="title"><?php esc_html_e( 'Title:', 'directory-plugin' ); ?></label>
+									<input type="text" id="title" name="title" placeholder="Title...">
+									<span class="error hidden">Title can not be empty.</span><br>
 
-								<label for="content"><?php esc_html_e( 'Content:', 'directory-plugin' ); ?></label>
-								<textarea id="content" name="content" placeholder="Content..." style="height:200px"></textarea>
+									<label for="content"><?php esc_html_e( 'Content:', 'directory-plugin' ); ?></label>
+									<textarea id="content" name="content" placeholder="Content..." style="height:200px"></textarea>
 
-								<label for="status"><?php esc_html_e( 'Status:', 'directory-plugin' ); ?></label>
-								<select id="status" name="status">
-									<option value="active"><?php esc_html_e( 'Active', 'directory-plugin' ); ?></option>
-									<option value="inactive"><?php esc_html_e( 'Inactive', 'directory-plugin' ); ?></option>
-								</select>
+									<label for="status"><?php esc_html_e( 'Status:', 'directory-plugin' ); ?></label>
+									<select id="status" name="status">
+										<option value="active"><?php esc_html_e( 'Active', 'directory-plugin' ); ?></option>
+										<option value="inactive"><?php esc_html_e( 'Inactive', 'directory-plugin' ); ?></option>
+									</select>
 
-								<label><?php esc_html_e( 'Image:', 'directory-plugin' ); ?></label>
-								<div class="image-upload-area">
-									<div>
-										<input type="file" id="image" name="image" class="hidden">
-										<label for="image" class="upload-btn">Upload Image</label>
+									<label><?php esc_html_e( 'Image:', 'directory-plugin' ); ?></label>
+									<div class="image-upload-area">
+										<div>
+											<input type="file" id="image" name="image" class="hidden">
+											<label for="image" class="upload-btn">Upload Image</label>
+										</div>
+										<div class="preview-image hidden">
+											<span>&times;</span>
+											<img src="" alt="preview image">
+										</div>
 									</div>
-									<div class="preview-image hidden">
-										<span>&times;</span>
-										<img src="" alt="preview image">
-									</div>
-								</div>
-								<br>
-								<br>
-								<?php wp_nonce_field( 'dp-listing-image-upload', 'dp-listing-image-upload-nonce' ); ?>
-								<input type="hidden" id="autor" value="<? echo get_current_user_id(); ?>">
-								<div class="submit-btn">
-									<input type="submit" id="submit-listing" value="Submit">
-									<div class="loader-wrap hidden">
-										<div class="loader">
-											<div class="svg-loader">
-												<svg class="svg-container" height="100" width="100" viewBox="0 0 100 100">
-													<circle class="loader-svg bg" cx="50" cy="50" r="45"></circle>
-													<circle class="loader-svg animate" cx="50" cy="50" r="45"></circle>
-												</svg>
+									<br>
+									<br>
+									<?php wp_nonce_field( 'dp-listing-image-upload', 'dp-listing-image-upload-nonce' ); ?>
+									<input type="hidden" id="autor" value="<? echo get_current_user_id(); ?>">
+									<div class="submit-btn">
+										<input type="submit" id="submit-listing" value="Submit">
+										<div class="loader-wrap hidden">
+											<div class="loader">
+												<div class="svg-loader">
+													<svg class="svg-container" height="100" width="100" viewBox="0 0 100 100">
+														<circle class="loader-svg bg" cx="50" cy="50" r="45"></circle>
+														<circle class="loader-svg animate" cx="50" cy="50" r="45"></circle>
+													</svg>
+												</div>
 											</div>
 										</div>
+										<h1 class="success-msg hidden">Success</h1>
+										<h1 class="error-msg hidden"></h1>
 									</div>
-									<h1 class="success-msg hidden">Success</h1>
-									<h1 class="error-msg hidden"></h1>
-								</div>
 
-							</form>
-						<?php else : ?>
-							<p class="no-access"><?php echo sprintf( __( 'You need to <a href="%1$s">login</a> first to submit a listing.', 'directory-plugin' ), esc_url( wp_login_url() ) ); ?></p>
-						<?php endif; ?>
+								</form>
+							<?php else : ?>
+								<p class="no-access"><?php echo sprintf( __( 'You need to <a href="%1$s">login</a> first to submit a listing.', 'directory-plugin' ), esc_url( wp_login_url() ) ); ?></p>
+							<?php endif; ?>
+						</div>
 					</div>
 				</div>
 			</div>
