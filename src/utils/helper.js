@@ -143,3 +143,39 @@ export const generateBgImageStyle = ({attributesIdType, attributesIdColor, attri
 
     return {backgroundStyles};
 }
+
+
+export const generateTypographyStyle = ({attributesId,attributes}) => {
+    let sizeUnitD = attributes[attributesId].fontSizeDefaultUnit
+    let lhUnitD   = attributes[attributesId].lineHeightDefaultUnit
+    let lsUnitD   = attributes[attributesId].letterSpacingDefaultUnit
+    let wsUnitD   = attributes[attributesId].wordSpacingDefaultUnit
+
+    let devices = [
+        'Desktop',
+        'Tablet',
+        'Mobile'
+    ]
+
+    let typoStyle={}
+
+    let font_family     = (attributes[attributesId].fontFamily ? `font-family:${attributes[attributesId].fontFamily.value};` : ``)
+    let font_weight     = (attributes[attributesId].fontWeight ? `font-weight:${attributes[attributesId].fontWeight};` : ``)
+    let text_transform  = (attributes[attributesId].textTransform ? `text-transform:${attributes[attributesId].textTransform};` : ``)
+    let font_style      = (attributes[attributesId].fontStyle ? `font-style:${attributes[attributesId].fontStyle};` : ``)
+    let text_decoration = (attributes[attributesId].textDecoration ? `text-decoration:${attributes[attributesId].textDecoration};` : ``)
+
+    devices.forEach(device=>{
+        let font_size = (attributes[attributesId][device].fontSize.value ? `font-size:${attributes[attributesId][device].fontSize.value}${attributes[attributesId][device].fontSize.unit || sizeUnitD };` : '')
+        let line_height = (attributes[attributesId][device].lineHeight.value ? `line-height:${attributes[attributesId][device].lineHeight.value}${attributes[attributesId][device].lineHeight.unit || lhUnitD };` : '')
+        let letter_spacing = (attributes[attributesId][device].letterSpacing.value ? `letter-spacing:${attributes[attributesId][device].letterSpacing.value}${attributes[attributesId][device].letterSpacing.unit || lsUnitD };` : '')
+        let word_spacing = (attributes[attributesId][device].wordSpacing.value ? `word-spacing:${attributes[attributesId][device].wordSpacing.value}${attributes[attributesId][device].wordSpacing.unit || wsUnitD };` : '')
+        let typoStylelean = `${font_size} ${line_height} ${letter_spacing} ${word_spacing} `
+        typoStyle[device] = typoStylelean.trim() || '';
+    })
+
+    let typoDesktopOnly = `${font_family} ${font_weight} ${text_transform} ${font_style} ${text_decoration}`
+    typoStyle['Desktop'] = (typoDesktopOnly.trim() || '') + typoStyle['Desktop']
+
+    return {typoStyle};
+}

@@ -10,7 +10,7 @@ import Inspector from "./inspector";
 
 import Loader from "./Loader";
 
-import { getBlockId, generateDimensionStyles, generateBgImageStyle, minifyCSS } from "../../utils/helper";
+import { getBlockId, generateDimensionStyles, generateBgImageStyle, generateTypographyStyle, minifyCSS } from "../../utils/helper";
 
 const Edit = (props) => {
     let {attributes,setAttributes,className,clientId} = props;
@@ -22,6 +22,7 @@ const Edit = (props) => {
         number,
         showPagination,
         showSubmitButton,
+        secTitleNormalColor,
         wrapperCustomCss
     } = attributes;
 
@@ -73,12 +74,32 @@ const Edit = (props) => {
         attributes
     })
 
+    // section title typography
+    let {typoStyle:{
+        Desktop: secTitleTypoStyleDesktop,
+        Tablet: secTitleTypoStyleTablet,
+        Mobile: secTitleTypoStyleMobile
+    }} = generateTypographyStyle({
+        attributesId: 'secTitleTypography',
+        attributes
+    })
+
     // Wrapper styles css for desktop
     const wrapperStylesDesktop = `
         ${(wrapperMarginDesktop || wrapperBgStylesDesktop) ? (`
             .dp-listings-wrapper.${blockId}{
                 ${wrapperMarginDesktop}
                 ${wrapperBgStylesDesktop}
+            }
+        `):''}
+    `;
+
+    // Title styles css desktop in strings ⬇
+	const sectionTitleStylesDesktop = `
+        ${(secTitleNormalColor || secTitleTypoStyleDesktop) ? (`
+            .dp-listings-wrapper.${blockId} .dp-sec-title {
+                ${secTitleNormalColor ? (`color: ${secTitleNormalColor};`) : ''}
+                ${secTitleTypoStyleDesktop}
             }
         `):''}
     `;
@@ -93,6 +114,16 @@ const Edit = (props) => {
         `):''}
     `;
 
+    // Title styles css desktop in strings ⬇
+	const sectionTitleStylesTablet = `
+        ${(secTitleTypoStyleTablet) ? (`
+            .dp-listings-wrapper.${blockId} .dp-sec-title {
+                ${secTitleTypoStyleDesktop}
+            }
+        `):''}
+    `;
+
+
     // Wrapper styles css for mobile
     const wrapperStylesMobile = `
         ${(wrapperMarginMobile || wrapperBgStylesMobile) ? (`
@@ -103,19 +134,31 @@ const Edit = (props) => {
         `):''}
     `;
 
+    // Title styles css desktop in strings ⬇
+	const sectionTitleStylesMobile = `
+        ${(secTitleTypoStyleMobile) ? (`
+            .dp-listings-wrapper.${blockId} .dp-sec-title {
+                ${secTitleTypoStyleMobile}
+            }
+        `):''}
+    `;
+
 	// all css styles for desktop in strings
 	const desktopAllStyles = `
         ${wrapperStylesDesktop}
+        ${sectionTitleStylesDesktop}
     `;
 
 	// all css styles for desktop in strings
 	const tabletAllStyles = `
         ${wrapperStylesTablet}
+        ${sectionTitleStylesTablet}
     `;
 
     // all css styles for desktop in strings
 	const mobileAllStyles = `
         ${wrapperStylesMobile}
+        ${sectionTitleStylesMobile}
     `;
 
 	// Set All Style in "blockStyles" Attribute
