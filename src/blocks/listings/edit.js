@@ -65,8 +65,7 @@ console.log(serverAttr);
     let {backgroundStyles:{
         Desktop: wrapperBgStylesDesktop,
         Tablet: wrapperBgStylesTablet,
-        Mobile: wrapperBgStylesMobile,
-        Transition: wrapperBgTransitionStyle
+        Mobile: wrapperBgStylesMobile
     }} = generateBgImageStyle({
 		attributesIdType: 'wrapperBgType',
 		attributesIdColor: 'wrapperBgColor',
@@ -79,8 +78,7 @@ console.log(serverAttr);
     let {backgroundStyles:{
         Desktop: wrapperHoverBgStylesDesktop,
         Tablet: wrapperHoverBgStylesTablet,
-        Mobile: wrapperHoverBgStylesMobile,
-        Transition: wrapperHoverBgTransition
+        Mobile: wrapperHoverBgStylesMobile
     }} = generateBgImageStyle({
         attributesIdType: 'wrapperHoverBgType',
         attributesIdColor: 'wrapperHoverBgColor',
@@ -152,6 +150,11 @@ console.log(serverAttr);
                 ${wrapperBgStylesTablet}
             }
         `):''}
+        ${(wrapperHoverBgStylesTablet) ? (`
+            .dp-listings-wrapper.${blockId}:hover{
+                ${wrapperHoverBgStylesTablet}
+            }
+        `):''}
     `;
 
     // Title styles css desktop in strings ⬇
@@ -170,6 +173,11 @@ console.log(serverAttr);
             .dp-listings-wrapper.${blockId}{
                 ${wrapperMarginMobile}
                 ${wrapperBgStylesMobile}
+            }
+        `):''}
+        ${(wrapperHoverBgStylesMobile) ? (`
+            .dp-listings-wrapper.${blockId}:hover{
+                ${wrapperHoverBgStylesMobile}
             }
         `):''}
     `;
