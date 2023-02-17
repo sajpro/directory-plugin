@@ -54,6 +54,18 @@ class Listings {
 						'type' => 'string',
 						'default' => 'wide',
 					],
+					'align' => [
+						'type' => 'string',
+						'default' => 'wide',
+					],
+					'secTitleNormalColor' => [
+						'type' => 'string',
+						'default' => '',
+					],
+					'secTitleHoverColor' => [
+						'type' => 'string',
+						'default' => '',
+					],
 					'wrapperMargin' => [
 						'type' => 'object',
 						'default' => [],

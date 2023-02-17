@@ -8,7 +8,7 @@ import {
 
 import { DpRangeControl } from "../../components/DpRangeControl";
 import { DpToggleControl } from "../../components/DpToggleControl";
-import { DpSpacingControls } from "../../components/DpSpacingControls";
+import { DpColorPalette } from "../../components/DpColorPalette";
 
 import { AdvancedControls } from "../../utils/AdvancedControls"
 
@@ -81,7 +81,37 @@ const Inspector = (props) => {
                         </PanelBody>
                     )}
                     {(tab.name == 'style') && (
-                        <h2>css</h2>
+                        <PanelBody title={ __( 'Section Title', 'directory-plugin' ) }>
+                            <TabPanel
+                                className='sec-tab-panel'
+                                activeClass='active-tab'
+                                tabs={[
+                                    {
+                                        name: 'normal',
+                                        title: 'Normal',
+                                    },
+                                    {
+                                        name: 'hover',
+                                        title: 'Hover',
+                                    }
+                                ]}
+                            >
+                                {(tab)=> <>
+                                    {(tab.name == 'normal') && (
+                                        <DpColorPalette {...{attributes, setAttributes}}
+                                            label={__('Text Color','directory-plugin')}
+                                            attributesId = 'secTitleNormalColor'
+                                        />
+                                    )}
+                                    {(tab.name == 'hover') && (
+                                        <DpColorPalette {...{attributes, setAttributes}}
+                                            label={__('Text Color','directory-plugin')}
+                                            attributesId = 'secTitleHoverColor'
+                                        />
+                                    )}
+                                </>}
+                            </TabPanel>
+                        </PanelBody>
                     )}
                     {(tab.name == 'advanced') && (
                         <AdvancedControls {...{attributes, setAttributes}}/>

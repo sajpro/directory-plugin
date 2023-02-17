@@ -27,6 +27,14 @@ const attributes = {
         type: "string",
         default: "wide"
     },
+    secTitleNormalColor: {
+        type: "string",
+        default: ""
+    },
+    secTitleHoverColor: {
+        type: "string",
+        default: ""
+    },
 };
 
 export default attributes;
