@@ -9,7 +9,11 @@
 	"attributes": {
 		"title": {
 			"type": "string",
-			"default": "This is Title xxx"
+			"default": "This is Title"
+		},
+		"subtitle": {
+			"type": "string",
+			"default": "This is Subtitle"
 		},
 		"align": {
 			"type": "string",

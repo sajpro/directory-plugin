@@ -1,6 +1,6 @@
 import { __ } from "@wordpress/i18n";
 import ServerSideRender from '@wordpress/server-side-render';
-import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import { InspectorControls, RichText, useBlockProps } from '@wordpress/block-editor';
 import {
 	Disabled,
 	PanelBody,
@@ -9,7 +9,12 @@ import {
 
 import Loader from "./Loader";
 
-const Edit = ({attributes, setAttributes}) => {
+const Edit = (props) => {
+    let {attributes,setAttributes,className,clientId} = props;
+    let {
+        title, 
+        subtitle
+    } = attributes;
 
     const serverAttr = {
         ...attributes
@@ -26,8 +31,29 @@ const Edit = ({attributes, setAttributes}) => {
                         setAttributes( { title: v } )
                     }
                 />
+                <TextControl
+                    label={ __( 'Subitle', 'directory-plugin' ) }
+                    value={attributes.subtitle}
+                    onChange={ (v) =>
+                        setAttributes( { subtitle: v } )
+                    }
+                />
             </PanelBody>
         </InspectorControls>
+            <RichText
+                tagName="h2"
+                className="dp-sec-title"
+                style={{textAlign:"center"}}
+                onChange={(v) => setAttributes({ title: v })}
+                value={title}
+            />
+            <RichText
+                tagName="p"
+                className="dp-sec-subtitle"
+                style={{textAlign:"center"}}
+                onChange={(v) => setAttributes({ subtitle: v })}
+                value={subtitle}
+            />
             <Disabled>
                 <ServerSideRender
                     LoadingResponsePlaceholder={Loader}
