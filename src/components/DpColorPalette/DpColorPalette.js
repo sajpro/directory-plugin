@@ -14,10 +14,10 @@ export const DpColorPalette = (props) => {
                 renderToggle={ ( { isOpen, onToggle } ) => (
                     <Button
                         variant="primary"
-                        data-attr={attributesId}
+                        className="dp-color-picker"
                         onClick={ onToggle }
                         aria-expanded={ isOpen }
-                        icon={pencil}
+                        // icon={pencil}
                         style={{backgroundColor:attributes[attributesId]}}
                     />
                 ) }
