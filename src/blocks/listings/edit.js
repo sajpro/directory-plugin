@@ -22,6 +22,7 @@ const Edit = (props) => {
         number,
         showPagination,
         showSubmitButton,
+        wrapperCustomCss
     } = attributes;
 
     const serverAttr = {
@@ -152,6 +153,8 @@ const Edit = (props) => {
                         ${minifyCSS(mobileAllStyles)}
                         /* mobile styles End */
                     }
+                    /* custom css */
+                    ${minifyCSS(wrapperCustomCss)}
                 `}
 
                 </style>
