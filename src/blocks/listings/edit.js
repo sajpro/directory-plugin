@@ -65,7 +65,7 @@ console.log(serverAttr);
         Desktop: wrapperBgStylesDesktop,
         Tablet: wrapperBgStylesTablet,
         Mobile: wrapperBgStylesMobile,
-        Transition: wrapperBgTransition
+        Transition: wrapperBgTransitionStyle
     }} = generateBgImageStyle({
 		attributesIdType: 'wrapperBgType',
 		attributesIdColor: 'wrapperBgColor',
@@ -101,7 +101,7 @@ console.log(serverAttr);
 
     // porcess transition for background hover
     const wrapperTransitions = [] 
-    if(wrapperBgTransition) wrapperTransitions.push(wrapperBgTransition)
+    if(wrapperBgTransitionStyle) wrapperTransitions.push(wrapperBgTransitionStyle)
     // Wrapper styles css for desktop
     const wrapperStylesDesktop = `
         ${(wrapperMarginDesktop || wrapperBgStylesDesktop) ? (`

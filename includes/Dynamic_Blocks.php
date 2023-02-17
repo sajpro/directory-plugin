@@ -16,8 +16,8 @@ class Dynamic_Blocks {
 		// Register blocks.
 		add_action( 'init', [ $this, 'register_blocks' ] );
 
-		new BlocksFontLoader();
-		new BlocksPostMeta();
+		new Blocks\FontsLoader();
+		new Blocks\PostMeta();
 		new Blocks\StyleLoader();
 	}
 

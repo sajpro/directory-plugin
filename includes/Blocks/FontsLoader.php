@@ -1,17 +1,17 @@
 <?php
 /**
- * Font Loader.
+ * Fonts Loader.
  *
  * @package DirectoryPlugin
  */
 
-namespace Sajib\DP;
+namespace Sajib\DP\Blocks;
 
 /**
  * Load google fonts.
  */
 
-class BlocksFontLoader {
+class FontsLoader {
 
 
 	public function __construct() {

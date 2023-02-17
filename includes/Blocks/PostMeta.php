@@ -5,12 +5,12 @@
  * @package DirectoryPlugin
  */
 
-namespace Sajib\DP;
+namespace Sajib\DP\Blocks;
 
 /**
  * Post Meta Class
  */
-class BlocksPostMeta {
+class PostMeta {
 
 	public function __construct() {
 		add_filter( 'init', [ $this, 'register_post_meta' ] );

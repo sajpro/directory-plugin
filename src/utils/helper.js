@@ -135,13 +135,13 @@ export const generateBgImageStyle = ({attributesIdType, attributesIdColor, attri
             let backgroundStyless = `${position} ${repeat} ${size}`
             backgroundStyles[device] = backgroundStyless.trim() || '';
         })
-
-        backgroundStyles['Transition'] = (attributes[attributesIdTransition] ? `background ${attributes[attributesIdTransition]}s` : '')
         let backgroundDesktopOnly = `${bgColor} ${bgImage} ${attachment}`
         backgroundStyles['Desktop'] = (backgroundDesktopOnly.trim() || '') + backgroundStyles['Desktop']
     }else{
         backgroundStyles['Desktop'] = (attributes[attributesIdGradient] ? `background: ${attributes[attributesIdGradient]};` : '')
     }
+
+    backgroundStyles['Transition'] = (attributes[attributesIdTransition] ? `background ${attributes[attributesIdTransition]}s` : '')
 
     return {backgroundStyles};
 }
