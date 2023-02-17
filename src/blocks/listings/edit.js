@@ -12,7 +12,10 @@ const Edit = (props) => {
     let {attributes,setAttributes,className,clientId} = props;
     let {
         title, 
-        subtitle
+        subtitle,
+        number,
+        showPagination,
+        showSubmitButton,
     } = attributes;
 
     const serverAttr = {

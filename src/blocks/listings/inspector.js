@@ -32,8 +32,7 @@ const Inspector = (props) => {
 
     let {
         title, 
-        subtitle,
-        number,
+        subtitle
     } = attributes;
 
     return (
@@ -62,18 +61,18 @@ const Inspector = (props) => {
                             />
                             <DpRangeControl {...{attributes, setAttributes}}
                                 label={__('Number of Listings to Show','directory-plugin')}
-                                attrId = 'number'
+                                attributesId = 'number'
                                 min="1"
                                 max="20"
                                 step="1"
                             />
                             <DpToggleControl {...{attributes, setAttributes}} 
                                 label={__('Display Pagination?','directory-plugin')}
-                                attrId = 'pagination'
+                                attributesId = 'showPagination'
                             />
                             <DpToggleControl {...{attributes, setAttributes}} 
                                 label={__('Display Submit Button?','directory-plugin')}
-                                attrId = 'submitButton'
+                                attributesId = 'showSubmitButton'
                             />
                         </PanelBody>
                     )}

@@ -19,11 +19,11 @@
 			"type": "integer",
 			"default": 12
 		},
-		"pagination": {
+		"showPagination": {
 			"type": "boolean",
 			"default": true
 		},
-		"submitButton": {
+		"showSubmitButton": {
 			"type": "boolean",
 			"default": true
 		},

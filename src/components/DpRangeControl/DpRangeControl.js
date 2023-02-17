@@ -1,10 +1,10 @@
 import { RangeControl, BaseControl,Button } from "@wordpress/components";
 
 export const DpRangeControl = (props) => {
-    let { attributes, setAttributes,attrId, label, min, max, step } = props;
+    let { attributes, setAttributes,attributesId, label, min, max, step } = props;
 
     const handleOnChange = (v) => {
-        setAttributes( {[attrId]: v} )
+        setAttributes( {[attributesId]: v} )
     }
 
     return (
@@ -12,7 +12,7 @@ export const DpRangeControl = (props) => {
             label={label}
         >
             <RangeControl
-                value={ attributes[attrId] }
+                value={ attributes[attributesId] }
                 onChange={ (v) => handleOnChange(v) }
                 min={ min || 1 }
                 max={ max || 100 }
