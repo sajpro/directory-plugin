@@ -16,6 +16,7 @@ class Menu {
 	 */
 	function __construct() {
 		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
+		add_filter( 'set-screen-option', [ $this, 'dp_set_screen_option' ], 10, 3 );
 	}
 
 	/**
@@ -40,8 +41,8 @@ class Menu {
 	 * @return void
 	 */
 	public static function plugin_page() {
-		$action = isset( $_GET['action'] ) ? $_GET['action'] : 'list';
-		$id     = isset( $_GET['listing'] ) ? intval( $_GET['listing'] ) : 0;
+		$action = isset( $_GET['action'] ) ? wp_unslash( $_GET['action'] ) : 'list';
+		$id     = isset( $_GET['listing'] ) ? intval( wp_unslash( $_GET['listing'] ) ) : 0;
 
 		switch ( $action ) {
 			// case 'create':
@@ -70,7 +71,9 @@ class Menu {
 		include __DIR__ . '/views/listings-create.php';
 	}
 
-	// add screen options
+	/**
+	 * Add screen options to Listing page
+	 */
 	public function direcotry_plugin_screen_options() {
 		global $direcotry_plugin_page;
 
@@ -82,8 +85,8 @@ class Menu {
 		}
 
 		$args = [
-			'label'   => __( 'Listings per page', 'directory-plugin' ),
-			'default' => 2,
+			'label'   => esc_html__( 'Listings per page', 'directory-plugin' ),
+			'default' => 20,
 			'option'  => 'listings_per_page',
 		];
 		add_screen_option( 'per_page', $args );
@@ -91,4 +94,12 @@ class Menu {
 		$table = new Listing_Table();
 	}
 
+	/**
+	 * Save listings per page screen options value
+	 */
+	public function dp_set_screen_option( $status, $option, $value ) {
+		if ( 'listings_per_page' == $option ) {
+			return $value;
+		}
+	}
 }

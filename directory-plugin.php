@@ -114,6 +114,10 @@ final class Directory_Plugin {
 		if ( ! defined( 'DIRECTORY_PLUGIN_ASSETS' ) ) {
 			define( 'DIRECTORY_PLUGIN_ASSETS', DIRECTORY_PLUGIN_URL . '/assets' );
 		}
+
+		if ( ! defined( 'DIRECTORY_PLUGIN_BLOCK_ASSETS' ) ) {
+			define( 'DIRECTORY_PLUGIN_BLOCK_ASSETS', DIRECTORY_PLUGIN_URL . '/build' );
+		}
 	}
 
 	/**
@@ -126,7 +130,6 @@ final class Directory_Plugin {
 		$api_endpoint = new Sajib\DP\RestApi\v1\Api_Endpoints();
 		$api_endpoint->init();
 
-		new Sajib\DP\Assets();
 	}
 
 	/**
@@ -146,6 +149,24 @@ final class Directory_Plugin {
 	public function init() {
 		self::load_plugin_textdomain();
 
+		// Assets stuff.
+		new Sajib\DP\Assets();
+
+		// Dynamic blocks stuff.
+		new Sajib\DP\Dynamic_Blocks();
+
+		// Register block category hook.
+		if ( version_compare( get_bloginfo( 'version' ), '5.8', '>=' ) ) {
+			add_filter( 'block_categories_all', [ $this, 'add_block_category' ], 10, 2 );
+		} else {
+			add_filter( 'block_categories', [ $this, 'add_block_category' ], 10, 2 );
+		}
+
+		// Perform ajax request.
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			new Sajib\DP\Ajax();
+		}
+
 		if ( is_admin() ) {
 			new Sajib\DP\Admin();
 		}
@@ -156,6 +177,18 @@ final class Directory_Plugin {
 	 */
 	public static function load_plugin_textdomain() {
 		load_plugin_textdomain( 'directory-plugin', false, dirname( DIRECTORY_PLUGIN_BASENAME ) . '/languages' );
+	}
+
+
+	/**
+	 * Block category register
+	 */
+	public function add_block_category( $block_categories ) {
+		$block_categories[] = [
+			'slug'  => 'directory-plugin',
+			'title' => esc_html__( 'Directory Plugin', 'directory-plugin' ),
+		];
+		return $block_categories;
 	}
 
 } // End class

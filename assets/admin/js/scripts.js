@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
     // clear image
     $('.img-remove').on('click', function (event) {
         var self = $(this);
-        self.parent('.img-wrap').siblings('.wpx-img-field').val('');
+        self.parent('.img-wrap').siblings('.wpx-img-field').val(0);
         self.siblings('.img-preview ').addClass('hide'); 
     });
 
@@ -23,12 +23,10 @@ jQuery(document).ready(function($) {
 
         // if you have IDs of previously selected files you can set them checked
         file_frame.on('open', function() {
-            let selected = self.prev('.wpx-img-field').val(); 
-            let selected_values = selected.split(',');
-            let image_id = selected_values[0];
+            let selected_image_id = self.prev('.wpx-img-field').val(); 
 
             let selection = file_frame.state().get('selection');
-            let ids = [image_id]; // array of IDs of previously selected files. You're gonna build it dynamically
+            let ids = [selected_image_id]; // array of IDs of previously selected files. You're gonna build it dynamically
             ids.forEach(function(id) {
                 let attachment = wp.media.attachment(id);
                 selection.add(attachment ? [attachment] : []);
@@ -37,7 +35,7 @@ jQuery(document).ready(function($) {
 
         file_frame.on('select', function () {
             attachment = file_frame.state().get('selection').first().toJSON();
-            self.prev('.wpx-img-field').val(attachment.id + ',' +attachment.url); 
+            self.prev('.wpx-img-field').val(attachment.id); 
             self.siblings('.img-wrap').find('.img-preview').attr('src',attachment.url).removeClass('hide'); 
             $('.supports-drag-drop').hide();
         });

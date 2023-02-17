@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"title": "Listings",
+	"name": "directory-plugin/listings",
+	"category": "directory-plugin",
+	"description": "An Directory listing widget for Gutenberg",
+    "textdomain": "directory-plugin",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "This is Title"
+		},
+		"subtitle": {
+			"type": "string",
+			"default": "This is Subtitle"
+		},
+		"number": {
+			"type": "integer",
+			"default": 12
+		},
+		"showPagination": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSubmitButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"align": {
+			"type": "string",
+			"default": "wide"
+		}
+	},
+	"supports": {
+		"align": ["wide", "full"]
+	},
+	"keywords": [
+        "Directory",
+        "Listings Grid"
+    ],
+	"editorStyle": "dp-editor-style",
+	"editorScript": "dp-editor-script",
+	"style": "dp-block-style"
+}

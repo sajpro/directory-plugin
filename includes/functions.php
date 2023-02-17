@@ -68,7 +68,10 @@ function directory_plugin_listing_insert( $args = [] ) {
 
 		directory_plugin_purge_cache();
 
-		return $wpdb->insert_id;
+		return [
+			'id'         => $wpdb->insert_id,
+			'created_at' => $data['created_at'],
+		];
 	}
 }
 
@@ -85,7 +88,7 @@ function directory_plugin_listing_get( $args = [], $filter = [] ) {
 		'number'  => 20,
 		'offset'  => 0,
 		'orderby' => 'id',
-		'order'   => 'asc',
+		'order'   => 'desc',
 	];
 
 	$args = wp_parse_args( $args, $defaults );
@@ -94,7 +97,6 @@ function directory_plugin_listing_get( $args = [], $filter = [] ) {
 	$hash         = md5( serialize( array_diff_assoc( $args, $defaults ) ) );
 	$cache_key    = "all:$hash:$last_changed";
 
-	$table        = $wpdb->prefix . 'directory_listings';
 	$extra_checks = '';
 	$search       = '';
 
@@ -110,15 +112,23 @@ function directory_plugin_listing_get( $args = [], $filter = [] ) {
 		$extra_checks .= $wpdb->prepare( ' AND author = %s', "$author" );
 	}
 
+	$listings = $wpdb->prefix . 'directory_listings';
+	$postmeta = $wpdb->postmeta;
+
 	$sql = $wpdb->prepare(
-		"SELECT * FROM {$table}
-		WHERE (title LIKE %s 
-		OR content LIKE %s)
+		"SELECT $listings.*, $postmeta.meta_value as image_url FROM {$listings}
+		JOIN $postmeta
+		ON $listings.preview_image = $postmeta.post_id
+		WHERE ($listings.title LIKE %s 
+		OR $listings.content LIKE %s)
+		AND $postmeta.post_id = $listings.preview_image
+		AND $postmeta.meta_key = %s
 		$extra_checks
 		ORDER BY {$args['orderby']} {$args['order']}
 		LIMIT %d, %d",
 		"%$search%",
 		"%$search%",
+		'_wp_attached_file',
 		$args['offset'],
 		$args['number']
 	);
@@ -193,7 +203,11 @@ function directory_plugin_delete_listing( $id ) {
 	);
 }
 
-
+/**
+ * Purge cache
+ *
+ * @return void
+ */
 function directory_plugin_purge_cache( $id = null ) {
 	$group = 'dirlistings';
 
@@ -204,3 +218,4 @@ function directory_plugin_purge_cache( $id = null ) {
 	wp_cache_delete( 'count', $group );
 	wp_cache_set( 'last_changed', microtime(), $group );
 }
+
