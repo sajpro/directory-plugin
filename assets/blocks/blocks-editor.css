@@ -56,8 +56,22 @@
 .dp-inspector-tab-panel .sec-tab-panel .dp-inspector-image-control .image-wrapper .background-image {
   width: auto;
 }
+.dp-inspector-tab-panel .sec-tab-panel .dp-inspector-image-control .image-wrapper:hover .background-image {
+  cursor: pointer;
+}
+.dp-inspector-tab-panel .sec-tab-panel .dp-inspector-image-control .image-wrapper:hover .background-image:before {
+  content: "Change Image";
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5px;
+  width: 100px;
+  z-index: 9999;
+  background: #ddd;
+}
 .dp-inspector-tab-panel .sec-tab-panel .dp-inspector-image-control .image-wrapper:hover .background-image .image {
-  opacity: 0.4;
+  opacity: 0.6;
 }
 .dp-inspector-tab-panel .dp-style-tab .components-base-control .components-base-control__label {
   text-transform: inherit;

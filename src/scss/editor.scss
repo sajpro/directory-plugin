@@ -57,8 +57,20 @@
                 }
                 &:hover{
                     .background-image{
+                        cursor: pointer;
+                        &:before{
+                            content: "Change Image";
+                            position: absolute;
+                            top: 70%;
+                            left: 50%;
+                            transform: translate(-50%,-50%);
+                            padding: 5px;
+                            width: 100px;
+                            z-index: 9999;
+                            background: #ddd;
+                        }
                         .image{
-                            opacity: .4;
+                            opacity: .6;
                         }
                     }
                 }
