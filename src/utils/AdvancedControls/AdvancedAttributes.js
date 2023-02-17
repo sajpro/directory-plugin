@@ -4,7 +4,7 @@ export const AdvancedAttributes = {
 	blockId: {
 		type: "string",
 	},
-	blockStyleDynamic: {
+	blockStyles: {
 		type: "object",
 	},
 	...generateDimensionAttributes('wrapperMargin',{

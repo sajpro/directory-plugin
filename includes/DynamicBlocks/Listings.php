@@ -30,6 +30,10 @@ class Listings {
 				'render_callback' => [ $self, 'listing_dynamic_render_callback' ],
 				// 'attributes'      => $attributes_array['attributes'],
 				'attributes'      => [
+					'blockId' => [
+						'type' => 'string',
+						'default' => '',
+					],
 					'title' => [
 						'type' => 'string',
 						'default' => 'This is Title',
@@ -80,6 +84,7 @@ class Listings {
 							'type' => 'string',
 						],
 					],
+					
 				]
 			]
 		);

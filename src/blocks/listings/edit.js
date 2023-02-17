@@ -1,5 +1,6 @@
 import { __ } from "@wordpress/i18n";
 import ServerSideRender from '@wordpress/server-side-render';
+import { useEffect } from "@wordpress/element";
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import {
 	Disabled
@@ -8,9 +9,13 @@ import Inspector from "./inspector";
 
 import Loader from "./Loader";
 
+import {getBlockId} from "../../utils/helper";
+
 const Edit = (props) => {
     let {attributes,setAttributes,className,clientId} = props;
     let {
+        blockId,
+        blockStyles,
         title, 
         subtitle,
         number,
@@ -22,6 +27,19 @@ const Edit = (props) => {
         ...attributes
     }
     console.log(attributes);
+
+    // create a unique id for blocks
+    useEffect(() => {
+        const blockPrefix = "dp-block";
+
+        getBlockId({
+            blockPrefix,
+            blockId,
+            setAttributes,
+            clientId,
+        });
+
+	}, [ blockId ]);
 
     return (
         <div { ...useBlockProps() }>
