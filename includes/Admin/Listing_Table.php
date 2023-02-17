@@ -60,7 +60,7 @@ class Listing_Table extends \WP_List_Table {
 	protected function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
 			case 'preview_image':
-				$image_url = wp_get_attachment_url($item->$column_name);
+				$image_url = wp_get_attachment_url( $item->$column_name );
 				return isset( $item->$column_name ) ? '<img width="100" height="auto" src="' . esc_url( $image_url ) . '"/>' : '';
 				break;
 

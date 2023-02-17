@@ -25,7 +25,6 @@ class Ajax {
 	 * @return array
 	 */
 	function upload_listing_image() {
-
 		check_ajax_referer( 'upload_nonce', 'security' );
 
 		if ( isset( $_FILES['file']['name'] ) ) {

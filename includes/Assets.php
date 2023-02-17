@@ -66,11 +66,11 @@ class Assets {
 	 */
 	public static function public_localize_js_object() {
 		return [
-			'ajax_url'      => admin_url( 'admin-ajax.php' ),
-			'rest_nonce'    => wp_create_nonce( 'wp_rest' ),
-			'upload_nonce'  => wp_create_nonce( 'upload_nonce' ),
-			'rest_url'      => get_rest_url( null, 'directory/v1/listings' ),
-			'base_url'      => wp_upload_dir()['baseurl'] .'/'
+			'ajax_url'     => admin_url( 'admin-ajax.php' ),
+			'rest_nonce'   => wp_create_nonce( 'wp_rest' ),
+			'upload_nonce' => wp_create_nonce( 'upload_nonce' ),
+			'rest_url'     => get_rest_url( null, 'directory/v1/listings' ),
+			'base_url'     => wp_upload_dir()['baseurl'] . '/',
 		];
 	}
 }

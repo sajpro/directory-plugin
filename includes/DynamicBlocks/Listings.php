@@ -31,110 +31,110 @@ class Listings {
 				// 'attributes'      => $attributes_array['attributes'],
 				'attributes'      => [
 					'blockId' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => '',
 					],
 					'blockStyles' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => '',
 					],
 					'title' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => 'This is Title',
 					],
 					'subtitle' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => 'This is Subtitle',
 					],
 					'number' => [
-						'type' => 'integer',
+						'type'    => 'integer',
 						'default' => 12,
 					],
 					'showPagination' => [
-						'type' => 'boolean',
+						'type'    => 'boolean',
 						'default' => true,
 					],
 					'showSubmitButton' => [
-						'type' => 'boolean',
+						'type'    => 'boolean',
 						'default' => true,
 					],
 					'align' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => 'wide',
 					],
 					'align' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => 'wide',
 					],
 					'secTitleNormalColor' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => '',
 					],
 					'secTitleHoverColor' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => '',
 					],
 					'secTitleTypography' => [
-						'type' => 'object',
+						'type'    => 'object',
 						'default' => [],
-						'items' => [
+						'items'   => [
 							'type' => 'string',
 						],
 					],
 					'wrapperMargin' => [
-						'type' => 'object',
+						'type'    => 'object',
 						'default' => [],
-						'items' => [
+						'items'   => [
 							'type' => 'string',
 						],
 					],
 					'wrapperBgType' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => 'classic',
-					],					
+					],
 					'wrapperBgColor' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => '',
 					],
 					'wrapperBgGradient' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => '',
 					],
 					'wrapperBgImage' => [
-						'type' => 'object',
+						'type'    => 'object',
 						'default' => [],
-						'items' => [
+						'items'   => [
 							'type' => 'string',
 						],
 					],
 					'wrapperHoverBgType' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => 'classic',
-					],					
+					],
 					'wrapperHoverBgColor' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => '',
 					],
 					'wrapperHoverBgGradient' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => '',
 					],
 					'wrapperBgTransition' => [
-						'type' => 'number',
+						'type'    => 'number',
 						'default' => '',
 					],
 					'wrapperCustomCss' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => '',
 					],
 					'wrapperHoverBgImage' => [
-						'type' => 'object',
+						'type'    => 'object',
 						'default' => [],
-						'items' => [
+						'items'   => [
 							'type' => 'string',
 						],
 					],
-				]
+				],
 			]
 		);
 	}
@@ -199,13 +199,13 @@ class Listings {
 
 		ob_start(); ?>
 			<div <?php echo esc_attr( $wrapper_attributes ); ?>>
-				<?php 
-					if($title){
-						echo sprintf(__('<h2 class="sec-title text-center">%s</h2>','directory-plugin'), $title);
-					} 
-					if($subtitle){
-						echo sprintf(__('<p class="sec-subtitle text-center">%s</p>','directory-plugin'), $subtitle);
-					} 
+				<?php
+				if ( $title ) {
+					echo sprintf( __( '<h2 class="sec-title text-center">%s</h2>', 'directory-plugin' ), $title );
+				}
+				if ( $subtitle ) {
+					echo sprintf( __( '<p class="sec-subtitle text-center">%s</p>', 'directory-plugin' ), $subtitle );
+				}
 				?>
 				<?php if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ) : ?>
 					<div id="listings-wrap">

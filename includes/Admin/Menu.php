@@ -16,7 +16,7 @@ class Menu {
 	 */
 	function __construct() {
 		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
-		add_filter('set-screen-option', [ $this,'dp_set_screen_option'], 10, 3);
+		add_filter( 'set-screen-option', [ $this, 'dp_set_screen_option' ], 10, 3 );
 	}
 
 	/**
@@ -41,8 +41,8 @@ class Menu {
 	 * @return void
 	 */
 	public static function plugin_page() {
-		$action = isset( $_GET['action'] ) ? wp_unslash($_GET['action']) : 'list';
-		$id     = isset( $_GET['listing'] ) ? intval( wp_unslash($_GET['listing']) ) : 0;
+		$action = isset( $_GET['action'] ) ? wp_unslash( $_GET['action'] ) : 'list';
+		$id     = isset( $_GET['listing'] ) ? intval( wp_unslash( $_GET['listing'] ) ) : 0;
 
 		switch ( $action ) {
 			// case 'create':
@@ -97,7 +97,9 @@ class Menu {
 	/**
 	 * Save listings per page screen options value
 	 */
-	public function dp_set_screen_option($status, $option, $value) {
-		if ( 'listings_per_page' == $option ) return $value;
+	public function dp_set_screen_option( $status, $option, $value ) {
+		if ( 'listings_per_page' == $option ) {
+			return $value;
+		}
 	}
 }

@@ -70,7 +70,7 @@ function directory_plugin_listing_insert( $args = [] ) {
 
 		return [
 			'id'         => $wpdb->insert_id,
-			'created_at' => $data['created_at']
+			'created_at' => $data['created_at'],
 		];
 	}
 }

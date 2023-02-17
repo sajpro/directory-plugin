@@ -67,17 +67,17 @@ class Api_Endpoints extends \WP_REST_Controller {
 
 		$result['success'] = false;
 		$listings          = [];
-		$args= [];
+		$args              = [];
 		if ( $number > 0 ) {
 			$args['number'] = $number;
 		}
-		
+
 		$prev = 1;
 		$next = 2;
 		if ( ( $number > 0 ) && ( $paged > 1 ) ) {
 			$args['offset'] = ( $number * $paged ) - $number;
-			$prev = $paged;
-			$next = $paged + 1;
+			$prev           = $paged;
+			$next           = $paged + 1;
 		}
 
 		$listings       = directory_plugin_listing_get( $args );
@@ -101,7 +101,6 @@ class Api_Endpoints extends \WP_REST_Controller {
 	 * @param array $request User request data.
 	 */
 	public function create_listings( $request ) {
-
 		$result['success'] = false;
 		$id                = 0;
 

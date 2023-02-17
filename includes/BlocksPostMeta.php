@@ -9,12 +9,11 @@ namespace Sajib\DP;
 
 /**
  * Post Meta Class
- *
  */
 class BlocksPostMeta {
 
 	public function __construct() {
-		add_filter( 'init', array( $this, 'register_post_meta' ) );
+		add_filter( 'init', [ $this, 'register_post_meta' ] );
 	}
 
 	/**
@@ -24,11 +23,11 @@ class BlocksPostMeta {
 		register_meta(
 			'post',
 			'_dp_attr',
-			array(
+			[
 				'show_in_rest'  => true,
 				'single'        => true,
-				'auth_callback' => array( $this, 'permission_check_callback' ),
-			)
+				'auth_callback' => [ $this, 'permission_check_callback' ],
+			]
 		);
 	}
 
