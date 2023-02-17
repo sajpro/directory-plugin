@@ -84,7 +84,48 @@ class Listings {
 							'type' => 'string',
 						],
 					],
-					
+					'wrapperBgType' => [
+						'type' => 'string',
+						'default' => 'classic',
+					],					
+					'wrapperBgColor' => [
+						'type' => 'string',
+						'default' => '',
+					],
+					'wrapperBgGradient' => [
+						'type' => 'string',
+						'default' => '',
+					],
+					'wrapperBgImage' => [
+						'type' => 'object',
+						'default' => [],
+						'items' => [
+							'type' => 'string',
+						],
+					],
+					'wrapperHoverBgType' => [
+						'type' => 'string',
+						'default' => 'classic',
+					],					
+					'wrapperHoverBgColor' => [
+						'type' => 'string',
+						'default' => '',
+					],
+					'wrapperHoverBgGradient' => [
+						'type' => 'string',
+						'default' => '',
+					],
+					'wrapperBgTransition' => [
+						'type' => 'string',
+						'default' => '',
+					],
+					'wrapperHoverBgImage' => [
+						'type' => 'object',
+						'default' => [],
+						'items' => [
+							'type' => 'string',
+						],
+					],
 				]
 			]
 		);

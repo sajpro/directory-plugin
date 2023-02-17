@@ -63,3 +63,21 @@ export const generateTypographyAttributes = (attributesId,attributesObject) => {
         }
     }
 }
+
+
+export const generateBgeImageAttr = (attributesId,attributesObject) => {
+    return {
+        [attributesId]:  {
+            type: "object",
+            default: {
+                id: "",
+                url: "",
+                attachment: "",
+                Desktop: attributesObject,
+                Tablet: attributesObject,
+                Mobile: attributesObject,
+                unitDefault: "px",
+            }
+        }
+    }
+}

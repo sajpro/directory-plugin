@@ -22,7 +22,7 @@ export const DpColorPalette = (props) => {
                     />
                 ) }
                 renderContent={ () => <>
-                    <div className="fb-color-palette-reset">
+                    <div className="dp-color-palette-reset">
                         <span>Color</span>
                         <Icon
                             onClick={() => setAttributes({ [attributesId]: '' })}

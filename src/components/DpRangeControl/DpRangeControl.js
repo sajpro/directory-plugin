@@ -10,6 +10,7 @@ export const DpRangeControl = (props) => {
     return (
         <BaseControl
             label={label}
+            className="dp-not-flex"
         >
             <RangeControl
                 value={ attributes[attributesId] }

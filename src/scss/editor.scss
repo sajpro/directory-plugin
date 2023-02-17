@@ -21,6 +21,38 @@
                 }
             }
         }
+        .dp-inspector-image-control{
+            .background-image,
+            .image-uploader {
+                width: 200px;
+                background: #ddd;
+                margin-left: 20px;
+                height: 100px;
+                display: block;
+                transform: translate(-18px, 10px);
+                overflow: hidden;
+                margin-bottom: 40px;
+            }
+            .background-image{
+                width: auto;
+                height: 100px;
+                max-width: 200px;
+            }
+            .image-wrapper{
+                position: relative;
+                .dp-remove-media{
+                    font-size: 18px;
+                    color: red;
+                    cursor: pointer;
+                    position: absolute;
+                    z-index: 9990;
+                    left: 55%;
+                    top: 18px;
+                    background: #ddd;
+                    padding: 6px;
+                }
+            }
+        }
     }
     .dp-style-tab{
         .components-base-control{
@@ -51,6 +83,13 @@
                     margin-bottom: 0;
                 }
             }
+        }
+    }
+    .dp-btn-group{
+        .active-tab{
+            color: #fff;
+            background: var(--wp-admin-theme-color);
+            border-color: var(--wp-admin-theme-color);
         }
     }
 }
