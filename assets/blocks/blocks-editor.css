@@ -80,3 +80,6 @@
 .dp-units button {
   height: 22px;
 }
+.dp-units button.active-unit {
+  color: red;
+}

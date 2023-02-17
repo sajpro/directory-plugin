@@ -7,6 +7,8 @@ export const DpUnits = (props) => {
     const getDevice = useGetDevice();
 
     const handleUnit = (v) => {
+        let newUnit = {...attributes[attributesId], unitDefault: v, [getDevice]: {...attributes[attributesId][getDevice],unit: v}}
+        setAttributes({[attributesId]: newUnit})
     }
 
     let units = ['px','em','%', 'rem'];
@@ -16,7 +18,7 @@ export const DpUnits = (props) => {
             {units.map((btn,i)=>(
                 <Button
                     key={i}
-                    className={'active'}
+                    className={(attributes[attributesId][getDevice]?.unit || attributes[attributesId].unitDefault ) == btn ? 'active-unit' : ''}
                     onClick={(v) => handleUnit(btn)}
                 >{btn}</Button>  
             ))}
