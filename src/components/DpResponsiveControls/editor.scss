@@ -1,0 +1,16 @@
+.edit-post-header__settings{
+    .finest-responsive-control{
+        padding-right: 100px;
+    }
+}
+
+.device-responsive-icons{
+    .dp-device-icon{
+        cursor: pointer;
+        &.active{
+            svg{
+                fill: red;
+            }
+        }
+    }
+}

@@ -10,6 +10,36 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/@wordpress/icons/build-module/library/desktop.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/desktop.js ***!
+  \***********************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ \"@wordpress/element\");\n/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ \"@wordpress/primitives\");\n/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);\n\n\n/**\n * WordPress dependencies\n */\n\nconst desktop = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {\n  xmlns: \"http://www.w3.org/2000/svg\",\n  viewBox: \"0 0 24 24\"\n}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {\n  d: \"M20.5 16h-.7V8c0-1.1-.9-2-2-2H6.2c-1.1 0-2 .9-2 2v8h-.7c-.8 0-1.5.7-1.5 1.5h20c0-.8-.7-1.5-1.5-1.5zM5.7 8c0-.3.2-.5.5-.5h11.6c.3 0 .5.2.5.5v7.6H5.7V8z\"\n}));\n/* harmony default export */ __webpack_exports__[\"default\"] = (desktop);\n//# sourceMappingURL=desktop.js.map\n\n//# sourceURL=webpack://directory-plugin/./node_modules/@wordpress/icons/build-module/library/desktop.js?");
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/icons/build-module/library/mobile.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/mobile.js ***!
+  \**********************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ \"@wordpress/element\");\n/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ \"@wordpress/primitives\");\n/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);\n\n\n/**\n * WordPress dependencies\n */\n\nconst mobile = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {\n  xmlns: \"http://www.w3.org/2000/svg\",\n  viewBox: \"0 0 24 24\"\n}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {\n  d: \"M15 4H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H9c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h6c.3 0 .5.2.5.5v12zm-4.5-.5h2V16h-2v1.5z\"\n}));\n/* harmony default export */ __webpack_exports__[\"default\"] = (mobile);\n//# sourceMappingURL=mobile.js.map\n\n//# sourceURL=webpack://directory-plugin/./node_modules/@wordpress/icons/build-module/library/mobile.js?");
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/icons/build-module/library/tablet.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/tablet.js ***!
+  \**********************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ \"@wordpress/element\");\n/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ \"@wordpress/primitives\");\n/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);\n\n\n/**\n * WordPress dependencies\n */\n\nconst tablet = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {\n  xmlns: \"http://www.w3.org/2000/svg\",\n  viewBox: \"0 0 24 24\"\n}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {\n  d: \"M17 4H7c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H7c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h10c.3 0 .5.2.5.5v12zm-7.5-.5h4V16h-4v1.5z\"\n}));\n/* harmony default export */ __webpack_exports__[\"default\"] = (tablet);\n//# sourceMappingURL=tablet.js.map\n\n//# sourceURL=webpack://directory-plugin/./node_modules/@wordpress/icons/build-module/library/tablet.js?");
+
+/***/ }),
+
 /***/ "./src/blocks/listings/Loader.js":
 /*!***************************************!*\
   !*** ./src/blocks/listings/Loader.js ***!
@@ -70,6 +100,26 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/components/DpResponsiveControls/DpResponsiveControls.js":
+/*!*********************************************************************!*\
+  !*** ./src/components/DpResponsiveControls/DpResponsiveControls.js ***!
+  \*********************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ \"@wordpress/element\");\n/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ \"@wordpress/components\");\n/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/icons */ \"./node_modules/@wordpress/icons/build-module/library/desktop.js\");\n/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/icons */ \"./node_modules/@wordpress/icons/build-module/library/tablet.js\");\n/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/icons */ \"./node_modules/@wordpress/icons/build-module/library/mobile.js\");\n/* harmony import */ var _utils_getDevice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/getDevice */ \"./src/utils/getDevice.js\");\n/* harmony import */ var _utils_setDevice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/setDevice */ \"./src/utils/setDevice.js\");\n\n\n\n\n\nconst DpResponsiveControls = () => {\n  const deviceIcon = [{\n    value: \"Desktop\",\n    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__[\"default\"]\n  }, {\n    value: \"Tablet\",\n    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__[\"default\"]\n  }, {\n    value: \"Mobile\",\n    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__[\"default\"]\n  }];\n  const getDevice = (0,_utils_getDevice__WEBPACK_IMPORTED_MODULE_2__.useGetDevice)();\n  const setDevice = (0,_utils_setDevice__WEBPACK_IMPORTED_MODULE_3__.useSetDevice)();\n  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(\"div\", {\n    className: \"device-responsive-icons\",\n    style: {\n      display: \"flex\"\n    }\n  }, deviceIcon.map((device, i) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(\"div\", {\n    key: i,\n    onClick: () => setDevice(device.value),\n    className: `dp-device-icon ${getDevice === device.value ? 'active' : ''}`\n  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Icon, {\n    icon: device.icon\n  }))));\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (DpResponsiveControls);\n\n//# sourceURL=webpack://directory-plugin/./src/components/DpResponsiveControls/DpResponsiveControls.js?");
+
+/***/ }),
+
+/***/ "./src/components/DpResponsiveControls/index.js":
+/*!******************************************************!*\
+  !*** ./src/components/DpResponsiveControls/index.js ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ \"@wordpress/element\");\n/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _DpResponsiveControls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DpResponsiveControls */ \"./src/components/DpResponsiveControls/DpResponsiveControls.js\");\n\ndocument.addEventListener('load', fb_responsive_icons);\ndocument.addEventListener('DOMContentLoaded', fb_responsive_icons);\n\nfunction fb_responsive_icons() {\n  wp.data.subscribe(function () {\n    setTimeout(function () {\n      fb_responsive_icon();\n    }, 500);\n  });\n}\nfunction fb_responsive_icon() {\n  if (!document.querySelector('.edit-post-header__toolbar')) {\n    return null;\n  }\n  if (document.querySelector('.dp-responsive-control')) {\n    return null;\n  }\n  const buttons = document.createElement('div');\n  buttons.classList.add('dp-responsive-control');\n  document.querySelector('.edit-post-header__toolbar').append(buttons);\n  wp.element.render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_DpResponsiveControls__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null), document.querySelector('.dp-responsive-control'));\n}\n\n//# sourceURL=webpack://directory-plugin/./src/components/DpResponsiveControls/index.js?");
+
+/***/ }),
+
 /***/ "./src/components/DpSpacingControls/DpSpacingControls.js":
 /*!***************************************************************!*\
   !*** ./src/components/DpSpacingControls/DpSpacingControls.js ***!
@@ -116,7 +166,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _blocks_listings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blocks/listings */ \"./src/blocks/listings/index.js\");\n// Blocks\n\n\n//# sourceURL=webpack://directory-plugin/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _components_DpResponsiveControls_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/DpResponsiveControls/index.js */ \"./src/components/DpResponsiveControls/index.js\");\n/* harmony import */ var _blocks_listings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/listings */ \"./src/blocks/listings/index.js\");\n// Responsive Icon\n\n\n// Blocks\n\n\n//# sourceURL=webpack://directory-plugin/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/utils/getDevice.js":
+/*!********************************!*\
+  !*** ./src/utils/getDevice.js ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"useGetDevice\": function() { return /* binding */ useGetDevice; }\n/* harmony export */ });\n/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/data */ \"@wordpress/data\");\n/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);\n\nconst useGetDevice = () => {\n  const {\n    deviceType\n  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useSelect)(select => {\n    return {\n      deviceType: select('core/edit-post')?.__experimentalGetPreviewDeviceType() || 'Desktop'\n    };\n  }, []);\n  return deviceType || '';\n};\n\n//# sourceURL=webpack://directory-plugin/./src/utils/getDevice.js?");
 
 /***/ }),
 
@@ -127,6 +187,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _blo
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"dpRegisterBlockType\": function() { return /* binding */ dpRegisterBlockType; }\n/* harmony export */ });\n/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ \"@wordpress/blocks\");\n/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);\n\nconst dpRegisterBlockType = (metadata, newData) => {\n  let metaData = {\n    title: metadata.title,\n    description: metadata.description,\n    category: metadata.category,\n    supports: metadata.supports\n  };\n  return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(metadata.name, {\n    ...metaData,\n    ...newData\n  });\n};\n\n//# sourceURL=webpack://directory-plugin/./src/utils/register-blocks.js?");
+
+/***/ }),
+
+/***/ "./src/utils/setDevice.js":
+/*!********************************!*\
+  !*** ./src/utils/setDevice.js ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"useSetDevice\": function() { return /* binding */ useSetDevice; }\n/* harmony export */ });\n/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ \"@wordpress/element\");\n/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/data */ \"@wordpress/data\");\n/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__);\n\n\nconst useSetDevice = () => {\n  const FbSetPreviewDevice = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(device => {\n    const {\n      __experimentalSetPreviewDeviceType: setPreviewDeviceType\n    } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.dispatch)('core/edit-post');\n    setPreviewDeviceType(device);\n  }, []);\n  return FbSetPreviewDevice;\n};\n\n//# sourceURL=webpack://directory-plugin/./src/utils/setDevice.js?");
 
 /***/ }),
 
@@ -220,6 +290,16 @@ module.exports = window["wp"]["components"];
 
 /***/ }),
 
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["data"];
+
+/***/ }),
+
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -237,6 +317,16 @@ module.exports = window["wp"]["element"];
 /***/ (function(module) {
 
 module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "@wordpress/primitives":
+/*!************************************!*\
+  !*** external ["wp","primitives"] ***!
+  \************************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["primitives"];
 
 /***/ }),
 

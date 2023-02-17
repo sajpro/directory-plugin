@@ -48,3 +48,16 @@
 [data-type="directory-plugin/listings"] .loader-wrap {
   margin-top: 100px;
 }
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/components/DpResponsiveControls/editor.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+.edit-post-header__settings .finest-responsive-control {
+  padding-right: 100px;
+}
+
+.device-responsive-icons .dp-device-icon {
+  cursor: pointer;
+}
+.device-responsive-icons .dp-device-icon.active svg {
+  fill: red;
+}

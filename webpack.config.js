@@ -29,6 +29,8 @@ const assetsConfig = {
 
             // All blocks editor css
             ...glob.sync("./src/blocks/**/**/*editor.scss"),
+            // ALl Components editor css
+            ...glob.sync("./src/components/**/**/*editor.scss"),
         ],
         // // All blocks editor css including common
         "blocks-style": [
