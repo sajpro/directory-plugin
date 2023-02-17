@@ -19,6 +19,14 @@
 			"type": "integer",
 			"default": 12
 		},
+		"pagination": {
+			"type": "boolean",
+			"default": true
+		},
+		"submitButton": {
+			"type": "boolean",
+			"default": true
+		},
 		"align": {
 			"type": "string",
 			"default": "wide"

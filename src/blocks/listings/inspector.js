@@ -7,6 +7,7 @@ import {
 } from '@wordpress/components';
 
 import { DpRangeControl } from "../../components/DpRangeControl";
+import { DpToggleControl } from "../../components/DpToggleControl";
 
 export const TAB_BUTTONS = [
     {
@@ -65,6 +66,14 @@ const Inspector = (props) => {
                                 min="1"
                                 max="20"
                                 step="1"
+                            />
+                            <DpToggleControl {...{attributes, setAttributes}} 
+                                label={__('Display Pagination?','directory-plugin')}
+                                attrId = 'pagination'
+                            />
+                            <DpToggleControl {...{attributes, setAttributes}} 
+                                label={__('Display Submit Button?','directory-plugin')}
+                                attrId = 'submitButton'
                             />
                         </PanelBody>
                     )}
