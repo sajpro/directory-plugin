@@ -131,7 +131,7 @@ class StyleLoader {
 
 				if ( is_array( $block ) && count( $block ) > 0 ) {
 					foreach ( $block as $style ) {
-                        $value = (array) json_decode($style);
+						$value = (array) json_decode( $style );
 						if ( is_array( $value ) && count( $value ) > 0 ) {
 							if ( isset( $value['desktop'] ) ) {
 								$style_array[ $blockId ]['desktop'] .= $value['desktop'];
