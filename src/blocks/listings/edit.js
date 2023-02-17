@@ -1,11 +1,10 @@
 import { __ } from "@wordpress/i18n";
 import ServerSideRender from '@wordpress/server-side-render';
-import { InspectorControls, RichText, useBlockProps } from '@wordpress/block-editor';
+import { RichText, useBlockProps } from '@wordpress/block-editor';
 import {
-	Disabled,
-	PanelBody,
-	TextControl,
+	Disabled
 } from '@wordpress/components';
+import Inspector from "./inspector";
 
 import Loader from "./Loader";
 
@@ -22,24 +21,9 @@ const Edit = (props) => {
 
     return (
         <div { ...useBlockProps() }>
-        <InspectorControls>
-            <PanelBody title={ __( 'Advanced', 'directory-plugin' ) }>
-                <TextControl
-                    label={ __( 'Title', 'directory-plugin' ) }
-                    value={attributes.title}
-                    onChange={ (v) =>
-                        setAttributes( { title: v } )
-                    }
-                />
-                <TextControl
-                    label={ __( 'Subitle', 'directory-plugin' ) }
-                    value={attributes.subtitle}
-                    onChange={ (v) =>
-                        setAttributes( { subtitle: v } )
-                    }
-                />
-            </PanelBody>
-        </InspectorControls>
+            
+            <Inspector {...{attributes,setAttributes}}/>
+
             <RichText
                 tagName="h2"
                 className="dp-sec-title"
