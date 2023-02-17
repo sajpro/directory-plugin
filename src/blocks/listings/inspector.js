@@ -10,6 +10,7 @@ import { DpRangeControl } from "../../components/DpRangeControl";
 import { DpToggleControl } from "../../components/DpToggleControl";
 import { DpColorPalette } from "../../components/DpColorPalette";
 import { DpTypography } from "../../components/DpTypography";
+import { DpSpacingControls } from "../../components/DpSpacingControls";
 
 import { AdvancedControls } from "../../utils/AdvancedControls"
 
@@ -82,55 +83,117 @@ const Inspector = (props) => {
                         </PanelBody>
                     )}
                     {(tab.name == 'style') && (
-                        <PanelBody 
-                        className="dp-style-tab"
-                        title={ __( 'Section Title', 'directory-plugin' ) }
-                        >
-                            <DpTypography {...{attributes, setAttributes}}
-                                label={__('Typography','directory-plugin')}
-                                attributesId = 'secTitleTypography'
-                            />
-                            <TabPanel
-                                className='sec-tab-panel'
-                                activeClass='active-tab'
-                                tabs={[
-                                    {
-                                        name: 'normal',
-                                        title: 'Normal',
-                                    },
-                                    {
-                                        name: 'hover',
-                                        title: 'Hover',
-                                    }
-                                ]}
+                        <>
+                            <PanelBody 
+                            className="dp-style-tab"
+                            title={ __( 'Section Title', 'directory-plugin' ) }
                             >
-                                {(tab)=> <>
-                                    {(tab.name == 'normal') && (
-                                        <DpColorPalette {...{attributes, setAttributes}}
-                                            label={__('Text Color','directory-plugin')}
-                                            attributesId = 'secTitleNormalColor'
-                                        />
-                                    )}
-                                    {(tab.name == 'hover') && (
-                                        <>
+                                <DpTypography {...{attributes, setAttributes}}
+                                    label={__('Typography','directory-plugin')}
+                                    attributesId = 'secTitleTypography'
+                                />
+                                <TabPanel
+                                    className='sec-tab-panel'
+                                    activeClass='active-tab'
+                                    tabs={[
+                                        {
+                                            name: 'normal',
+                                            title: 'Normal',
+                                        },
+                                        {
+                                            name: 'hover',
+                                            title: 'Hover',
+                                        }
+                                    ]}
+                                >
+                                    {(tab)=> <>
+                                        {(tab.name == 'normal') && (
                                             <DpColorPalette {...{attributes, setAttributes}}
                                                 label={__('Text Color','directory-plugin')}
-                                                attributesId = 'secTitleHoverColor'
+                                                attributesId = 'secTitleNormalColor'
                                             />
-                                            <DpRangeControl {...{attributes, setAttributes}}
-                                                label={__('Transition Duration','directory-plugin')}
-                                                attributesId = 'secTitleTransition'
-                                                min={ 0 }
-                                                max={ 3 }
-                                                step={0.1}
-                                                responsiveNo={true}
-                                                unitNo={true}
+                                        )}
+                                        {(tab.name == 'hover') && (
+                                            <>
+                                                <DpColorPalette {...{attributes, setAttributes}}
+                                                    label={__('Text Color','directory-plugin')}
+                                                    attributesId = 'secTitleHoverColor'
+                                                />
+                                                <DpRangeControl {...{attributes, setAttributes}}
+                                                    label={__('Transition Duration','directory-plugin')}
+                                                    attributesId = 'secTitleTransition'
+                                                    min={ 0 }
+                                                    max={ 3 }
+                                                    step={0.1}
+                                                    responsiveNo={true}
+                                                    unitNo={true}
+                                                />
+                                            </>
+                                        )}
+                                    </>}
+                                </TabPanel>
+                                <DpSpacingControls {...{attributes, setAttributes}}
+                                    label={__('Padding','directory-plugin')}
+                                    attributesId = 'secTitlePadding'
+                                    className = 'dp-not-flex'
+                                />
+                            </PanelBody>
+                            <PanelBody 
+                            className="dp-style-tab"
+                            title={ __( 'Section Subtitle', 'directory-plugin' ) }
+                            initialOpen={false}
+                            >
+                                <DpTypography {...{attributes, setAttributes}}
+                                    label={__('Typography','directory-plugin')}
+                                    attributesId = 'secSubtitleTypography'
+                                />
+                                <TabPanel
+                                    className='sec-tab-panel'
+                                    activeClass='active-tab'
+                                    tabs={[
+                                        {
+                                            name: 'normal',
+                                            title: 'Normal',
+                                        },
+                                        {
+                                            name: 'hover',
+                                            title: 'Hover',
+                                        }
+                                    ]}
+                                >
+                                    {(tab)=> <>
+                                        {(tab.name == 'normal') && (
+                                            <DpColorPalette {...{attributes, setAttributes}}
+                                                label={__('Text Color','directory-plugin')}
+                                                attributesId = 'secSubtitleNormalColor'
                                             />
-                                        </>
-                                    )}
-                                </>}
-                            </TabPanel>
-                        </PanelBody>
+                                        )}
+                                        {(tab.name == 'hover') && (
+                                            <>
+                                                <DpColorPalette {...{attributes, setAttributes}}
+                                                    label={__('Text Color','directory-plugin')}
+                                                    attributesId = 'secSubtitleHoverColor'
+                                                />
+                                                <DpRangeControl {...{attributes, setAttributes}}
+                                                    label={__('Transition Duration','directory-plugin')}
+                                                    attributesId = 'secSubtitleTransition'
+                                                    min={ 0 }
+                                                    max={ 3 }
+                                                    step={0.1}
+                                                    responsiveNo={true}
+                                                    unitNo={true}
+                                                />
+                                            </>
+                                        )}
+                                    </>}
+                                </TabPanel>
+                                <DpSpacingControls {...{attributes, setAttributes}}
+                                    label={__('Padding','directory-plugin')}
+                                    attributesId = 'secSubtitlePadding'
+                                    className = 'dp-not-flex'
+                                />
+                            </PanelBody>
+                        </>
                     )}
                     {(tab.name == 'advanced') && (
                         <AdvancedControls {...{attributes, setAttributes}}/>
