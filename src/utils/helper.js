@@ -113,7 +113,7 @@ export const generateDimensionStyles = ({attributesId,styleFor,attributes}) => {
     return {dimensionStyle};
 }
 
-export const generateBgImageStyle = ({attributesIdType, attributesIdColor, attributesIdImage, attributesIdGradient, attributesIdTransition, attributes}) => {
+export const generateBgImageStyle = ({attributesIdType, attributesIdColor, attributesIdImage, attributesIdGradient, attributes}) => {
     let unit_default = attributes[attributesIdImage].unitDefault
 
     let devices = [
@@ -140,8 +140,6 @@ export const generateBgImageStyle = ({attributesIdType, attributesIdColor, attri
     }else{
         backgroundStyles['Desktop'] = (attributes[attributesIdGradient] ? `background: ${attributes[attributesIdGradient]};` : '')
     }
-
-    backgroundStyles['Transition'] = (attributes[attributesIdTransition] ? `background ${attributes[attributesIdTransition]}s` : '')
 
     return {backgroundStyles};
 }

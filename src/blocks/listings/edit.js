@@ -72,7 +72,6 @@ console.log(serverAttr);
 		attributesIdColor: 'wrapperBgColor',
 		attributesIdImage: 'wrapperBgImage',
 		attributesIdGradient: 'wrapperBgGradient',
-		attributesIdTransition: 'wrapperBgTransition',
         attributes
     })
 
@@ -100,26 +99,31 @@ console.log(serverAttr);
         attributes
     })
 
+    // section title hover transition
     let {transitoins: secTitleTransitonValue} = generateTransitonStyle({
         attributesId: 'secTitleTransition',
         attributes
     })
 
-    // porcess transition for background hover
-    const wrapperTransitions = [] 
-    if(wrapperBgTransitionStyle) wrapperTransitions.push(wrapperBgTransitionStyle)
+    // wrapper background hover transition
+    let {transitoins: wrapperBgTransitonValue} = generateTransitonStyle({
+        attributesId: 'wrapperBgTransition',
+        attributes,
+        type: 'background'
+    })
+    
     // Wrapper styles css for desktop
     const wrapperStylesDesktop = `
         ${(wrapperMarginDesktop || wrapperBgStylesDesktop) ? (`
             .dp-listings-wrapper.${blockId}{
                 ${wrapperMarginDesktop}
                 ${wrapperBgStylesDesktop}
+                transition: ${wrapperBgTransitonValue.join(", ")};
             }
         `):''}
         ${(wrapperHoverBgStylesDesktop) ? (`
             .dp-listings-wrapper.${blockId}:hover{
                 ${wrapperHoverBgStylesDesktop}
-                transition: ${wrapperTransitions.join(", ")};
             }
         `):''}
     `;
