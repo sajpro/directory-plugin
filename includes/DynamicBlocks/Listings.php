@@ -74,6 +74,10 @@ class Listings {
 						'type'    => 'string',
 						'default' => '',
 					],
+					'secTitleTransition' => [
+						'type'    => 'number',
+						'default' => '',
+					],
 					'secTitleTypography' => [
 						'type'    => 'object',
 						'default' => [],

@@ -35,6 +35,10 @@ const attributes = {
         type: "string",
         default: ""
     },
+    secTitleTransition: {
+        type: "number",
+        default: ""
+    },
 	...generateTypographyAttributes('secTitleTypography',{
 		fontSize: {
 			value: "",

@@ -10,7 +10,7 @@ import Inspector from "./inspector";
 
 import Loader from "./Loader";
 
-import { getBlockId, generateDimensionStyles, generateBgImageStyle, generateTypographyStyle, minifyCSS } from "../../utils/helper";
+import { getBlockId, generateDimensionStyles, generateBgImageStyle, generateTypographyStyle, generateTransitonStyle, minifyCSS } from "../../utils/helper";
 
 const Edit = (props) => {
     let {attributes,setAttributes,className,clientId} = props;
@@ -24,7 +24,8 @@ const Edit = (props) => {
         showSubmitButton,
         secTitleNormalColor,
         secTitleHoverColor,
-        wrapperCustomCss
+        wrapperCustomCss,
+        secTitleTransition
     } = attributes;
 
     const serverAttr = {
@@ -99,6 +100,11 @@ console.log(serverAttr);
         attributes
     })
 
+    let {transitoins: secTitleTransitonValue} = generateTransitonStyle({
+        attributesId: 'secTitleTransition',
+        attributes
+    })
+
     // porcess transition for background hover
     const wrapperTransitions = [] 
     if(wrapperBgTransitionStyle) wrapperTransitions.push(wrapperBgTransitionStyle)
@@ -120,10 +126,11 @@ console.log(serverAttr);
 
     // Title styles css desktop in strings ⬇
 	const sectionTitleStylesDesktop = `
-        ${(secTitleNormalColor || secTitleTypoStyleDesktop) ? (`
+        ${(secTitleNormalColor || secTitleTypoStyleDesktop || secTitleTransition) ? (`
             .dp-listings-wrapper.${blockId} .sec-title {
                 ${secTitleNormalColor ? (`color: ${secTitleNormalColor};`) : ''}
                 ${secTitleTypoStyleDesktop}
+                transition: ${secTitleTransitonValue.join(", ")};
             }
         `):''}
         ${(secTitleHoverColor) ? (`

@@ -112,10 +112,21 @@ const Inspector = (props) => {
                                         />
                                     )}
                                     {(tab.name == 'hover') && (
-                                        <DpColorPalette {...{attributes, setAttributes}}
-                                            label={__('Text Color','directory-plugin')}
-                                            attributesId = 'secTitleHoverColor'
-                                        />
+                                        <>
+                                            <DpColorPalette {...{attributes, setAttributes}}
+                                                label={__('Text Color','directory-plugin')}
+                                                attributesId = 'secTitleHoverColor'
+                                            />
+                                            <DpRangeControl {...{attributes, setAttributes}}
+                                                label={__('Transition Duration','directory-plugin')}
+                                                attributesId = 'secTitleTransition'
+                                                min={ 0 }
+                                                max={ 3 }
+                                                step={0.1}
+                                                responsiveNo={true}
+                                                unitNo={true}
+                                            />
+                                        </>
                                     )}
                                 </>}
                             </TabPanel>

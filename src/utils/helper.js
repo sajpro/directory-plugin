@@ -181,3 +181,10 @@ export const generateTypographyStyle = ({attributesId,attributes}) => {
 
     return {typoStyle};
 }
+
+export const generateTransitonStyle = ({attributesId, attributes, type = ''}) => {
+    let transitoins = [];
+    let transiton_style = (attributes[attributesId] ? `${type ? `${type} ` : ''}${attributes[attributesId]}s` : '')
+    if(transiton_style) transitoins.push(transiton_style)
+    return {transitoins};
+}
