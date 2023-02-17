@@ -1,6 +1,7 @@
 import { BaseControl } from "@wordpress/components";
 import { FaLink} from 'react-icons/fa';
 
+import {DpUnits} from "../DpUnits"
 import DpResponsiveControls from "../DpResponsiveControls/DpResponsiveControls"
 
 export const DpSpacingControls = (props) => {
@@ -19,6 +20,7 @@ export const DpSpacingControls = (props) => {
         >
             <div className="units-responsive">
                 <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
+                <DpUnits {...{attributes, setAttributes,attributesId}}/>
             </div>
 
             <div className="dp-space-controls">
@@ -42,7 +44,7 @@ export const DpSpacingControls = (props) => {
                     <li>
                         <button
                             type="submit"
-                            className={ `global-btn` }
+                            className={ `linked` }
                             onClick={ () => {
                                 
                             }}

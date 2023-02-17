@@ -1,3 +1,7 @@
+.units-responsive{
+    display: flex;
+    justify-content: space-between;
+}
 
 .dp-space-controls{
     ul{
@@ -31,11 +35,12 @@
                 border-color: #000;
                 border: 1px solid;
                 background: #ddd; 
+                cursor: pointer;
                 &:focus{
                     box-shadow: none;
                     outline: none;
                 }
-                &.not-global{
+                &.not{
                     background: transparent; 
                 }
             }
