@@ -22,7 +22,7 @@ export const AdvancedAttributes = {
 	},
 	wrapperBgColor: {
         type: "string",
-        default: "#000"
+        default: ""
 	},
 	wrapperBgGradient: {
         type: "string",
@@ -41,7 +41,7 @@ export const AdvancedAttributes = {
 	},
 	wrapperHoverBgColor: {
         type: "string",
-        default: "#000"
+        default: ""
 	},
 	wrapperHoverBgGradient: {
         type: "string",

@@ -47,39 +47,7 @@ export const AdvancedControls = (props) => {
                     ]}
                 >
                     {(tab)=> <>
-                        {(tab.name == 'normal') && (
-                            <>
-                                <DpButtonGroup {...{attributes, setAttributes}}
-                                    label={__('Background Type','directory-plugin')}
-                                    attributesId = 'wrapperBgType'
-                                    buttons = {[
-                                        { label: 'Classic', value: 'classic', icon: '' },
-                                        { label: 'Gradient', value: 'gradient', icon: '' }
-                                    ]}
-                                />
-                                {attributes.wrapperBgType == 'classic' && (
-                                    <>
-                                        <DpColorPalette {...{attributes, setAttributes}}
-                                            label={__('Color','directory-plugin')}
-                                            attributesId = 'wrapperBgColor'
-                                        />
-                                        <DpMediaUpload {...{attributes, setAttributes}}
-                                            label={__('Image','directory-plugin')}
-                                            attributesId = 'wrapperBgImage'
-                                        />
-                                    </>
-                                )}
-                                {attributes.wrapperBgType == 'gradient' && (
-                                    <>
-                                        <DpGradientPicker {...{attributes, setAttributes}}
-                                            label={__('Gradient olor','directory-plugin')}
-                                            attributesId = 'wrapperBgGradient'
-                                        />
-                                    </>
-                                )}
-                            </>
-                        )}
-                        {(tab.name == 'hover') && (
+                        {(tab.name == 'hover') ? (
                             <>
                                 <DpButtonGroup {...{attributes, setAttributes}}
                                     label={__('Background Type','directory-plugin')}
@@ -89,7 +57,14 @@ export const AdvancedControls = (props) => {
                                         { label: 'Gradient', value: 'gradient', icon: '' }
                                     ]}
                                 />
-                                {attributes.wrapperHoverBgType == 'classic' && (
+                                {attributes.wrapperHoverBackgroundType == 'gradient' ? (
+                                    <>
+                                        <DpGradientPicker {...{attributes, setAttributes}}
+                                            label={__('Gradient Color','directory-plugin')}
+                                            attributesId = 'wrapperHoverBgGradient'
+                                        />
+                                    </>
+                                ) : (
                                     <>
                                         <DpColorPalette {...{attributes, setAttributes}}
                                             label={__('Color','directory-plugin')}
@@ -98,14 +73,6 @@ export const AdvancedControls = (props) => {
                                         <DpMediaUpload {...{attributes, setAttributes}}
                                             label={__('Image','directory-plugin')}
                                             attributesId = 'wrapperHoverBgImage'
-                                        />
-                                    </>
-                                )}
-                                {attributes.wrapperHoverBackgroundType == 'gradient' && (
-                                    <>
-                                        <DpGradientPicker {...{attributes, setAttributes}}
-                                            label={__('Gradient Color','directory-plugin')}
-                                            attributesId = 'wrapperHoverBgGradient'
                                         />
                                     </>
                                 )}
@@ -118,6 +85,36 @@ export const AdvancedControls = (props) => {
                                     responsiveNo={true}
                                     unitNo={true}
                                 />
+                            </>
+                        ) : (
+                            <>
+                                <DpButtonGroup {...{attributes, setAttributes}}
+                                    label={__('Background Type','directory-plugin')}
+                                    attributesId = 'wrapperBgType'
+                                    buttons = {[
+                                        { label: 'Classic', value: 'classic', icon: '' },
+                                        { label: 'Gradient', value: 'gradient', icon: '' }
+                                    ]}
+                                />
+                                {attributes.wrapperBgType == 'gradient' ? (
+                                    <>
+                                        <DpGradientPicker {...{attributes, setAttributes}}
+                                            label={__('Gradient olor','directory-plugin')}
+                                            attributesId = 'wrapperBgGradient'
+                                        />
+                                    </>
+                                ) : (
+                                    <>
+                                        <DpColorPalette {...{attributes, setAttributes}}
+                                            label={__('Color','directory-plugin')}
+                                            attributesId = 'wrapperBgColor'
+                                        />
+                                        <DpMediaUpload {...{attributes, setAttributes}}
+                                            label={__('Image','directory-plugin')}
+                                            attributesId = 'wrapperBgImage'
+                                        />
+                                    </>
+                                )}
                             </>
                         )}
                     </>}
