@@ -15,6 +15,9 @@ class Dynamic_Blocks {
 	function __construct() {
 		// Register blocks.
 		add_action( 'init', [ $this, 'register_blocks' ] );
+
+		new BlocksFontLoader();
+		new BlocksPostMeta();
 	}
 
 	/**
