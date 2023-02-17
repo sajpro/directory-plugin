@@ -8,22 +8,23 @@ import {
 
 import { DpRangeControl } from "../../components/DpRangeControl";
 import { DpToggleControl } from "../../components/DpToggleControl";
+import { DpSpacingControls } from "../../components/DpSpacingControls";
 
 export const TAB_BUTTONS = [
     {
         name: 'general',
         title: 'General',
-        className: 'fb-tab general',
+        className: 'dp-tab general',
     },
     {
         name: 'style',
         title: 'Style',
-        className: 'fb-tab styles',
+        className: 'dp-tab styles',
     },
     {
         name: 'advanced',
         title: 'Advanced',
-        className: 'fb-tab advanced',
+        className: 'dp-tab advanced',
     },
 ];
 
@@ -77,10 +78,18 @@ const Inspector = (props) => {
                         </PanelBody>
                     )}
                     {(tab.name == 'style') && (
-                        <h2>style</h2>
+                        <h2>css</h2>
                     )}
                     {(tab.name == 'advanced') && (
-                        <h2>advanced</h2>
+                        <PanelBody
+                        title={__('Layout','directory-plugin')}
+                        initialOpen={true}
+                        >
+                            <DpSpacingControls {...{attributes, setAttributes}}
+                                label={__('Margin','directory-plugin')}
+                                attrId = 'wrapperMargin'
+                            />
+                        </PanelBody>
                     )}
                 </>}
             </TabPanel>
