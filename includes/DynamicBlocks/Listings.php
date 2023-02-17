@@ -120,7 +120,7 @@ class Listings {
 						'default' => '',
 					],
 					'wrapperBgTransition' => [
-						'type' => 'string',
+						'type' => 'number',
 						'default' => '',
 					],
 					'wrapperCustomCss' => [

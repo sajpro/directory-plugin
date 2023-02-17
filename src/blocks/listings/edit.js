@@ -75,6 +75,20 @@ console.log(serverAttr);
         attributes
     })
 
+    // wrapper background styles hover
+    let {backgroundStyles:{
+        Desktop: wrapperHoverBgStylesDesktop,
+        Tablet: wrapperHoverBgStylesTablet,
+        Mobile: wrapperHoverBgStylesMobile,
+        Transition: wrapperHoverBgTransition
+    }} = generateBgImageStyle({
+        attributesIdType: 'wrapperHoverBgType',
+        attributesIdColor: 'wrapperHoverBgColor',
+        attributesIdImage: 'wrapperHoverBgImage',
+        attributesIdGradient: 'wrapperHoverBgGradient',
+        attributes
+    })
+
     // section title typography
     let {typoStyle:{
         Desktop: secTitleTypoStyleDesktop,
@@ -85,12 +99,21 @@ console.log(serverAttr);
         attributes
     })
 
+    // porcess transition for background hover
+    const wrapperTransitions = [] 
+    if(wrapperBgTransition) wrapperTransitions.push(wrapperBgTransition)
     // Wrapper styles css for desktop
     const wrapperStylesDesktop = `
         ${(wrapperMarginDesktop || wrapperBgStylesDesktop) ? (`
             .dp-listings-wrapper.${blockId}{
                 ${wrapperMarginDesktop}
                 ${wrapperBgStylesDesktop}
+            }
+        `):''}
+        ${(wrapperHoverBgStylesDesktop) ? (`
+            .dp-listings-wrapper.${blockId}:hover{
+                ${wrapperHoverBgStylesDesktop}
+                transition: ${wrapperTransitions.join(", ")};
             }
         `):''}
     `;
