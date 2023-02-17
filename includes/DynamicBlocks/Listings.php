@@ -37,17 +37,31 @@ class Listings {
 	 * Listing blocks dynaic content
 	 */
 	public function listing_dynamic_render_callback( $attributes, $content ) {
-		$title = '';
-		$align = '';
+		$title           = '';
+		$number          = 12;
+		$show_pagination = true;
+		$show_submit_btn = true;
+		$align           = '';
 
 		if ( isset( $attributes['title'] ) && ! empty( $attributes['title'] ) ) {
 			$title = $attributes['title'];
 		}
+
+		if ( isset( $attributes['number'] ) && ! empty( $attributes['number'] ) ) {
+			$number = $attributes['number'];
+		}
+
+		if ( isset( $attributes['showPagination'] ) ) {
+			$show_pagination = $attributes['showPagination'];
+		}
+
+		if ( isset( $attributes['showSubmitButton'] ) ) {
+			$show_submit_btn = $attributes['showSubmitButton'];
+		}
+
 		if ( isset( $attributes['align'] ) && ! empty( $attributes['align'] ) ) {
 			$align = 'align' . $attributes['align'];
 		}
-
-		$number = 4;
 
 		$api_url = add_query_arg(
 			[
@@ -55,7 +69,6 @@ class Listings {
 			],
 			get_rest_url( null, 'directory/v1/listings' )
 		);
-		// pretty_log('api_url',$api_url);
 
 		$remote_request = wp_remote_get(
 			$api_url,
@@ -110,21 +123,25 @@ class Listings {
 							?>
 						</div>
 					</div>
-					<div class="listings-pagination">
-						<input type="hidden" name="pages" id="pages" value="<?php echo esc_attr( $pages ); ?>">
-						<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
-						<button class="prev-btn <?php echo esc_attr( $prev < 2 ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $prev ); ?>">Prev</button>
-						<?php
-						for ( $i = 0; $i < ( $pages ); $i++ ) {
-							$current = $i + 1;
-							echo '<button class="page-number ' . esc_attr( $current == ( $next - 1 ) ? 'active' : '' ) . '" value="' . esc_html( $current ) . '">' . esc_html( $current ) . '</button>';
-						}
-						?>
-						<button class="next-btn <?php echo esc_attr( $next > $pages ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $next ); ?>">Next</button>
-					</div>
+					<?php if ( $show_pagination ) : ?>
+						<div class="listings-pagination">
+							<input type="hidden" name="pages" id="pages" value="<?php echo esc_attr( $pages ); ?>">
+							<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
+							<button class="prev-btn <?php echo esc_attr( $prev < 2 ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $prev ); ?>">Prev</button>
+							<?php
+							for ( $i = 0; $i < ( $pages ); $i++ ) {
+								$current = $i + 1;
+								echo '<button class="page-number ' . esc_attr( $current == ( $next - 1 ) ? 'active' : '' ) . '" value="' . esc_html( $current ) . '">' . esc_html( $current ) . '</button>';
+							}
+							?>
+							<button class="next-btn <?php echo esc_attr( $next > $pages ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $next ); ?>">Next</button>
+						</div>
+					<?php endif; ?>
 				<?php endif; ?>
 
-				<button class="submit-toggle">Submit Listing</button>
+				<?php if ( $show_submit_btn ) : ?>
+					<button class="submit-toggle">Submit Listing</button>
+				<?php endif; ?>
 
 				<div class="dp-modal">
 					<div class="listing-form <?php echo esc_attr( ! is_user_logged_in() ? 'login-first' : '' ); ?>">
