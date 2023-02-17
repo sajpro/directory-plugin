@@ -32,7 +32,7 @@
 	},
 	"dependencies": {
 		"@codemirror/lang-css": "^6.0.2",
-		"@uiw/react-codemirror": "^4.19.8",
+		"@uiw/react-codemirror": "^4.19.9",
 		"@wordpress/icons": "^9.15.0",
 		"lodash": "^4.17.21",
 		"react-icons": "^4.7.1",

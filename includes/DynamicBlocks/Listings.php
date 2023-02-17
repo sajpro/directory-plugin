@@ -119,6 +119,10 @@ class Listings {
 						'type' => 'string',
 						'default' => '',
 					],
+					'wrapperCustomCss' => [
+						'type' => 'string',
+						'default' => '',
+					],
 					'wrapperHoverBgImage' => [
 						'type' => 'object',
 						'default' => [],

@@ -10,6 +10,7 @@ import { DpMediaUpload } from "../../components/DpMediaUpload";
 import { DpColorPalette } from "../../components/DpColorPalette";
 import { DpGradientPicker } from "../../components/DpGradientPicker";
 import { DpRangeControl } from "../../components/DpRangeControl";
+import { DpCustomCss } from "../../components/DpCustomCss";
 
 export const AdvancedControls = (props) => {
     let {attributes,setAttributes} = props;
@@ -121,6 +122,15 @@ export const AdvancedControls = (props) => {
                         )}
                     </>}
                 </TabPanel>
+            </PanelBody>
+            <PanelBody
+                title={__('Custom CSS','directory-plugin')}
+                initialOpen={false}
+            >
+                <DpCustomCss {...{attributes, setAttributes}} 
+                    label={__('Custom CSS','directory-plugin')}
+                    attrId = 'wrapperCustomCss'
+                />
             </PanelBody>
         </>
     )

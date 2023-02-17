@@ -50,6 +50,10 @@ export const AdvancedAttributes = {
         type: "string",
         default: ""
 	},
+	wrapperCustomCss: {
+        type: "string",
+        default: `/* Write your CSS here */ \n.dp-listing-wrap{\n\tmargin:0;\n}`
+	},
 	...generateBgeImageAttr('wrapperHoverBgImage',{
 		position: "",
 		repeat: "",
