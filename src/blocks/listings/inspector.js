@@ -82,6 +82,10 @@ const Inspector = (props) => {
                     )}
                     {(tab.name == 'style') && (
                         <PanelBody title={ __( 'Section Title', 'directory-plugin' ) }>
+                            <DpTypography {...{attributes, setAttributes}}
+                                label={__('Typography','directory-plugin')}
+                                attributesId = 'secTitleTypography'
+                            />
                             <TabPanel
                                 className='sec-tab-panel'
                                 activeClass='active-tab'
