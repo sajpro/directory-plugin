@@ -30,7 +30,8 @@ export const getBlockId = ({blockPrefix,blockId,setAttributes,clientId}) => {
 
 // generate minify css code
 export const minifyCSS = (css) => {
-    let css_string = css.split("\n").join("").trim().replace(/[\r\n\s]/gm, '');
+    let css_string = css.split("\n").join("").trim().replace(/\s+/g, " ").replace(/\s+(?=[^{\}]*\})/g, "")
+    // let css_string = css.split("\n").join("").trim().replace(/[\r\n\s]/gm, '');
     return css_string;
 };
 
