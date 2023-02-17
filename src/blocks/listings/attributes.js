@@ -36,7 +36,7 @@ const attributes = {
         default: ""
     },
     secTitleTransition: {
-        type: "number",
+        type: "string",
         default: ""
     },
 	...generateTypographyAttributes('secTitleTypography',{

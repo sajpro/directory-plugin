@@ -253,6 +253,7 @@ console.log(blockProps);
                     LoadingResponsePlaceholder={Loader}
                     block="directory-plugin/listings"
                     attributes={ serverAttr }
+                    httpMethod="POST"
                 />
             </Disabled>
         </>

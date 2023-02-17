@@ -4,7 +4,7 @@ export const DpRangeControl = (props) => {
     let { attributes, setAttributes,attributesId, label, min, max, step } = props;
 
     const handleOnChange = (v) => {
-        setAttributes( {[attributesId]: v} )
+        setAttributes( {[attributesId]: v.toString()} )
     }
 
     return (
@@ -13,7 +13,7 @@ export const DpRangeControl = (props) => {
             className="dp-not-flex"
         >
             <RangeControl
-                value={ attributes[attributesId] }
+                value={ parseFloat(attributes[attributesId]) }
                 onChange={ (v) => handleOnChange(v) }
                 min={ min || 1 }
                 max={ max || 100 }

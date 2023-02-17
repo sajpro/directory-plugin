@@ -75,7 +75,7 @@ class Listings {
 						'default' => '',
 					],
 					'secTitleTransition' => [
-						'type'    => 'number',
+						'type'    => 'string',
 						'default' => '',
 					],
 					'secTitleTypography' => [
@@ -124,7 +124,7 @@ class Listings {
 						'default' => '',
 					],
 					'wrapperBgTransition' => [
-						'type'    => 'number',
+						'type'    => 'string',
 						'default' => '',
 					],
 					'wrapperCustomCss' => [

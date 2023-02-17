@@ -48,7 +48,7 @@ export const AdvancedAttributes = {
         default: ""
 	},
 	wrapperBgTransition: {
-        type: "number",
+        type: "string",
         default: ""
 	},
 	wrapperCustomCss: {
