@@ -29,7 +29,7 @@ const Edit = (props) => {
     const serverAttr = {
         ...attributes
     }
-
+console.log(serverAttr);
     // create a unique id for blocks
     useEffect(() => {
         const blockPrefix = "dp-block";
@@ -164,12 +164,12 @@ const Edit = (props) => {
 	// Set All Style in "blockStyles" Attribute
 	useEffect(() => {
 		const stylesObject = {
-			desktop: desktopAllStyles,
-			tablet: tabletAllStyles,
-			mobile: mobileAllStyles,
+			desktop: minifyCSS(desktopAllStyles),
+			tablet: minifyCSS(tabletAllStyles),
+			mobile: minifyCSS(mobileAllStyles),
 		};
 		if (JSON.stringify(blockStyles) != JSON.stringify(stylesObject)) {
-			setAttributes({ blockStyles: JSON.stringify(stylesObject) });
+			setAttributes({ blockStyles: minifyCSS(JSON.stringify(stylesObject)) });
 		}
 	}, [attributes]);
 
