@@ -1,6 +1,8 @@
-import { generateDimensionAttributes } from "../../utils/helper"
+import { AdvancedAttributes } from "../../utils/AdvancedControls"
+// import { generateDimensionAttributes } from "../../utils/helper"
 
 const attributes = {
+    ...AdvancedAttributes,
     title: {
         type: "string",
         default: "This is Title"
@@ -25,14 +27,6 @@ const attributes = {
         type: "string",
         default: "wide"
     },
-	...generateDimensionAttributes('wrapperMargin',{
-		top: '',
-		right: '',
-		bottom: '',
-		left: '',
-		unit: '',
-		isLinked: true,
-	})
 };
 
 export default attributes;

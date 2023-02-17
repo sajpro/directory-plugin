@@ -10,6 +10,9 @@ import { DpRangeControl } from "../../components/DpRangeControl";
 import { DpToggleControl } from "../../components/DpToggleControl";
 import { DpSpacingControls } from "../../components/DpSpacingControls";
 
+import { AdvancedControls } from "../../utils/AdvancedControls"
+
+
 export const TAB_BUTTONS = [
     {
         name: 'general',
@@ -81,15 +84,7 @@ const Inspector = (props) => {
                         <h2>css</h2>
                     )}
                     {(tab.name == 'advanced') && (
-                        <PanelBody
-                        title={__('Layout','directory-plugin')}
-                        initialOpen={true}
-                        >
-                            <DpSpacingControls {...{attributes, setAttributes}}
-                                label={__('Margin','directory-plugin')}
-                                attributesId = 'wrapperMargin'
-                            />
-                        </PanelBody>
+                        <AdvancedControls {...{attributes, setAttributes}}/>
                     )}
                 </>}
             </TabPanel>
