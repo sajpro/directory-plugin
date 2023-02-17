@@ -66,6 +66,13 @@ class Listings {
 						'type' => 'string',
 						'default' => '',
 					],
+					'secTitleTypography' => [
+						'type' => 'object',
+						'default' => [],
+						'items' => [
+							'type' => 'string',
+						],
+					],
 					'wrapperMargin' => [
 						'type' => 'object',
 						'default' => [],

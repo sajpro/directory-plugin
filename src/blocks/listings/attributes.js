@@ -1,5 +1,5 @@
 import { AdvancedAttributes } from "../../utils/AdvancedControls"
-// import { generateDimensionAttributes } from "../../utils/helper"
+import { generateTypographyAttributes } from "../../utils/helper"
 
 const attributes = {
     ...AdvancedAttributes,
@@ -35,6 +35,24 @@ const attributes = {
         type: "string",
         default: ""
     },
+	...generateTypographyAttributes('secTitleTypography',{
+		fontSize: {
+			value: "",
+			unit: "",
+		},
+		lineHeight: {
+			value: "",
+			unit: "",
+		},
+		letterSpacing: {
+			value: "",
+			unit: "",
+		},
+		wordSpacing: {
+			value: "",
+			unit: "",
+		},
+	}),
 };
 
 export default attributes;

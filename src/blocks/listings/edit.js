@@ -21,6 +21,7 @@ const Edit = (props) => {
     const serverAttr = {
         ...attributes
     }
+    console.log(attributes);
 
     return (
         <div { ...useBlockProps() }>
