@@ -212,46 +212,41 @@ console.log(serverAttr);
 			setAttributes({ blockStyles: minifyCSS(JSON.stringify(stylesObject)) });
 		}
 	}, [attributes]);
-
+console.log(blockProps);
     return (
         <>
             <Inspector {...{attributes,setAttributes}}/>
 
-            <div { ...blockProps }>
+            <style>
+            {`
+                /* Desktop styles Start */
+                ${minifyCSS(desktopAllStyles)}
+                /* Desktop styles End */
 
-                <style>
-                {`
-                    /* Desktop styles Start */
-                    ${minifyCSS(desktopAllStyles)}
-                    /* Desktop styles End */
+                @media all and (max-width: 1024px) {
+                    /* tablet styles Start */
+                    ${minifyCSS(tabletAllStyles)}
+                    /* tablet styles End */
+                }
 
-                    @media all and (max-width: 1024px) {
-                        /* tablet styles Start */
-                        ${minifyCSS(tabletAllStyles)}
-                        /* tablet styles End */
-                    }
+                @media all and (max-width: 767px) {
+                    /* mobile styles Start */
+                    ${minifyCSS(mobileAllStyles)}
+                    /* mobile styles End */
+                }
+                /* custom css */
+                ${minifyCSS(wrapperCustomCss)}
+            `}
 
-                    @media all and (max-width: 767px) {
-                        /* mobile styles Start */
-                        ${minifyCSS(mobileAllStyles)}
-                        /* mobile styles End */
-                    }
-                    /* custom css */
-                    ${minifyCSS(wrapperCustomCss)}
-                `}
+            </style>
 
-                </style>
-
-                <div className={`dp-listings-wrapper ${blockId}`}>
-                    <Disabled>
-                        <ServerSideRender
-                            LoadingResponsePlaceholder={Loader}
-                            block="directory-plugin/listings"
-                            attributes={ serverAttr }
-                        />
-                    </Disabled>
-                </div>
-            </div>
+            <Disabled>
+                <ServerSideRender
+                    LoadingResponsePlaceholder={Loader}
+                    block="directory-plugin/listings"
+                    attributes={ serverAttr }
+                />
+            </Disabled>
         </>
     );
 }

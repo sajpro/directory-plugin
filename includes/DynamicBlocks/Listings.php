@@ -207,8 +207,8 @@ class Listings {
 		$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => implode( ' ', $classnames ) ] );
 
 		ob_start(); ?>
-			<div class="dp-listings-wrapper <?php echo esc_attr( $block_id ); ?>">
-				<div <?php echo esc_attr( $wrapper_attributes ); ?>>
+			<div <?php echo esc_attr( $wrapper_attributes ); ?>>
+				<div class="dp-listings-wrapper <?php echo esc_attr( $block_id ); ?>">
 					<?php
 					if ( $title ) {
 						echo sprintf( __( '<h2 class="sec-title text-center">%s</h2>', 'directory-plugin' ), $title );
