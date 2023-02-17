@@ -11,7 +11,6 @@ export const DpSpacingControls = (props) => {
 
     const getDevice = useGetDevice();
 
-    console.log(attributes[attributesId]);
     const handleOnChange = (e) => {
 
         let key = e.target.name;
