@@ -23,6 +23,7 @@ const Edit = (props) => {
         showPagination,
         showSubmitButton,
         secTitleNormalColor,
+        secTitleHoverColor,
         wrapperCustomCss
     } = attributes;
 
@@ -100,6 +101,11 @@ console.log(serverAttr);
             .dp-listings-wrapper.${blockId} .sec-title {
                 ${secTitleNormalColor ? (`color: ${secTitleNormalColor};`) : ''}
                 ${secTitleTypoStyleDesktop}
+            }
+        `):''}
+        ${(secTitleHoverColor) ? (`
+            .dp-listings-wrapper.${blockId} .sec-title:hover {
+                color: ${secTitleHoverColor};
             }
         `):''}
     `;
