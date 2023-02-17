@@ -1,4 +1,4 @@
-import { generateDimensionAttributes } from "../../utils/helpers"
+import { generateDimensionAttributes } from "../../utils/helper"
 
 const attributes = {
     title: {

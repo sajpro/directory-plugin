@@ -50,6 +50,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wor
 
 /***/ }),
 
+/***/ "./src/blocks/listings/attributes.js":
+/*!*******************************************!*\
+  !*** ./src/blocks/listings/attributes.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/helper */ \"./src/utils/helper.js\");\n\nconst attributes = {\n  title: {\n    type: \"string\",\n    default: \"This is Title\"\n  },\n  subtitle: {\n    type: \"string\",\n    default: \"This is Subtitle\"\n  },\n  number: {\n    type: \"integer\",\n    default: 12\n  },\n  showPagination: {\n    type: \"boolean\",\n    default: true\n  },\n  showSubmitButton: {\n    type: \"boolean\",\n    default: true\n  },\n  align: {\n    type: \"string\",\n    default: \"wide\"\n  },\n  ...(0,_utils_helper__WEBPACK_IMPORTED_MODULE_0__.generateDimensionAttributes)('wrapperMargin', {\n    top: '',\n    right: '',\n    bottom: '',\n    left: '',\n    isLinked: false\n  })\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (attributes);\n\n//# sourceURL=webpack://directory-plugin/./src/blocks/listings/attributes.js?");
+
+/***/ }),
+
 /***/ "./src/blocks/listings/edit.js":
 /*!*************************************!*\
   !*** ./src/blocks/listings/edit.js ***!
@@ -66,7 +76,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wor
   \**************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_register_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/register-blocks */ \"./src/utils/register-blocks.js\");\n/* harmony import */ var _blocks_listings_block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../blocks/listings/block.json */ \"./blocks/listings/block.json\");\n/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ \"./src/blocks/listings/edit.js\");\n\n\n// import attributes from \"./attributes\";\n\nconsole.log(_blocks_listings_block_json__WEBPACK_IMPORTED_MODULE_1__.attributes);\n(0,_utils_register_blocks__WEBPACK_IMPORTED_MODULE_0__.dpRegisterBlockType)(_blocks_listings_block_json__WEBPACK_IMPORTED_MODULE_1__, {\n  icon: 'book-alt',\n  attributes: _blocks_listings_block_json__WEBPACK_IMPORTED_MODULE_1__.attributes,\n  edit: _edit__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\n  save: props => {\n    return null;\n  }\n});\n\n//# sourceURL=webpack://directory-plugin/./src/blocks/listings/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_register_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/register-blocks */ \"./src/utils/register-blocks.js\");\n/* harmony import */ var _blocks_listings_block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../blocks/listings/block.json */ \"./blocks/listings/block.json\");\n/* harmony import */ var _attributes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./attributes */ \"./src/blocks/listings/attributes.js\");\n/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ \"./src/blocks/listings/edit.js\");\n\n\n\n\n(0,_utils_register_blocks__WEBPACK_IMPORTED_MODULE_0__.dpRegisterBlockType)(_blocks_listings_block_json__WEBPACK_IMPORTED_MODULE_1__, {\n  icon: 'book-alt',\n  attributes: _attributes__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\n  edit: _edit__WEBPACK_IMPORTED_MODULE_3__[\"default\"],\n  save: props => {\n    return null;\n  }\n});\n\n//# sourceURL=webpack://directory-plugin/./src/blocks/listings/index.js?");
 
 /***/ }),
 
@@ -197,6 +207,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _com
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"useGetDevice\": function() { return /* binding */ useGetDevice; }\n/* harmony export */ });\n/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/data */ \"@wordpress/data\");\n/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);\n\nconst useGetDevice = () => {\n  const {\n    deviceType\n  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useSelect)(select => {\n    return {\n      deviceType: select('core/edit-post')?.__experimentalGetPreviewDeviceType() || 'Desktop'\n    };\n  }, []);\n  return deviceType || '';\n};\n\n//# sourceURL=webpack://directory-plugin/./src/utils/getDevice.js?");
+
+/***/ }),
+
+/***/ "./src/utils/helper.js":
+/*!*****************************!*\
+  !*** ./src/utils/helper.js ***!
+  \*****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"generateDimensionAttributes\": function() { return /* binding */ generateDimensionAttributes; }\n/* harmony export */ });\nconst generateDimensionAttributes = (attributesId, attributesObject) => {\n  return {\n    [attributesId]: {\n      type: \"object\",\n      default: {\n        unitDefault: \"px\",\n        Desktop: attributesObject,\n        Tablet: attributesObject,\n        Mobile: attributesObject\n      }\n    }\n  };\n};\n\n//# sourceURL=webpack://directory-plugin/./src/utils/helper.js?");
 
 /***/ }),
 
