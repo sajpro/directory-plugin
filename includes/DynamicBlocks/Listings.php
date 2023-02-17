@@ -25,6 +25,7 @@ class Listings {
 			'directory-plugin/listings',
 			[
 				'style'           => $attributes_array['style'],
+				'editor_style'    => $attributes_array['editorStyle'],
 				'editor_script'   => $attributes_array['editorScript'],
 				'render_callback' => [ $self, 'listing_dynamic_render_callback' ],
 				'attributes'      => $attributes_array['attributes'],

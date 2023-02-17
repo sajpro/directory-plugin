@@ -29,6 +29,7 @@ class Assets {
 	 * Register block editor only styles/scripts
 	 */
 	public function enqueue_block_editor_assets() {
+		wp_register_style( 'dp-editor-style', DIRECTORY_PLUGIN_ASSETS . '/blocks/blocks-editor.css', [], md5_file( DIRECTORY_PLUGIN_ASSETS . '/blocks/blocks-editor.css' ), 'all' );
 		wp_register_script( 'dp-editor-script', DIRECTORY_PLUGIN_ASSETS . '/blocks/index.js', $this->blocks_file['dependencies'], $this->blocks_file['version'], true );
 	}
 
