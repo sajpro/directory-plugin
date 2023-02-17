@@ -144,6 +144,7 @@ class Listings {
 	 */
 	public function listing_dynamic_render_callback( $attributes, $content ) {
 		$title           = '';
+		$subtitle        = '';
 		$number          = 12;
 		$show_pagination = true;
 		$show_submit_btn = true;
@@ -151,6 +152,10 @@ class Listings {
 
 		if ( isset( $attributes['title'] ) && ! empty( $attributes['title'] ) ) {
 			$title = $attributes['title'];
+		}
+
+		if ( isset( $attributes['subtitle'] ) && ! empty( $attributes['subtitle'] ) ) {
+			$subtitle = $attributes['subtitle'];
 		}
 
 		if ( isset( $attributes['number'] ) && ! empty( $attributes['number'] ) ) {
@@ -194,6 +199,12 @@ class Listings {
 
 		ob_start(); ?>
 			<div <?php echo esc_attr( $wrapper_attributes ); ?>>
+				<?php if($title){
+					echo sprintf(__('<h2 class="sec-title text-center">%s</h2>','directory-plugin'), $title);
+				} ?>
+				<?php if($subtitle){
+					echo sprintf(__('<p class="sec-subtitle text-center">%s</p>','directory-plugin'), $subtitle);
+				} ?>
 				<?php if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ) : ?>
 					<div id="listings-wrap">
 						<div class="loader-wrap hidden">

@@ -209,20 +209,6 @@ console.log(serverAttr);
                 </style>
 
                 <div className={`dp-listings-wrapper ${blockId}`}>
-                    <RichText
-                        tagName="h2"
-                        className="sec-title"
-                        style={{textAlign:"center"}}
-                        onChange={(v) => setAttributes({ title: v })}
-                        value={title}
-                    />
-                    <RichText
-                        tagName="p"
-                        className="dp-sec-subtitle"
-                        style={{textAlign:"center"}}
-                        onChange={(v) => setAttributes({ subtitle: v })}
-                        value={subtitle}
-                    />
                     <Disabled>
                         <ServerSideRender
                             LoadingResponsePlaceholder={Loader}
