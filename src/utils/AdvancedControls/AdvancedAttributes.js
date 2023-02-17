@@ -5,7 +5,8 @@ export const AdvancedAttributes = {
 		type: "string",
 	},
 	blockStyles: {
-		type: "object",
+		type: "string",
+        default: ""
 	},
 	...generateDimensionAttributes('wrapperMargin',{
 		top: '',

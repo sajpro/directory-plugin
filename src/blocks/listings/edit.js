@@ -27,7 +27,6 @@ const Edit = (props) => {
     const serverAttr = {
         ...attributes
     }
-    console.log(attributes);
 
     // create a unique id for blocks
     useEffect(() => {
@@ -108,7 +107,7 @@ const Edit = (props) => {
 			mobile: mobileAllStyles,
 		};
 		if (JSON.stringify(blockStyles) != JSON.stringify(stylesObject)) {
-			setAttributes({ blockStyles: stylesObject });
+			setAttributes({ blockStyles: JSON.stringify(stylesObject) });
 		}
 	}, [attributes]);
 
@@ -117,24 +116,25 @@ const Edit = (props) => {
             <Inspector {...{attributes,setAttributes}}/>
 
             <div { ...blockProps }>
+
                 <style>
-                    {`
-                        /* Desktop styles Start */
-                        ${minifyCSS(desktopAllStyles)}
-                        /* Desktop styles End */
+                {`
+                    /* Desktop styles Start */
+                    ${minifyCSS(desktopAllStyles)}
+                    /* Desktop styles End */
 
-                        @media all and (max-width: 1024px) {
-                            /* tablet styles Start */
-                            ${minifyCSS(tabletAllStyles)}
-                            /* tablet styles End */
-                        }
+                    @media all and (max-width: 1024px) {
+                        /* tablet styles Start */
+                        ${minifyCSS(tabletAllStyles)}
+                        /* tablet styles End */
+                    }
 
-                        @media all and (max-width: 767px) {
-                            /* mobile styles Start */
-                            ${minifyCSS(mobileAllStyles)}
-                            /* mobile styles End */
-                        }
-                    `}
+                    @media all and (max-width: 767px) {
+                        /* mobile styles Start */
+                        ${minifyCSS(mobileAllStyles)}
+                        /* mobile styles End */
+                    }
+                `}
 
                 </style>
 

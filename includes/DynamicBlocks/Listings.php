@@ -34,6 +34,10 @@ class Listings {
 						'type' => 'string',
 						'default' => '',
 					],
+					'blockStyles' => [
+						'type' => 'string',
+						'default' => '',
+					],
 					'title' => [
 						'type' => 'string',
 						'default' => 'This is Title',
