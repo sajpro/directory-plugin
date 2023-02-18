@@ -359,8 +359,8 @@ class Listings {
 												</div>
 											</div>
 										</div>
-										<h1 class="success-msg hidden"><?php esc_html_e( 'Success', 'directory-plugin' ); ?></h1>
-										<h1 class="error-msg hidden"></h1>
+										<h1 class="success-msg message hidden"><?php esc_html_e( 'Success', 'directory-plugin' ); ?></h1>
+										<h1 class="error-msg message hidden"></h1>
 									</div>
 
 								</form>

@@ -194,28 +194,38 @@ jQuery(document).ready(function($) {
                             $('#submit-listing').prop( "disabled", false );
                             $('.submit-btn .loader-wrap').addClass( "hidden" );
                             $('.submit-btn .success-msg').removeClass( "hidden" );
-                            setTimeout(() => {
-                                $('.dp-modal').removeClass( "open" );
-                                $('.submit-btn .success-msg').addClass( "hidden" );
-                                $( '#submit-listing-form' )[0].reset();
-                                $('.preview-image').addClass('hidden');
-                                $('.preview-image img').attr('src', '');
-                            }, 700);
+                            DirectoryPlugin.CleanUp();
                         }else{
-                            $('#submit-listing').prop( "disabled", false );
-                            $('.submit-btn .loader-wrap').addClass( "hidden" );
-                            $('.submit-btn .error-msg').removeClass( "hidden" ).text('Something went wrong!');
+                            DirectoryPlugin.ErrorActions('Something went wrong!');
                         }
                     },
                     error: function (err) {
                         let error = JSON.parse(err.responseText);
-                        $('#submit-listing').prop( "disabled", false );
-                        $('.submit-btn .loader-wrap').addClass( "hidden" );
-                        $('.submit-btn .error-msg').removeClass( "hidden" ).text(error?.code + '. ' + error?.message);
+                        let msg = error?.code + '. ' + error?.message;
+                        DirectoryPlugin.ErrorActions(msg);
                     }
                 }
             );
 
+        },
+
+        // Perform once error occured
+        ErrorActions: function(msg, status = true) {
+            $('#submit-listing').prop( "disabled", false );
+            $('.submit-btn .loader-wrap').addClass( "hidden" );
+            $('.submit-btn .error-msg').removeClass( "hidden" ).text(msg);
+            DirectoryPlugin.CleanUp(3000);
+        },
+
+        CleanUp: function (timeout = 1000) {
+            setTimeout(() => {
+                $('.dp-modal').removeClass( "open" );
+                $('.submit-btn .success-msg').addClass( "hidden" );
+                $( '#submit-listing-form' )[0].reset();
+                $('.preview-image').addClass('hidden');
+                $('.preview-image img').attr('src', '');
+                $('.submit-btn .message').addClass( "hidden" ).text('');
+            }, timeout);
         }
 
     }
