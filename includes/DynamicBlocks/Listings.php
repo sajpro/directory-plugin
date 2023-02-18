@@ -281,7 +281,6 @@ class Listings {
 												<?php if ( $image_url ) : ?>
 													<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $listing->id ); ?>">
 												<?php endif; ?>
-												<h2><?php esc_html_e( 'ID', 'directory-plugin' ); ?>: <?php echo esc_html( $listing->id ); ?></h2>
 												<h5><?php esc_html_e( 'Title', 'directory-plugin' ); ?>: <?php echo esc_html( $listing->title ); ?></h5>
 												<p><b><?php esc_html_e( 'Content', 'directory-plugin' ); ?></b>: <?php echo esc_textarea( wp_trim_words( $listing->content, 12, '...' ) ); ?></p>
 												<p><b><?php esc_html_e( 'Status', 'directory-plugin' ); ?></b>: <?php echo esc_html( $listing->listing_status ); ?></p>

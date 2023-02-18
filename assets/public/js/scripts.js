@@ -60,7 +60,6 @@ jQuery(document).ready(function($) {
                                 listings += `
                                     <div class="cell">
                                         ${(item.preview_image > 0) ? `<img src="${image_url}" alt="${item.id}">` :'' }
-                                        <h2>ID: ${item.id}</h2>
                                         <h5>Title: ${item.title}</h5>
                                         <p><b>Content</b>: ${DirectoryPlugin.ShortText(item.content)}...</p>
                                         <p><b>Status</b>: ${item.listing_status}</p>
@@ -173,7 +172,6 @@ jQuery(document).ready(function($) {
                             let listings = `
                                 <div class="cell">
                                     ${image_url && `<img src="${image_url}" alt="${data?.data?.id}">`}
-                                    <h2>ID: ${data?.data?.id}</h2>
                                     <h5>Title: ${title}</h5>
                                     <p><b>Content</b>: ${content ? `${content.substring(0, 90)}...` : ''}</p>
                                     <p><b>Status</b>: ${status}</p>
