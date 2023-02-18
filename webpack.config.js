@@ -13,31 +13,29 @@ defaultConfig.output = {
 };
 
 defaultConfig.entry = {
-    'index': './src/index.js',
-    // 'admin/js/index': './src/admin/index.js',
+    'index': './src/index.js'
 };
 
 const assetsConfig = {
     mode,
     entry: {
-		// 'admin/css/style': './src/admin/style.scss',
-
-        // // All blocks editor css including common
+        // All blocks editor css including common
         "blocks-editor": [
-            // Block common editor css
+            // Blocks common editor css
             ...glob.sync("./src/scss/editor.scss"),
 
             // All blocks editor css
             ...glob.sync("./src/blocks/**/**/*editor.scss"),
+
             // ALl Components editor css
             ...glob.sync("./src/components/**/**/*editor.scss"),
         ],
-        // // All blocks editor css including common
+        
+        // All blocks editor css including common
         "blocks-style": [
-            // All blocks editor css
+            // All blocks style css
             ...glob.sync("./src/blocks/**/**/*style.scss"),
         ],
-
     },
     module: {
         rules: [
@@ -86,9 +84,6 @@ const assetsConfig = {
     output: {
         // Webpack will create js files even though they are not used
         filename: "[name].js",
-        // filename: "[name].useless.js",
-        // chunkFilename: "[name].[chunkhash].useless.js",
-
         // Where the CSS is saved to
         path: path.resolve(__dirname, "assets/blocks"),
         publicPath: "/assets/blocks",
@@ -98,7 +93,6 @@ const assetsConfig = {
             filename: "[name].css",
             chunkFilename: "[id].css"
         }),
-
         new RemovePlugin({
             after: {
                 test: [
