@@ -102,8 +102,12 @@ class Api_Endpoints extends \WP_REST_Controller {
 	 * @param array $request User request data.
 	 */
 	public function create_listings( $request ) {
-		$result['success'] = false;
 		$id                = 0;
+		$result['success'] = false;
+
+		if ( empty( $request->get_param( 'title' ) ) ) {
+			wp_send_json( $result );
+		}
 
 		$title          = $request->get_param( 'title' );
 		$content        = $request->get_param( 'content' );
