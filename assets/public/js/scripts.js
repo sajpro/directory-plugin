@@ -146,10 +146,10 @@ jQuery(document).ready(function($) {
         // Listing form submit functionality
         SubmitListing: function ( image_id = 0, image_url = '' ) {
             
-            let title = $('#submit-listing-form #title').val();
+            let title   = $('#submit-listing-form #title').val();
             let content = $('#submit-listing-form #content').val();
-            let status = $('#submit-listing-form #status').val();
-            let autor = $('#submit-listing-form #autor').val();
+            let status  = $('#submit-listing-form #status').val();
+            let autor   = $('#submit-listing-form #autor').val();
             
             $.ajax(
                 {
@@ -223,6 +223,7 @@ jQuery(document).ready(function($) {
     // Listing modal toggle
     DirectoryPlugin.ToggleModal();
 
+    // Upload form preview image
     DirectoryPlugin.PreivewImage();
 
     // Fetch listings initialpage load
@@ -264,6 +265,5 @@ jQuery(document).ready(function($) {
             DirectoryPlugin.SubmitListing(); // submitting form without image
         }
     });
-
 
 });
