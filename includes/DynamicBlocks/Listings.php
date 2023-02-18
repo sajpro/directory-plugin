@@ -239,10 +239,10 @@ class Listings {
 
 		$response_code = wp_remote_retrieve_response_code( $remote_request );
 		$response_body = (array) json_decode( wp_remote_retrieve_body( $remote_request ) );
-		$pages         = $response_body['pages'];
-		$prev          = $response_body['prev'];
-		$total         = $response_body['total'];
-		$next          = $response_body['next'];
+		$pages         = $response_body['pages'] ? $response_body['pages'] : 0;
+		$prev          = $response_body['prev'] ? $response_body['prev'] : 0;
+		$total         = $response_body['total'] ? $response_body['total'] : 0;
+		$next          = $response_body['next'] ? $response_body['next'] : 0;
 
 		$classnames         = [];
 		$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => implode( ' ', $classnames ) ] );
@@ -258,20 +258,20 @@ class Listings {
 						echo sprintf( __( '<p class="sec-sub-title text-center">%s</p>', 'directory-plugin' ), $subtitle );
 					}
 					?>
-					<?php if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ) : ?>
-						<div id="listings-wrap">
-							<div class="loader-wrap hidden">
-								<div class="loader">
-									<div class="svg-loader">
-										<svg class="svg-container" height="100" width="100" viewBox="0 0 100 100">
-											<circle class="loader-svg bg" cx="50" cy="50" r="45"></circle>
-											<circle class="loader-svg animate" cx="50" cy="50" r="45"></circle>
-										</svg>
-									</div>
+					<div id="listings-wrap">
+						<div class="loader-wrap hidden">
+							<div class="loader">
+								<div class="svg-loader">
+									<svg class="svg-container" height="100" width="100" viewBox="0 0 100 100">
+										<circle class="loader-svg bg" cx="50" cy="50" r="45"></circle>
+										<circle class="loader-svg animate" cx="50" cy="50" r="45"></circle>
+									</svg>
 								</div>
 							</div>
-							<div class="wrapper <?php echo esc_attr( $align ); ?>">
-								<?php
+						</div>
+						<div class="wrapper <?php echo esc_attr( $align ); ?>">
+							<?php
+							if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ){
 								if ( count( $response_body['listings'] ) > 0 ) {
 									foreach ( $response_body['listings'] as $listing ) {
 										$image_url = wp_get_attachment_url( $listing->preview_image );
@@ -290,23 +290,26 @@ class Listings {
 										<?php
 									}
 								}
-								?>
-							</div>
+							}
+							?>
 						</div>
-						<?php if ( $show_pagination && ( $total > $number ) ) : ?>
-							<div class="listings-pagination">
-								<input type="hidden" name="pages" id="pages" value="<?php echo esc_attr( $pages ); ?>">
-								<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
-								<button class="prev-btn <?php echo esc_attr( $prev < 2 ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $prev ); ?>"><?php esc_html_e( 'Prev', 'directory-plugin' ); ?></button>
+					</div>
+					<?php if ( $show_pagination && ( $total > $number ) ) : ?>
+						<div class="listings-pagination">
+							<input type="hidden" name="allpage" id="allpage" value="<?php echo esc_attr( $total ); ?>">
+							<input type="hidden" name="pages" id="pages" value="<?php echo esc_attr( $pages ); ?>">
+							<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
+							<button class="prev-btn <?php echo esc_attr( $prev < 2 ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $prev ); ?>"><?php esc_html_e( 'Prev', 'directory-plugin' ); ?></button>
+							<div class='pagi-num'>
 								<?php
 								for ( $i = 0; $i < ( $pages ); $i++ ) {
 									$current = $i + 1;
 									echo '<button class="page-number ' . esc_attr( $current == ( $next - 1 ) ? 'active' : '' ) . '" value="' . esc_attr( $current ) . '">' . esc_html( $current ) . '</button>';
 								}
 								?>
-								<button class="next-btn <?php echo esc_attr( $next > $pages ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $next ); ?>"><?php esc_html_e( 'Next', 'directory-plugin' ); ?></button>
 							</div>
-						<?php endif; ?>
+							<button class="next-btn <?php echo esc_attr( $next > $pages ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $next ); ?>"><?php esc_html_e( 'Next', 'directory-plugin' ); ?></button>
+						</div>
 					<?php endif; ?>
 
 					<?php if ( $show_submit_btn ) : ?>

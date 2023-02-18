@@ -1,6 +1,6 @@
 import { BaseControl } from "@wordpress/components";
 import { FaLink} from 'react-icons/fa';
-
+import { __ } from "@wordpress/i18n";
 import {DpUnits} from "../DpUnits"
 import DpResponsiveControls from "../DpResponsiveControls/DpResponsiveControls"
 

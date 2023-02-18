@@ -182,7 +182,19 @@ jQuery(document).ready(function($) {
                             // inject fetch data to wrapper el
                             $( "#listings-wrap .wrapper" ).prepend( listings );
 
-                            let number = $('#number').val();
+                            let oldpage = parseInt($('#pages').val());
+                            let allpage = parseInt($('#allpage').val()) + 1;
+                            $('#allpage').val(allpage);
+
+                            let number = parseInt($('#number').val());
+                            let newPages = Math.ceil(allpage / number)
+
+                            if(newPages>oldpage){
+                                console.log({newPages,oldpage});
+                                $('.pagi-num').append($(`<button class="page-number" value="${newPages}">${newPages}</button>`));
+                            }
+                            $('#pages').val(newPages);
+
                             let total = $('#listings-wrap .wrapper .cell').size();
                             if(total > number ){ // remove element if total items more than 'per_page'
                                 let remove = total - number;
@@ -222,7 +234,7 @@ jQuery(document).ready(function($) {
                 $( '#submit-listing-form' )[0].reset();
                 $('.preview-image').addClass('hidden');
                 $('.preview-image img').attr('src', '');
-                $('.submit-btn .message').addClass( "hidden" ).text('');
+                $('.submit-btn .message').addClass( "hidden" );
             }, timeout);
         }
 
@@ -239,7 +251,7 @@ jQuery(document).ready(function($) {
     // DirectoryPlugin.FetchListings( number, 0 );
 
     // listings load by pagination
-    $('.listings-pagination button').on('click', function (e) {
+    $( ".listings-pagination" ).on( "click", "button", function() {
         var pages = $('#pages').val();
         var number = $('#number').val();
         var paged = $(this).val();

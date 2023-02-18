@@ -20,7 +20,7 @@ export const DpUnitTypo = (props) => {
                 key={i}
                     className={(attributes[attributesId][getDevice][attributesUnit]?.unit || attributes[attributesId][attributesUnitDefault] ) == btn ? 'active-unit' : ''}
                     onClick={(v) => handleUnit(btn)}
-                >btn</Button> 
+                >{btn}</Button> 
             ))}
         </div>
     );
