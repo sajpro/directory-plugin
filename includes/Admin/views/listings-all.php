@@ -35,7 +35,7 @@
 			$table = new Sajib\DP\Admin\Listing_Table();
 			$table->views();
 			$table->prepare_items();
-			$table->search_box( 'Search', 's' );
+			$table->search_box( __( 'Search', 'directory-plugin' ), 's' );
 			$table->display();
 		?>
 	</form>

@@ -36,7 +36,7 @@
 						<select name="author" id="filter-by-author">
 							<?php
 							foreach ( $users as $user ) {
-								$name = $user->display_name ? $user->display_name : $user->user_login;
+								$name = $user->display_name;
 								?>
 									<option value="<?php echo esc_attr( $user->ID ); ?>"><?php echo esc_html( $name ); ?></option>
 								<?php
@@ -62,7 +62,7 @@
 					</th>
 					<td>
 						<div class="img-wrap">
-							<span class="img-remove">X</span>
+							<span class="img-remove">&times;</span>
 							<img class="img-preview hide" src="" width="100" height="auto" alt="image"> 
 						</div>
 						<input type="hidden" class="wpx-img-field" id="preview_image" name="preview_image" value="0"/> 

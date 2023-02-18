@@ -41,7 +41,7 @@
 						<select name="author" id="filter-by-author">
 							<?php
 							foreach ( $users as $user ) {
-								$name = $user->display_name ? $user->display_name : $user->user_login;
+								$name = $user->display_name;
 								?>
 									<option value="<?php echo esc_attr( $user->ID ); ?>" <?php selected( $selected_user, $user->ID ); ?>><?php echo esc_html( $name ); ?></option>
 								<?php
@@ -67,12 +67,11 @@
 					</th>
 					<td>
 						<?php
-						$image_id = $listing->preview_image;
-
+						$image_id  = $listing->preview_image;
 						$image_url = wp_get_attachment_url( $image_id );
 						?>
 						<div class="img-wrap">
-							<span class="img-remove">X</span>
+							<span class="img-remove">&times;</span>
 							<img class="img-preview <?php echo ( ! empty( $image_id ) ? '' : 'hide' ); ?>" src="<?php echo esc_url( $image_url ); ?>" width="100" height="auto" alt="image"> 
 						</div>
 						<input type="hidden" class="wpx-img-field" id="preview_image" name="preview_image" value="<?php echo esc_attr( $image_id ); ?>"/> 
