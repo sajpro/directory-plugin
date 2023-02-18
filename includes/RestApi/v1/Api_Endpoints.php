@@ -85,6 +85,7 @@ class Api_Endpoints extends \WP_REST_Controller {
 
 		if ( $listings ) {
 			$result['success']  = true;
+			$result['total']    = $total_listings;
 			$result['pages']    = ceil( $total_listings / count( $listings ) );
 			$result['prev']     = $prev - 1;
 			$result['next']     = $next;

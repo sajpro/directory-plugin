@@ -241,6 +241,7 @@ class Listings {
 		$response_body = (array) json_decode( wp_remote_retrieve_body( $remote_request ) );
 		$pages         = $response_body['pages'];
 		$prev          = $response_body['prev'];
+		$total         = $response_body['total'];
 		$next          = $response_body['next'];
 
 		$classnames         = [];
@@ -274,17 +275,18 @@ class Listings {
 								if ( count( $response_body['listings'] ) > 0 ) {
 									foreach ( $response_body['listings'] as $listing ) {
 										$image_url = wp_get_attachment_url( $listing->preview_image );
+										$author    = get_userdata( $listing->author );
 										?>
 											<div class="cell">
 												<?php if ( $image_url ) : ?>
 													<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $listing->id ); ?>">
 												<?php endif; ?>
-												<h2>ID: <?php echo esc_html( $listing->id ); ?></h2>
-												<h5>Title: <?php echo esc_html( $listing->title ); ?></h5>
-												<p><b>Content</b>: <?php echo esc_html( wp_trim_words( $listing->content, 12, '...' ) ); ?></p>
-												<p><b>Status</b>: <?php echo esc_html( $listing->listing_status ); ?></p>
-												<p><b>Author</b>: <?php echo esc_html( $listing->author ); ?></p>
-												<p><b>Submitted</b>: <?php echo esc_html( $listing->created_at ); ?></p>
+												<h2><?php esc_html_e( 'ID', 'directory-plugin' ); ?>: <?php echo esc_html( $listing->id ); ?></h2>
+												<h5><?php esc_html_e( 'Title', 'directory-plugin' ); ?>: <?php echo esc_html( $listing->title ); ?></h5>
+												<p><b><?php esc_html_e( 'Content', 'directory-plugin' ); ?></b>: <?php echo esc_textarea( wp_trim_words( $listing->content, 12, '...' ) ); ?></p>
+												<p><b><?php esc_html_e( 'Status', 'directory-plugin' ); ?></b>: <?php echo esc_html( $listing->listing_status ); ?></p>
+												<p><b><?php esc_html_e( 'Author', 'directory-plugin' ); ?></b>: <?php echo esc_html( $author->data->display_name ); ?></p>
+												<p><b><?php esc_html_e( 'Submitted', 'directory-plugin' ); ?></b>: <?php echo esc_html( $listing->created_at ); ?></p>
 											</div>
 										<?php
 									}
@@ -292,24 +294,24 @@ class Listings {
 								?>
 							</div>
 						</div>
-						<?php if ( $show_pagination ) : ?>
+						<?php if ( $show_pagination && ( $total > $number ) ) : ?>
 							<div class="listings-pagination">
 								<input type="hidden" name="pages" id="pages" value="<?php echo esc_attr( $pages ); ?>">
 								<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
-								<button class="prev-btn <?php echo esc_attr( $prev < 2 ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $prev ); ?>">Prev</button>
+								<button class="prev-btn <?php echo esc_attr( $prev < 2 ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $prev ); ?>"><?php esc_html_e( 'Prev', 'directory-plugin' ); ?></button>
 								<?php
 								for ( $i = 0; $i < ( $pages ); $i++ ) {
 									$current = $i + 1;
-									echo '<button class="page-number ' . esc_attr( $current == ( $next - 1 ) ? 'active' : '' ) . '" value="' . esc_html( $current ) . '">' . esc_html( $current ) . '</button>';
+									echo '<button class="page-number ' . esc_attr( $current == ( $next - 1 ) ? 'active' : '' ) . '" value="' . esc_attr( $current ) . '">' . esc_html( $current ) . '</button>';
 								}
 								?>
-								<button class="next-btn <?php echo esc_attr( $next > $pages ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $next ); ?>">Next</button>
+								<button class="next-btn <?php echo esc_attr( $next > $pages ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $next ); ?>"><?php esc_html_e( 'Next', 'directory-plugin' ); ?></button>
 							</div>
 						<?php endif; ?>
 					<?php endif; ?>
 
 					<?php if ( $show_submit_btn ) : ?>
-						<button class="submit-toggle">Submit Listing</button>
+						<button class="submit-toggle"><?php esc_html_e( 'Submit Listing', 'directory-plugin' ); ?></button>
 					<?php endif; ?>
 
 					<div class="dp-modal">
@@ -318,11 +320,11 @@ class Listings {
 							<?php if ( is_user_logged_in() ) : ?>
 								<form id="submit-listing-form" method="post" action="" enctype="multipart/form-data">
 									<label for="title"><?php esc_html_e( 'Title:', 'directory-plugin' ); ?></label>
-									<input type="text" id="title" name="title" placeholder="Title...">
-									<span class="error hidden">Title can not be empty.</span><br>
+									<input type="text" id="title" name="title">
+									<span class="error hidden"><?php esc_html_e( 'Title can not be empty.', 'directory-plugin' ); ?></span><br>
 
 									<label for="content"><?php esc_html_e( 'Content:', 'directory-plugin' ); ?></label>
-									<textarea id="content" name="content" placeholder="Content..." style="height:200px"></textarea>
+									<textarea id="content" name="content" style="height:200px"></textarea>
 
 									<label for="status"><?php esc_html_e( 'Status:', 'directory-plugin' ); ?></label>
 									<select id="status" name="status">
@@ -334,11 +336,11 @@ class Listings {
 									<div class="image-upload-area">
 										<div>
 											<input type="file" id="image" name="image" class="hidden">
-											<label for="image" class="upload-btn">Upload Image</label>
+											<label for="image" class="upload-btn"><?php esc_html_e( 'Upload Image', 'directory-plugin' ); ?></label>
 										</div>
 										<div class="preview-image hidden">
 											<span>&times;</span>
-											<img src="" alt="preview image">
+											<img src="" alt="<?php esc_html_e( 'preview image', 'directory-plugin' ); ?>">
 										</div>
 									</div>
 									<br>
@@ -357,7 +359,7 @@ class Listings {
 												</div>
 											</div>
 										</div>
-										<h1 class="success-msg hidden">Success</h1>
+										<h1 class="success-msg hidden"><?php esc_html_e( 'Success', 'directory-plugin' ); ?></h1>
 										<h1 class="error-msg hidden"></h1>
 									</div>
 
