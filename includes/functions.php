@@ -153,6 +153,7 @@ function directory_plugin_listings_total_count( $filter = [] ) {
 	if ( is_array( $filter ) && ! empty( $filter['status'] ) ) {
 		$status        = $filter['status'];
 		$extra_checks .= $wpdb->prepare( ' WHERE listing_status = %s', "$status" );
+		return (int) $wpdb->get_var( "SELECT COUNT(id) FROM {$wpdb->prefix}directory_listings $extra_checks" );
 	}
 
 	$total_count = wp_cache_get( 'count', 'dirlistings' );
