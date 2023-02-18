@@ -296,6 +296,7 @@ class Listings {
 					</div>
 					<?php if ( $show_pagination && ( $total > $number ) ) : ?>
 						<div class="listings-pagination">
+							<input type="hidden" name="allpage" id="allpage" value="<?php echo esc_attr( $total ); ?>">
 							<input type="hidden" name="pages" id="pages" value="<?php echo esc_attr( $pages ); ?>">
 							<input type="hidden" name="number" id="number" value="<?php echo esc_attr( $number ); ?>">
 							<button class="prev-btn <?php echo esc_attr( $prev < 2 ? 'hidden' : '' ); ?>" value="<?php echo esc_attr( $prev ); ?>"><?php esc_html_e( 'Prev', 'directory-plugin' ); ?></button>
