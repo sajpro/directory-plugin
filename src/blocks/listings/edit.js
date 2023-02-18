@@ -320,7 +320,7 @@ console.log(serverAttr);
 			setAttributes({ blockStyles: minifyCSS(JSON.stringify(stylesObject)) });
 		}
 	}, [attributes]);
-console.log(blockProps);
+
     return (
         <>
             <Inspector {...{attributes,setAttributes}}/>

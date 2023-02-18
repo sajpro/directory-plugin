@@ -12,8 +12,8 @@ const attributes = {
         default: "This is Subtitle"
     },
     number: {
-        type: "integer",
-        default: 12
+        type: "string",
+        default: "12"
     },
     showPagination: {
         type: "boolean",
