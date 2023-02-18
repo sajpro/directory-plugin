@@ -70,7 +70,7 @@ class Listing_Table extends \WP_List_Table {
 
 			case 'author':
 				$user = get_user_by( 'id', $item->$column_name );
-				$name = $user->display_name ? $user->display_name : $user->user_login;
+				$name = $user->display_name;
 				return isset( $item->$column_name ) ? esc_html( $name ) : '';
 				break;
 

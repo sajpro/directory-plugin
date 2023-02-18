@@ -56,7 +56,7 @@ class Listings {
 		}
 
 		if ( $id ) {
-			$redirected_to = admin_url( 'admin.php?page=directory-listings&action=edit&updated=true&listing=' . $id );
+			$redirected_to = admin_url( 'admin.php?page=directory-listings&action=edit&updated=true&listing=' . intval( $id ) );
 		} else {
 			$redirected_to = admin_url( 'admin.php?page=directory-listings&created=true' );
 		}
@@ -83,7 +83,7 @@ class Listings {
 			$number_of_listings = count( $delete_ids );
 
 			if ( $number_of_listings ) {
-				$redirected_to = admin_url( 'admin.php?page=directory-listings&deleted=true&delete-total=' . $number_of_listings );
+				$redirected_to = admin_url( 'admin.php?page=directory-listings&deleted=true&delete-total=' . intval( $number_of_listings ) );
 			} else {
 				$redirected_to = admin_url( 'admin.php?page=directory-listings&deleted=false' );
 			}
