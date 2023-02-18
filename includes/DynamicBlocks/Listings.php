@@ -239,10 +239,10 @@ class Listings {
 
 		$response_code = wp_remote_retrieve_response_code( $remote_request );
 		$response_body = (array) json_decode( wp_remote_retrieve_body( $remote_request ) );
-		$pages         = $response_body['pages'];
-		$prev          = $response_body['prev'];
-		$total         = $response_body['total'];
-		$next          = $response_body['next'];
+		$pages         = $response_body['pages'] ? $response_body['pages'] : 0;
+		$prev          = $response_body['prev'] ? $response_body['prev'] : 0;
+		$total         = $response_body['total'] ? $response_body['total'] : 0;
+		$next          = $response_body['next'] ? $response_body['next'] : 0;
 
 		$classnames         = [];
 		$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => implode( ' ', $classnames ) ] );
