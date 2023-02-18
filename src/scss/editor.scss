@@ -1,0 +1,148 @@
+.dp-inspector-tab-panel{
+    .dp-tab{
+        &.active-tab{
+            box-shadow: inset 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
+        }
+    }
+    .sec-tab-panel{
+        margin-bottom: 24px;
+        .components-base-control__label{
+            margin-bottom: 0 !important;
+        }
+        .components-tab-panel__tabs{
+            justify-content: space-around;
+            margin-bottom: 15px;;
+            button{    
+                color: var(--wp-admin-theme-color);
+                border: 1px solid var(--wp-admin-theme-color);
+                width: 50%;
+                &:focus{
+                    box-shadow: none !important;
+                }
+                &.active-tab{
+                    color: #fff;
+                    background: var(--wp-admin-theme-color);
+                    border-color: var(--wp-admin-theme-color);
+                }
+            }
+        }
+        .dp-inspector-image-control{
+            .background-image,
+            .image-uploader {
+                width: 200px;
+                background: #ddd;
+                margin-left: 20px;
+                height: 100px;
+                display: block;
+                transform: translate(-18px, 10px);
+                overflow: hidden;
+                margin-bottom: 40px;
+            }
+            .image-wrapper{
+                max-width: 200px;
+                position: relative;
+                .dp-remove-media{
+                    font-size: 18px;
+                    color: red;
+                    cursor: pointer;
+                    position: absolute;
+                    z-index: 9990;
+                    left: 70%;
+                    top: 18px;
+                    background: #ddd;
+                    padding: 6px;
+                }
+                .background-image{
+                    width: auto;
+                }
+                &:hover{
+                    .background-image{
+                        cursor: pointer;
+                        &:before{
+                            content: "Change Image";
+                            position: absolute;
+                            top: 70%;
+                            left: 50%;
+                            transform: translate(-50%,-50%);
+                            padding: 5px;
+                            width: 100px;
+                            z-index: 9999;
+                            background: #ddd;
+                        }
+                        .image{
+                            opacity: .6;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .dp-style-tab{
+        .components-base-control{
+            .components-base-control__label{
+                text-transform: inherit;
+                margin: 0;
+            }
+            .components-form-toggle__input{
+                &:focus + .components-form-toggle__track{
+                    box-shadow: none !important;
+                }
+            }
+        }
+        .components-base-control.dp-not-flex{
+            .components-base-control__label{
+                margin-bottom: 8px;
+            }
+        }
+
+        .components-base-control.dp-flex,
+        .components-base-control:not(.dp-not-flex){
+            .components-base-control__field{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0;
+                .components-base-control{
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    .dp-btn-group{
+        .active-tab{
+            color: #fff;
+            background: var(--wp-admin-theme-color);
+            border-color: var(--wp-admin-theme-color);
+        }
+    }
+}
+
+.popover-slot{
+    .dp-iconpicker-popover-control{
+        .components-popover__content{
+            width: 300px !important;
+            max-height: 400px !important;
+            button.icon-btn:focus{
+                box-shadow: none !important;
+            }
+        }
+    }
+    .dp-base-popover{
+        width: 300px;
+        .dp-base-popover-heading{
+            display: flex;
+            justify-content: space-between;
+        }
+        .dp-base-popover-body{
+            .dp-select-font-family {
+                input {
+                    min-width: 100px !important;
+                    &:focus{
+                        box-shadow: none !important;
+                    }
+                }
+            }
+        }
+
+    }
+}

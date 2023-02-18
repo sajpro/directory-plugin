@@ -118,7 +118,7 @@
 	<rule ref="WordPress">
 		<exclude name="WordPress.Files.FileName"/>
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
-		<exclude name="WordPress.NamingConventions.ValidVariableName"/>
+		<!-- <exclude name="WordPress.NamingConventions.ValidVariableName"/> -->
 		<exclude name="WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition"/>
 	</rule>
 
