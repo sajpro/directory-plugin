@@ -2,7 +2,7 @@ import { __ } from "@wordpress/i18n";
 import ServerSideRender from '@wordpress/server-side-render';
 import { useEffect } from "@wordpress/element";
 import classnames from "classnames";
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import {
 	Disabled
 } from '@wordpress/components';

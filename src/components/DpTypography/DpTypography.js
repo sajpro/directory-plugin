@@ -1,6 +1,5 @@
 import { Button, Dropdown, BaseControl, SelectControl, RangeControl } from "@wordpress/components";
 import { pencil } from "@wordpress/icons";
-import { useState, useEffect } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import {DpUnitTypo} from "../DpUnitTypo"
 import DpResponsiveControls from "../DpResponsiveControls/DpResponsiveControls"
@@ -11,8 +10,6 @@ import Select from 'react-select';
 
 export const DpTypography = (props) => {
     let {attributes,setAttributes,attributesId,label} = props;
-
-    const [selectedFonts, setSelectedFonts] = useState({});
 
     const getDevice = useGetDevice();
 
@@ -92,8 +89,6 @@ export const DpTypography = (props) => {
 
         if(['Arial','Helvetica','Times New Roman','Georgia'].includes(v.value)) return;
 
-        // setSelectedFonts({...selectedFonts,[attributes.blockId]:v.value})
-
         const meta = wp.data.select("core/editor").getEditedPostAttribute("meta");
         let fm = '';
         let fmObj = {};
@@ -138,7 +133,7 @@ export const DpTypography = (props) => {
                     <div className="dp-base-popover">
                         <div className="dp-base-popover-heading">
                             <div className="title">
-                                <h5>Typography</h5>
+                                <h5>{__('Typography','directory-plugin')}</h5>
                             </div>
                             <div className="reset-btn">
                                 <FiRotateCcw/>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BaseControl, Dropdown, Button } from "@wordpress/components";
+import { BaseControl } from "@wordpress/components";
 import CodeMirror from '@uiw/react-codemirror';
 import { css } from '@codemirror/lang-css';
 

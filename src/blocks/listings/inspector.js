@@ -18,17 +18,17 @@ import { AdvancedControls } from "../../utils/AdvancedControls"
 export const TAB_BUTTONS = [
     {
         name: 'general',
-        title: 'General',
+        title: __('General','directory-plugin'),
         className: 'dp-tab general',
     },
     {
         name: 'style',
-        title: 'Style',
+        title: __('Style','directory-plugin'),
         className: 'dp-tab styles',
     },
     {
         name: 'advanced',
-        title: 'Advanced',
+        title: __('Advanced','directory-plugin'),
         className: 'dp-tab advanced',
     },
 ];
@@ -98,11 +98,11 @@ const Inspector = (props) => {
                                     tabs={[
                                         {
                                             name: 'normal',
-                                            title: 'Normal',
+                                            title: __('Normal','directory-plugin'),
                                         },
                                         {
                                             name: 'hover',
-                                            title: 'Hover',
+                                            title: __('Hover','directory-plugin'),
                                         }
                                     ]}
                                 >
@@ -153,11 +153,11 @@ const Inspector = (props) => {
                                     tabs={[
                                         {
                                             name: 'normal',
-                                            title: 'Normal',
+                                            title: __('Normal','directory-plugin'),
                                         },
                                         {
                                             name: 'hover',
-                                            title: 'Hover',
+                                            title: __('Hover','directory-plugin'),
                                         }
                                     ]}
                                 >

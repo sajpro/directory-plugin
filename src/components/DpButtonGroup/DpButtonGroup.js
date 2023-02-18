@@ -22,13 +22,3 @@ export const DpButtonGroup = (props) => {
         </BaseControl>
     );
 }
-
-
-{/* <FbButtonGroup {...{attributes, setAttributes}}
-    attributesId = 'testAlign'
-    buttons = {[
-        { label: 'XX', value: 'xx', icon: '' },
-        { label: 'YY', value: 'yy', icon: '' },
-        { label: 'ZZ', value: 'zz', icon: '' }
-    ]}
-/> */}

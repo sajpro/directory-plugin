@@ -46,19 +46,19 @@ export const DpSpacingControls = (props) => {
                 <ul>
                     <li>
                         <input type="number" name="top" onChange={handleOnChange} value={attributes[attributesId][getDevice]['top']}/>
-                        <span>Top</span>
+                        <span>{__('Top','directory-plugin')}</span>
                     </li>
                     <li>
                         <input type="number" name="right" onChange={handleOnChange} value={attributes[attributesId][getDevice]['right']} />
-                        <span>Right</span>
+                        <span>{__('Right','directory-plugin')}</span>
                     </li>
                     <li>
                         <input type="number" name="bottom" onChange={handleOnChange} value={attributes[attributesId][getDevice]['bottom']}/>
-                        <span>Bottom</span>
+                        <span>{__('Bottom','directory-plugin')}</span>
                     </li>
                     <li>
                         <input type="number" name="left" onChange={handleOnChange} value={attributes[attributesId][getDevice]['left']}/>
-                        <span>Left</span>
+                        <span>{__('Left','directory-plugin')}</span>
                     </li>
                     <li>
                         <button

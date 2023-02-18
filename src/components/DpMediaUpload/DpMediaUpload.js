@@ -17,9 +17,6 @@ export const DpMediaUpload = (props) => {
             label={label}
             className='dp-inspector-image-control dp-not-flex'
         >
-            {/* {attributes[attributesId].url && (
-                <span className="dp-remove-media" onClick={()=> setAttributes({ [attributesId]:{...attributes[attributesId],url:'', id:''} })}>&times;</span>
-            )} */}
             <MediaUpload
                 onSelect={({ id, url }) =>
                     setAttributes({ [attributesId]:{...attributes[attributesId],url, id} })
@@ -31,7 +28,7 @@ export const DpMediaUpload = (props) => {
                         return (
                             <Button
                                 className="image-uploader"
-                                label={__("Upload Image", "dp-blocks")}
+                                label={__("Upload Image", "directory-plugin")}
                                 icon="format-image"
                                 onClick={open}
                             />
@@ -51,7 +48,7 @@ export const DpMediaUpload = (props) => {
             {attributes[attributesId].url && (
                 <>
                     <BaseControl
-                            label={__('Position','dp-blocks')}
+                            label={__('Position','directory-plugin')}
                         >
                         <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
                         <SelectControl
@@ -59,35 +56,35 @@ export const DpMediaUpload = (props) => {
                             value={ attributes[attributesId][getDevice].position }
                             onChange={ v => setAttributes({ [attributesId]:{...attributes[attributesId], [getDevice]: {...attributes[attributesId][getDevice], position: v}} }) }
                             options={ [
-                                { label: 'Default', value: '' },
-                                { label: 'Center Center', value: 'center center' },
-                                { label: 'Center Left', value: 'center left' },
-                                { label: 'Center Right', value: 'center right' },
-                                { label: 'Top Center', value: 'top center' },
-                                { label: 'Top Left', value: 'top left' },
-                                { label: 'Top Right', value: 'top right' },
-                                { label: 'Bottom Center', value: 'bottom center' },
-                                { label: 'Bottom Left', value: 'bottom left' },
-                                { label: 'Bottom Right', value: 'bottom right' }
+                                { label: __('Default','directory-plugin'), value: '' },
+                                { label: __('Center Center','directory-plugin'), value: 'center center' },
+                                { label: __('Center Left','directory-plugin'), value: 'center left' },
+                                { label: __('Center Right','directory-plugin'), value: 'center right' },
+                                { label: __('Top Center','directory-plugin'), value: 'top center' },
+                                { label: __('Top Left','directory-plugin'), value: 'top left' },
+                                { label: __('Top Right','directory-plugin'), value: 'top right' },
+                                { label: __('Bottom Center','directory-plugin'), value: 'bottom center' },
+                                { label: __('Bottom Left','directory-plugin'), value: 'bottom left' },
+                                { label: __('Bottom Right','directory-plugin'), value: 'bottom right' }
                             ] }
                         /> 
                     </BaseControl>
                     <BaseControl
-                        label={__('Attachment','dp-blocks')}
+                        label={__('Attachment','directory-plugin')}
                         >
                         <SelectControl
                             className='dp-flex'
                             value={ attributes[attributesId].attachment }
                             onChange={ v => setAttributes({ [attributesId]:{...attributes[attributesId],attachment:v} }) }
                             options={ [
-                                { label: 'Default', value: '' },
-                                { label: 'Scroll', value: 'scroll' },
-                                { label: 'Fixed', value: 'fixed' }
+                                { label: __('Default','directory-plugin'), value: '' },
+                                { label: __('Scroll','directory-plugin'), value: 'scroll' },
+                                { label: __('Fixed','directory-plugin'), value: 'fixed' }
                             ] }
                         /> 
                     </BaseControl>
                     <BaseControl
-                        label={__('Repeat','dp-blocks')}
+                        label={__('Repeat','directory-plugin')}
                     >
                         <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
                         <SelectControl
@@ -95,16 +92,16 @@ export const DpMediaUpload = (props) => {
                             value={ attributes[attributesId][getDevice].repeat }
                             onChange={ v => setAttributes({ [attributesId]:{...attributes[attributesId], [getDevice]: {...attributes[attributesId][getDevice], repeat: v}} }) }
                             options={ [
-                                { label: 'Default', value: '' },
-                                { label: 'No Repeat', value: 'no-repeat' },
-                                { label: 'Repeat', value: 'repeat' },
-                                { label: 'Repeat-X', value: 'repeat-x' },
-                                { label: 'Repeat-Y', value: 'repeat-y' }
+                                { label: __('Default','directory-plugin'), value: '' },
+                                { label: __('No Repeat','directory-plugin'), value: 'no-repeat' },
+                                { label: __('Repeat','directory-plugin'), value: 'repeat' },
+                                { label: __('Repeat-X','directory-plugin'), value: 'repeat-x' },
+                                { label: __('Repeat-Y','directory-plugin'), value: 'repeat-y' }
                             ] }
                         />  
                     </BaseControl>
                     <BaseControl
-                        label={__('Size','dp-blocks')}
+                        label={__('Size','directory-plugin')}
                     >
                         <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>
                         <SelectControl
@@ -112,17 +109,17 @@ export const DpMediaUpload = (props) => {
                             value={ attributes[attributesId][getDevice].size }
                             onChange={ v => setAttributes({ [attributesId]:{...attributes[attributesId], [getDevice]: {...attributes[attributesId][getDevice], size: v}} }) }
                             options={ [
-                                { label: 'Default', value: '' },
-                                { label: 'Auto', value: 'auto' },
-                                { label: 'Cover', value: 'cover' },
-                                { label: 'Contain', value: 'contain' },
-                                { label: 'Custom', value: 'custom' }
+                                { label: __('Default','directory-plugin'), value: '' },
+                                { label: __('Auto','directory-plugin'), value: 'auto' },
+                                { label: __('Cover','directory-plugin'), value: 'cover' },
+                                { label: __('Contain','directory-plugin'), value: 'contain' },
+                                { label: __('Custom','directory-plugin'), value: 'custom' }
                             ] }
                         /> 
                     </BaseControl>
                     {(attributes[attributesId][getDevice]?.size) == 'custom' && (
                         <BaseControl
-                            label={'Width'}
+                            label={__('Width','directory-plugin')}
                             className={'dp-css-value-wrapper dp-not-flex'}
                         >
 

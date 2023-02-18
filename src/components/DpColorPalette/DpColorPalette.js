@@ -1,5 +1,5 @@
 import { BaseControl, ColorPicker, Dropdown, Button, Icon } from "@wordpress/components";
-import { pencil,reset } from "@wordpress/icons";
+import { reset } from "@wordpress/icons";
 import { __ } from "@wordpress/i18n";
 
 export const DpColorPalette = (props) => {
@@ -17,13 +17,12 @@ export const DpColorPalette = (props) => {
                         className="dp-color-picker"
                         onClick={ onToggle }
                         aria-expanded={ isOpen }
-                        // icon={pencil}
                         style={{backgroundColor:attributes[attributesId]}}
                     />
                 ) }
                 renderContent={ () => <>
                     <div className="dp-color-palette-reset">
-                        <span>Color</span>
+                        <span>{__("Color", "directory-plugin")}</span>
                         <Icon
                             onClick={() => setAttributes({ [attributesId]: '' })}
                             icon={reset}

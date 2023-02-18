@@ -10,13 +10,14 @@ const blockIdExist = ( blockId, clientId ) => {
     } );
 };
 
+// generate unique id with uuid and client id
 const getUniqueId = (blockPrefix,setAttributes,clientId) => {
     const uid = uuidv1().split("-").pop().match(/.{1,3}/g).pop();
     const cid = clientId.split("-").pop().match(/.{1,3}/g).pop();
     setAttributes({ blockId: `${blockPrefix}-${uid}${cid}` });
 }
 
-// generate unique block id
+// Finally get unique id
 export const getBlockId = ({blockPrefix,blockId,setAttributes,clientId}) => {
 
     if ( ! blockId ) {
@@ -31,11 +32,10 @@ export const getBlockId = ({blockPrefix,blockId,setAttributes,clientId}) => {
 // generate minify css code
 export const minifyCSS = (css) => {
     let css_string = css.split("\n").join("").trim().replace(/\s+/g, " ")
-    // let css_string = css.split("\n").join("").trim().replace(/[\r\n\s]/gm, '');
-    // .replace(/\s+(?=[^{\}]*\})/g, "")
     return css_string;
 };
 
+// generate dimension attributes
 export const generateDimensionAttributes = (attributesId,attributesObject) => {
     return {
         [attributesId]:  {
@@ -50,6 +50,7 @@ export const generateDimensionAttributes = (attributesId,attributesObject) => {
     }
 }
 
+// generate typography typography attribues
 export const generateTypographyAttributes = (attributesId,attributesObject) => {
     return {
         [attributesId]:  {
@@ -72,7 +73,7 @@ export const generateTypographyAttributes = (attributesId,attributesObject) => {
     }
 }
 
-
+// generate background image attributes
 export const generateBgeImageAttr = (attributesId,attributesObject) => {
     return {
         [attributesId]:  {
@@ -90,6 +91,7 @@ export const generateBgeImageAttr = (attributesId,attributesObject) => {
     }
 }
 
+// generate dimension styles
 export const generateDimensionStyles = ({attributesId,styleFor,attributes}) => {
     let unit_default = attributes[attributesId].unitDefault
 
@@ -113,6 +115,7 @@ export const generateDimensionStyles = ({attributesId,styleFor,attributes}) => {
     return {dimensionStyle};
 }
 
+// generate bg image style
 export const generateBgImageStyle = ({attributesIdType, attributesIdColor, attributesIdImage, attributesIdGradient, attributes}) => {
     let unit_default = attributes[attributesIdImage].unitDefault
 
@@ -144,7 +147,7 @@ export const generateBgImageStyle = ({attributesIdType, attributesIdColor, attri
     return {backgroundStyles};
 }
 
-
+// generate typography style
 export const generateTypographyStyle = ({attributesId,attributes}) => {
     let sizeUnitD = attributes[attributesId].fontSizeDefaultUnit
     let lhUnitD   = attributes[attributesId].lineHeightDefaultUnit
@@ -180,6 +183,7 @@ export const generateTypographyStyle = ({attributesId,attributes}) => {
     return {typoStyle};
 }
 
+// generate transition style
 export const generateTransitonStyle = ({attributesId, attributes, type = ''}) => {
     let transitoins = [];
     let transiton_style = (attributes[attributesId] ? `${type ? `${type} ` : ''}${attributes[attributesId]}s` : '')

@@ -11,20 +11,17 @@ export const DpUnitTypo = (props) => {
         setAttributes({[attributesId]: newUnit})
     }
 
+    let units = ['px','em','%', 'rem'];
+
     return (
         <div className='dp-units'>
-            <Button
-                className={(attributes[attributesId][getDevice][attributesUnit]?.unit || attributes[attributesId][attributesUnitDefault] ) == 'px' ? 'active-unit' : ''}
-                onClick={(v) => handleUnit('px')}
-            >px</Button>  
-            <Button
-                className={(attributes[attributesId][getDevice][attributesUnit]?.unit || attributes[attributesId][attributesUnitDefault] ) == 'em' ? 'active-unit' : ''}
-                onClick={(v) => handleUnit('em')}
-            >em</Button>  
-            <Button
-                className={(attributes[attributesId][getDevice][attributesUnit]?.unit || attributes[attributesId][attributesUnitDefault] ) == '%' ? 'active-unit' : ''}
-                onClick={(v) => handleUnit('%')}
-            >%</Button> 
+            {units.map((btn,i)=>( 
+                <Button
+                key={i}
+                    className={(attributes[attributesId][getDevice][attributesUnit]?.unit || attributes[attributesId][attributesUnitDefault] ) == btn ? 'active-unit' : ''}
+                    onClick={(v) => handleUnit(btn)}
+                >btn</Button> 
+            ))}
         </div>
     );
 }
