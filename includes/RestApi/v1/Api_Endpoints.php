@@ -43,14 +43,15 @@ class Api_Endpoints extends \WP_REST_Controller {
 					'methods'             => \WP_REST_Server::READABLE,
 					'callback'            => [ $this, 'get_all_listings' ],
 					'permission_callback' => '__return_true',
-					'args'                => parent::get_endpoint_args_for_item_schema( true ),
+					'args'                => $this->get_collection_params(),
 				],
 				[
 					'methods'             => \WP_REST_Server::CREATABLE,
 					'callback'            => [ $this, 'create_listings' ],
 					'permission_callback' => [ $this, 'get_permission_check' ],
-					// 'args'                => parent::get_endpoint_args_for_item_schema( true ),
+					'args'                => $this->listings_get_endpoint_args()
 				],
+				'schema' => [ $this, 'get_listings_schema' ],
 			]
 		);
 	}
@@ -140,6 +141,114 @@ class Api_Endpoints extends \WP_REST_Controller {
 	 */
 	public function get_permission_check() {
 		return current_user_can( 'edit_posts' );
+	}
+
+
+	/**
+	 * Get the query params for collections of listings.
+	 *
+	 * @return array
+	 */
+	public function get_collection_params() {
+		$params = parent::get_collection_params();
+
+		$params['paged'] = [
+			'description'       => __( 'Get result by page.', 'directory-plugin' ),
+			'type'              => 'integer',
+			'sanitize_callback' => 'absint',
+			'validate_callback' => 'rest_validate_request_arg',
+		];
+		$params['number'] = [
+			'description'       => __( 'Get number of results.', 'directory-plugin' ),
+			'type'              => 'integer',
+			'sanitize_callback' => 'absint',
+			'validate_callback' => 'rest_validate_request_arg',
+		];
+
+		return $params;
+	}
+
+	/**
+	 * Get the argument schema for listings endpoint.
+	 * 
+	 * @return array
+	 */
+	public function listings_get_endpoint_args() {
+		$args = [];
+
+		$args['title']    = [
+			'description'       => esc_html__( 'This is the title arg for endpoint.', 'directory-plugin' ),
+			'type'              => 'string',
+			'validate_callback' => 'rest_validate_request_arg',
+			'sanitize_callback' => 'sanitize_text_field',
+			'required'          => true,
+		];
+		$args['content']  = [
+			'description'       => esc_html__( 'This is the content arg for endpoint.', 'directory-plugin' ),
+			'type'              => 'string',
+			'validate_callback' => 'rest_validate_request_arg',
+			'sanitize_callback' => 'sanitize_text_field',
+		];
+		$args['status']   = [
+			'description'       => esc_html__( 'This is the status arg for endpoint.', 'directory-plugin' ),
+			'type'              => 'string',
+			'validate_callback' => 'rest_validate_request_arg',
+			'sanitize_callback' => 'sanitize_text_field',
+		];
+		$args['author']   = [
+			'description'       => esc_html__( 'This is the author arg for endpoint.', 'directory-plugin' ),
+			'type'              => 'integer',
+			'validate_callback' => 'rest_validate_request_arg',
+			'sanitize_callback' => 'absint',
+		];
+		$args['image_id'] = [
+			'description'       => esc_html__( 'This is the image_id arg for endpoint.', 'directory-plugin' ),
+			'type'              => 'integer',
+			'validate_callback' => 'rest_validate_request_arg',
+			'sanitize_callback' => 'absint',
+		];
+
+		return $args;
+	}
+
+	/**
+	 * Get schema for listings.
+	 * 
+	 * @return array
+	 */
+	public function get_listings_schema() {
+		$schema = [
+			'$schema'    => 'http://json-schema.org/draft-04/schema#',
+			'title'      => 'listings',
+			'type'       => 'object',
+			'properties' => [
+				'id' => [
+					'description' => esc_html__( 'The id of the listing record.', 'directory-plugin' ),
+					'type'        => 'integer',
+				],
+				'title' => [
+					'description' => esc_html__( 'Title of the listing object, if author was a user.', 'directory-plugin' ),
+					'type'        => 'integer',
+				],
+				'content' => [
+					'description' => esc_html__( 'Content of the object.', 'directory-plugin' ),
+					'type'        => 'string',
+				],
+				'author' => [
+					'description' => esc_html__( 'The id of the user object, if author was a user.', 'directory-plugin' ),
+					'type'        => 'integer',
+				],
+				'preview_image' => [
+					'description' => esc_html__( 'Attachemtn id of the object.', 'directory-plugin' ),
+					'type'        => 'integer',
+				],
+				'listing_status' => [
+					'description' => esc_html__( 'Listing status of the object.', 'directory-plugin' ),
+					'type'        => 'string',
+				],
+			],
+		];
+		return $schema;
 	}
 
 }
