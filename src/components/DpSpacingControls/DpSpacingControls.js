@@ -7,7 +7,7 @@ import DpResponsiveControls from "../DpResponsiveControls/DpResponsiveControls"
 import { useGetDevice } from "../../utils/getDevice";
 
 export const DpSpacingControls = (props) => {
-    let { attributes, setAttributes,attributesId, label } = props;
+    let { attributes, setAttributes,attributesId, className, label } = props;
 
     const getDevice = useGetDevice();
 
@@ -35,6 +35,7 @@ export const DpSpacingControls = (props) => {
     return (
         <BaseControl
             label={label}
+            className={className}
         >
             <div className="units-responsive">
                 <DpResponsiveControls {...{attributes, setAttributes,attributesId}}/>

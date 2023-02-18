@@ -16,6 +16,14 @@ export const AdvancedAttributes = {
 		unit: '',
 		isLinked: true,
 	}),
+	...generateDimensionAttributes('wrapperPadding',{
+		top: '',
+		right: '',
+		bottom: '',
+		left: '',
+		unit: '',
+		isLinked: true,
+	}),
 	wrapperBgType: {
         type: "string",
         default: "classic"

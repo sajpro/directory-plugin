@@ -1,5 +1,5 @@
 import { AdvancedAttributes } from "../../utils/AdvancedControls"
-import { generateTypographyAttributes } from "../../utils/helper"
+import { generateTypographyAttributes, generateDimensionAttributes } from "../../utils/helper"
 
 const attributes = {
     ...AdvancedAttributes,
@@ -39,7 +39,53 @@ const attributes = {
         type: "string",
         default: ""
     },
+    secSubtitleNormalColor: {
+        type: "string",
+        default: ""
+    },
+    secSubtitleHoverColor: {
+        type: "string",
+        default: ""
+    },
+    secSubtitleTransition: {
+        type: "string",
+        default: ""
+    },
+	...generateDimensionAttributes('secTitlePadding',{
+		top: '',
+		right: '',
+		bottom: '',
+		left: '',
+		unit: '',
+		isLinked: true,
+	}),
+	...generateDimensionAttributes('secSubtitlePadding',{
+		top: '',
+		right: '',
+		bottom: '',
+		left: '',
+		unit: '',
+		isLinked: true,
+	}),
 	...generateTypographyAttributes('secTitleTypography',{
+		fontSize: {
+			value: "",
+			unit: "",
+		},
+		lineHeight: {
+			value: "",
+			unit: "",
+		},
+		letterSpacing: {
+			value: "",
+			unit: "",
+		},
+		wordSpacing: {
+			value: "",
+			unit: "",
+		},
+	}),
+	...generateTypographyAttributes('secSubtitleTypography',{
 		fontSize: {
 			value: "",
 			unit: "",

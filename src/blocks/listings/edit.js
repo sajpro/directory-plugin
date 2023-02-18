@@ -24,8 +24,12 @@ const Edit = (props) => {
         showSubmitButton,
         secTitleNormalColor,
         secTitleHoverColor,
+        secSubtitleNormalColor,
+        secSubtitleHoverColor,
         wrapperCustomCss,
-        secTitleTransition
+        wrapperBgTransition,
+        secTitleTransition,
+        secSubtitleTransition,
     } = attributes;
 
     const serverAttr = {
@@ -58,6 +62,17 @@ console.log(serverAttr);
     }} = generateDimensionStyles({
 		attributesId: 'wrapperMargin',
 		styleFor: "margin",
+        attributes
+    })
+
+    // wrapper padding
+    let {dimensionStyle:{
+        Desktop: wrapperPaddingDesktop,
+        Tablet: wrapperPaddingTablet,
+        Mobile: wrapperPaddingMobile
+    }} = generateDimensionStyles({
+		attributesId: 'wrapperPadding',
+		styleFor: "padding",
         attributes
     })
 
@@ -97,9 +112,47 @@ console.log(serverAttr);
         attributes
     })
 
+    // section title padding
+    let {dimensionStyle:{
+        Desktop: secTitlePaddingDesktop,
+        Tablet: secTitlePaddingTablet,
+        Mobile: secTitlePaddingMobile
+    }} = generateDimensionStyles({
+		attributesId: 'secTitlePadding',
+		styleFor: "padding",
+        attributes
+    })
+
+    // section subtitle typography
+    let {typoStyle:{
+        Desktop: secSubtitleTypoStyleDesktop,
+        Tablet: secSubtitleTypoStyleTablet,
+        Mobile: secSubtitleTypoStyleMobile
+    }} = generateTypographyStyle({
+        attributesId: 'secSubtitleTypography',
+        attributes
+    })
+
+    // section subtitle padding
+    let {dimensionStyle:{
+        Desktop: secSubtitlePaddingDesktop,
+        Tablet: secSubtitlePaddingTablet,
+        Mobile: secSubtitlePaddingMobile
+    }} = generateDimensionStyles({
+		attributesId: 'secSubtitlePadding',
+		styleFor: "padding",
+        attributes
+    })
+
     // section title hover transition
     let {transitoins: secTitleTransitonValue} = generateTransitonStyle({
         attributesId: 'secTitleTransition',
+        attributes
+    })
+
+    // section subtitle hover transition
+    let {transitoins: secSubtitleTransitonValue} = generateTransitonStyle({
+        attributesId: 'secSubtitleTransition',
         attributes
     })
 
@@ -112,11 +165,13 @@ console.log(serverAttr);
     
     // Wrapper styles css for desktop
     const wrapperStylesDesktop = `
-        ${(wrapperMarginDesktop || wrapperBgStylesDesktop) ? (`
+        ${(wrapperMarginDesktop || wrapperBgStylesDesktop || wrapperPaddingDesktop) ? (`
             .dp-listings-wrapper.${blockId}{
                 ${wrapperMarginDesktop}
+                ${wrapperPaddingDesktop}
                 ${wrapperBgStylesDesktop}
-                transition: ${wrapperBgTransitonValue.join(", ")};
+                ${wrapperBgTransition ? `transition: ${wrapperBgTransitonValue.join(", ")};` : ''}
+                
             }
         `):''}
         ${(wrapperHoverBgStylesDesktop) ? (`
@@ -128,11 +183,12 @@ console.log(serverAttr);
 
     // Title styles css desktop in strings ⬇
 	const sectionTitleStylesDesktop = `
-        ${(secTitleNormalColor || secTitleTypoStyleDesktop || secTitleTransition) ? (`
+        ${(secTitleNormalColor || secTitleTypoStyleDesktop || secTitleTransition || secTitlePaddingDesktop) ? (`
             .dp-listings-wrapper.${blockId} .sec-title {
                 ${secTitleNormalColor ? (`color: ${secTitleNormalColor};`) : ''}
+                ${secTitlePaddingDesktop}
                 ${secTitleTypoStyleDesktop}
-                transition: ${secTitleTransitonValue.join(", ")};
+                ${secTitleTransition ? `transition: ${secTitleTransitonValue.join(", ")};` : ''}
             }
         `):''}
         ${(secTitleHoverColor) ? (`
@@ -142,11 +198,31 @@ console.log(serverAttr);
         `):''}
     `;
 
+    // Subtitle styles css desktop in strings ⬇
+	const sectionSubtitleStylesDesktop = `
+        ${(secSubtitleNormalColor || secSubtitleTypoStyleDesktop || secSubtitleTransition || secSubtitlePaddingDesktop) ? (`
+            .dp-listings-wrapper.${blockId} .sec-sub-title {
+                ${secSubtitleNormalColor ? (`color: ${secSubtitleNormalColor};`) : ''}
+                ${secSubtitlePaddingDesktop}
+                ${secSubtitleTypoStyleDesktop}
+                transition: ${secSubtitleTransitonValue.join(", ")};
+                ${secSubtitleTransition ? `transition: ${secSubtitleTransitonValue.join(", ")};` : ''}
+            }
+        `):''}
+        ${(secSubtitleHoverColor) ? (`
+            .dp-listings-wrapper.${blockId} .sec-sub-title:hover {
+                color: ${secSubtitleHoverColor};
+            }
+        `):''}
+    `;
+
     // Wrapper styles css for Tablet
     const wrapperStylesTablet = `
-        ${(wrapperMarginTablet || wrapperBgStylesTablet) ? (`
+        ${(wrapperMarginTablet || wrapperBgStylesTablet || wrapperPaddingTablet || secTitlePaddingTablet) ? (`
             .dp-listings-wrapper.${blockId}{
                 ${wrapperMarginTablet}
+                ${wrapperPaddingTablet}
+                ${secTitlePaddingTablet}
                 ${wrapperBgStylesTablet}
             }
         `):''}
@@ -157,21 +233,32 @@ console.log(serverAttr);
         `):''}
     `;
 
-    // Title styles css desktop in strings ⬇
+    // Title styles css tablet in strings ⬇
 	const sectionTitleStylesTablet = `
-        ${(secTitleTypoStyleTablet) ? (`
+        ${(secTitleTypoStyleTablet ) ? (`
             .dp-listings-wrapper.${blockId} .sec-title {
-                ${secTitleTypoStyleDesktop}
+                ${secTitleTypoStyleTablet}
             }
         `):''}
     `;
 
+    // Subtitle styles css tablet in strings ⬇
+	const sectionSubtitleStylesTablet = `
+        ${(secSubtitleTypoStyleTablet || secSubtitlePaddingTablet) ? (`
+            .dp-listings-wrapper.${blockId} .sec-sub-title {
+                ${secSubtitleTypoStyleTablet}
+                ${secSubtitlePaddingTablet}
+            }
+        `):''}
+    `;
 
     // Wrapper styles css for mobile
     const wrapperStylesMobile = `
-        ${(wrapperMarginMobile || wrapperBgStylesMobile) ? (`
+        ${(wrapperMarginMobile || wrapperBgStylesMobile || wrapperPaddingMobile || secTitlePaddingMobile) ? (`
             .dp-listings-wrapper.${blockId}{
                 ${wrapperMarginMobile}
+                ${wrapperPaddingMobile}
+                ${secTitlePaddingMobile}
                 ${wrapperBgStylesMobile}
             }
         `):''}
@@ -191,22 +278,35 @@ console.log(serverAttr);
         `):''}
     `;
 
+    // Subtitle styles css desktop in strings ⬇
+	const sectionSubtitleStylesMobile = `
+        ${(secSubtitleTypoStyleMobile || secSubtitlePaddingMobile) ? (`
+            .dp-listings-wrapper.${blockId} .sec-sub-title {
+                ${secSubtitleTypoStyleMobile}
+                ${secSubtitlePaddingMobile}
+            }
+        `):''}
+    `;
+
 	// all css styles for desktop in strings
 	const desktopAllStyles = `
         ${wrapperStylesDesktop}
         ${sectionTitleStylesDesktop}
+        ${sectionSubtitleStylesDesktop}
     `;
 
 	// all css styles for desktop in strings
 	const tabletAllStyles = `
         ${wrapperStylesTablet}
         ${sectionTitleStylesTablet}
+        ${sectionSubtitleStylesTablet}
     `;
 
     // all css styles for desktop in strings
 	const mobileAllStyles = `
         ${wrapperStylesMobile}
         ${sectionTitleStylesMobile}
+        ${sectionSubtitleStylesMobile}
     `;
 
 	// Set All Style in "blockStyles" Attribute

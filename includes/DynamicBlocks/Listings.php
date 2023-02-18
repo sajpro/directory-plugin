@@ -78,6 +78,13 @@ class Listings {
 						'type'    => 'string',
 						'default' => '',
 					],
+					'secTitlePadding' => [
+						'type'    => 'object',
+						'default' => [],
+						'items'   => [
+							'type' => 'string',
+						],
+					],
 					'secTitleTypography' => [
 						'type'    => 'object',
 						'default' => [],
@@ -85,7 +92,40 @@ class Listings {
 							'type' => 'string',
 						],
 					],
+					'secSubtitleNormalColor' => [
+						'type'    => 'string',
+						'default' => '',
+					],
+					'secSubtitleHoverColor' => [
+						'type'    => 'string',
+						'default' => '',
+					],
+					'secSubtitleTransition' => [
+						'type'    => 'string',
+						'default' => '',
+					],
+					'secSubtitlePadding' => [
+						'type'    => 'object',
+						'default' => [],
+						'items'   => [
+							'type' => 'string',
+						],
+					],
+					'secSubtitleTypography' => [
+						'type'    => 'object',
+						'default' => [],
+						'items'   => [
+							'type' => 'string',
+						],
+					],
 					'wrapperMargin' => [
+						'type'    => 'object',
+						'default' => [],
+						'items'   => [
+							'type' => 'string',
+						],
+					],
+					'wrapperPadding' => [
 						'type'    => 'object',
 						'default' => [],
 						'items'   => [
@@ -214,7 +254,7 @@ class Listings {
 						echo sprintf( __( '<h2 class="sec-title text-center">%s</h2>', 'directory-plugin' ), $title );
 					}
 					if ( $subtitle ) {
-						echo sprintf( __( '<p class="sec-subtitle text-center">%s</p>', 'directory-plugin' ), $subtitle );
+						echo sprintf( __( '<p class="sec-sub-title text-center">%s</p>', 'directory-plugin' ), $subtitle );
 					}
 					?>
 					<?php if ( ( $response_code == 200 ) && ( $response_body['success'] == true ) ) : ?>
