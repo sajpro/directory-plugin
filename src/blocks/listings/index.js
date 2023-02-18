@@ -4,7 +4,7 @@ import attributes from "./attributes";
 import Edit from "./edit";
 
 dpRegisterBlockType(metadata, {
-    icon: 'book-alt',
+    icon: 'editor-ul',
     
     attributes,
 
