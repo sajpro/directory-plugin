@@ -17,7 +17,7 @@ class Admin {
 	function __construct() {
 		$listings = new Admin\Listings();
 		$this->dispatch_action( $listings );
-
+		// Initialize admin menu.
 		new Admin\Menu();
 	}
 
