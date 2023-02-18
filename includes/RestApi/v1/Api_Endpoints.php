@@ -114,7 +114,7 @@ class Api_Endpoints extends \WP_REST_Controller {
 		$content        = $request->get_param( 'content' );
 		$listing_status = $request->get_param( 'status' );
 		$preview_image  = $request->get_param( 'image_id' );
-		$author         = $request->get_param( 'autor' );
+		$author         = $request->get_param( 'author' );
 
 		$id = directory_plugin_listing_insert(
 			[

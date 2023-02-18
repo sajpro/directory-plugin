@@ -149,7 +149,7 @@ jQuery(document).ready(function($) {
             let title   = $('#submit-listing-form #title').val();
             let content = $('#submit-listing-form #content').val();
             let status  = $('#submit-listing-form #status').val();
-            let autor   = $('#submit-listing-form #autor').val();
+            let author   = $('#submit-listing-form #author').val();
             
             $.ajax(
                 {
@@ -159,7 +159,7 @@ jQuery(document).ready(function($) {
                         title,
                         content,
                         status,
-                        autor,
+                        author,
                         image_id
                     },
                     beforeSend: function (xhr) {
@@ -177,7 +177,7 @@ jQuery(document).ready(function($) {
                                     <h5>Title: ${title}</h5>
                                     <p><b>Content</b>: ${content ? `${content.substring(0, 90)}...` : ''}</p>
                                     <p><b>Status</b>: ${status}</p>
-                                    <p><b>Author</b>: ${autor}</p>
+                                    <p><b>Author</b>: ${author}</p>
                                     <p><b>Submitted</b>: ${data?.data?.created_at}</p>
                                 </div>
                             `

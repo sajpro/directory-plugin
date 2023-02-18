@@ -346,7 +346,7 @@ class Listings {
 									<br>
 									<br>
 									<?php wp_nonce_field( 'dp-listing-image-upload', 'dp-listing-image-upload-nonce' ); ?>
-									<input type="hidden" id="autor" value="<? echo get_current_user_id(); ?>">
+									<input type="hidden" id="author" value="<?php echo get_current_user_id(); ?>">
 									<div class="submit-btn">
 										<input type="submit" id="submit-listing" value="Submit">
 										<div class="loader-wrap hidden">
