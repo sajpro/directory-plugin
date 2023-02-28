@@ -1,3 +1,21 @@
+Create a simple and well structured directory plugin where a logged in user will submit listings through a frontend submission form. And submitted listings will be shown to the visitor using 4x3 grid on the frontend. We just need to store the following data (you can use more but not less):
+
+    1. Title
+    2. Content
+    3. Owner/Author
+    4. Status
+    5. Submission date
+    6. Preview image
+
+Technical requirements:
+
+    1. Use REST API custom endpoint for listings submission and listings query.
+    2. Use custom table to store data.
+    3. Use Ajax in submission form and pagination.
+    4. Display submitted listings on the backend using WP_List_Table.
+    5. Use block (Gutenberg block) to display submission form and listings gird.
+
+
 ### DB Table: 
 Stored the same input in a custom table mentioned in the assignmet sheet. Nothing more nothing less. This table is getting creating during the plugin activation.
 
@@ -13,12 +31,7 @@ WP List Table: This table is showing stored data similar to WP default post page
 ### Frontend: 
 Please consider the desing part. I just focusd on the backend and functional stuff. If you activate this theme with "hello elementor" theme it wont make you unhappy with the design. you will get a nice look of the design. Paginaton & Form submission feature implemented with Ajax. Where only logged in users can submit the form. If not logged-in user want to submit the form they should get a popup message with the login link. Uploaded Image using wp_ajax_ hook (because using wp/v2/media need another plugin for authentication purpose, so i avoide it.) but submitted the content using API. 
 
-### Unit Test: 
-I am not fluent with Unit Test as i don't have to do it in the past. So I went through some articles, video tutorials and found not so hard. Just needs practices. Practice makes perfect :)
-
-
 ### FIRST TIME i did: 
 This is the first time I made the ajax pagination. I am not fully satisfied with it. Proper thinking will help to more optimize this script. But I am out of time now :)
 
 
-Finally, I am very excited with this assignment. I expect feedback at least aobut of my working, Please.
